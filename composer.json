@@ -1,5 +1,5 @@
 {
-    "name": "cowegis/core",
+    "name": "cowegis/cowegis-core",
     "type": "library",
     "description": "Cowegis Core - Content Web GIS Core",
     "keywords": [
