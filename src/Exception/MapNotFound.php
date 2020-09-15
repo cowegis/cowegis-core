@@ -10,7 +10,6 @@ final class MapNotFound extends RuntimeException
 {
     public static function withMapId(MapId $mapId) : self
     {
-        // TODO: Implement
-        return new self();
+        return new self(sprintf('Map (ID %s) not found', $mapId->value()));
     }
 }
