@@ -96,12 +96,23 @@ final class MapSchemaDescriber implements SchemaDescriber
         return Schema::object('MapSchema')
             ->properties(
                 $builder->idSchemaRef('definitionId'),
-                Schema::string('title')->example('Example map'),
-                Schema::object('options')->description('Key value map of map options'),
-                Schema::array('layers')->items(OneOf::create()->schemas(... $this->buildLayerSchemas($builder))),
-                // TODO: Fixme since implemented
-                //  Schema::array('controls'), //->items(OneOf::create()->schemas(...$this->buildControlSchemas($builder))),
-                Schema::array('panes')->items($builder->components()->withSchema($this->paneSchema())),
+                Schema::string('elementId')
+                    ->example('map')
+                    ->description('The HTML element id'),
+                Schema::string('title')
+                    ->example('Example map')
+                    ->description('The title of the map'),
+                Schema::object('options')
+                    ->description('Key value map of map options'),
+                Schema::array('layers')
+                    ->description('Layers containing to the map')
+                    ->items(OneOf::create()->schemas(... $this->buildLayerSchemas($builder))),
+                Schema::array('controls')
+                    ->description('Map controls')
+                    ->items(OneOf::create()->schemas(...$this->buildControlSchemas($builder))),
+                Schema::array('panes')
+                    ->description('Custom panes of the map')
+                    ->items($builder->components()->withSchema($this->paneSchema($builder))),
                 Schema::object('events')->additionalProperties(
                     Schema::object()
                         ->required('type', 'namespace', 'reference')
@@ -143,12 +154,21 @@ final class MapSchemaDescriber implements SchemaDescriber
     /**
      * @return Schema
      */
-    private function paneSchema() : Schema
+    private function paneSchema(SchemaBuilder $builder) : Schema
     {
         return Schema::object('Pane')
             ->properties(
-                Schema::string('paneId')->example('pane001'),
-                Schema::integer('zIndex')->example(100)
-            );
+                $builder->idSchemaRef('paneId')
+                    ->description('ID of the pane'),
+                Schema::string('name')
+                    ->description('Name used as Javascript identifier')
+                    ->example('markers_pane'),
+                Schema::integer('zIndex')->example(100),
+                Schema::string('pointerEvents')
+                    ->description('CSS setting for pointer events')
+                    ->example('auto')
+                    ->enum('auto', 'none')
+            )
+            ->required('paneId', 'name', 'zIndex');
     }
 }
