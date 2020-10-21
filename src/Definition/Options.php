@@ -8,13 +8,16 @@ use ArrayIterator;
 use Countable;
 use Cowegis\Core\Constraint\Constraints;
 use IteratorAggregate;
+
 use function array_key_exists;
+use function count;
 
 final class Options implements IteratorAggregate, Countable
 {
     /** @var Constraints */
     private $constraints;
 
+    /** @var array<string, mixed> */
     private $options = [];
 
     public function __construct(Constraints $constraints)
@@ -22,7 +25,8 @@ final class Options implements IteratorAggregate, Countable
         $this->constraints = $constraints;
     }
 
-    public function merge(array $options) : self
+    /** @param array<string, mixed> $options */
+    public function merge(array $options): self
     {
         foreach ($options as $key => $value) {
             $this->set($key, $value);
@@ -31,6 +35,7 @@ final class Options implements IteratorAggregate, Countable
         return $this;
     }
 
+    /** @param mixed $value */
     public function set(string $key, $value): self
     {
         $value = $this->constraints->filterValue($key, $value);
@@ -44,6 +49,11 @@ final class Options implements IteratorAggregate, Countable
         return $this;
     }
 
+    /**
+     * @param mixed $fallback
+     *
+     * @return mixed
+     */
     public function get(string $key, $fallback = null)
     {
         if (array_key_exists($key, $this->options)) {
@@ -53,22 +63,23 @@ final class Options implements IteratorAggregate, Countable
         return $this->constraints->defaultValueOf($key, $fallback);
     }
 
-    public function has(string $key) : bool
+    public function has(string $key): bool
     {
         return array_key_exists($key, $this->options);
     }
 
-    public function count() : int
+    public function count(): int
     {
         return count($this->options);
     }
 
-    public function toArray() : array
+    /** @return array<string, mixed> */
+    public function toArray(): array
     {
         return $this->options;
     }
 
-    public function getIterator() : ArrayIterator
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->options);
     }

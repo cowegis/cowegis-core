@@ -11,12 +11,12 @@ trait PopupPlugin
     /** @var Popup|null */
     private $popup;
 
-    public function popup() : ?Popup
+    public function popup(): ?Popup
     {
         return $this->popup;
     }
 
-    public function openPopup(Popup $popup) : void
+    public function openPopup(Popup $popup): void
     {
         $this->popup = $popup;
     }

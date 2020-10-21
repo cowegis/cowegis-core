@@ -5,11 +5,19 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\DataLayer;
+
 use function assert;
 
 final class DataLayerSerializer extends MapLayerSerializer
 {
-    public function serialize($layer) : array
+    /**
+     * @param DataLayer $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         assert($layer instanceof DataLayer);
 

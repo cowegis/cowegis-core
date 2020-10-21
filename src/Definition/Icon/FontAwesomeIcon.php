@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Icon;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 
 final class FontAwesomeIcon extends BaseSvgIcon
 {
-    public function markerSymbol() : ?string
+    public function markerSymbol(): ?string
     {
         return $this->options()->get('icon');
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

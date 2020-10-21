@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition;
 
 use InvalidArgumentException;
+
+use function count;
 use function explode;
 use function sprintf;
 
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 final class LatLngBounds
 {
     /**
@@ -39,13 +42,13 @@ final class LatLngBounds
     /**
      * Create from native array format.
      *
-     * @param array $native The native boundary.
+     * @param array<int, float> $native The native boundary.
      *
      * @throws InvalidArgumentException If the array format is not supported.
      */
-    public static function fromArray(array $native) : self
+    public static function fromArray(array $native): self
     {
-        if (!isset($native[0], $native[1])) {
+        if (! isset($native[0], $native[1])) {
             throw new InvalidArgumentException('LatLngBounds array format not supported.');
         }
 
@@ -63,7 +66,7 @@ final class LatLngBounds
      *
      * @throws InvalidArgumentException If an invalid value is given.
      */
-    public static function fromString($native, $separator = ',') : self
+    public static function fromString(string $native, string $separator = ','): self
     {
         $values = explode($separator, $native, 4);
 
@@ -82,7 +85,7 @@ final class LatLngBounds
     /**
      * Get south west corner.
      */
-    public function southWest() : LatLng
+    public function southWest(): LatLng
     {
         return $this->southWest;
     }
@@ -90,7 +93,7 @@ final class LatLngBounds
     /**
      * Get south east corner.
      */
-    public function southEast() : LatLng
+    public function southEast(): LatLng
     {
         return new LatLng($this->southWest->latitude(), $this->northEast->longitude());
     }
@@ -98,7 +101,7 @@ final class LatLngBounds
     /**
      * Get north east corner.
      */
-    public function northEast() : LatLng
+    public function northEast(): LatLng
     {
         return $this->northEast;
     }
@@ -106,7 +109,7 @@ final class LatLngBounds
     /**
      * Get south east corner.
      */
-    public function northWest() : LatLng
+    public function northWest(): LatLng
     {
         return new LatLng($this->northEast->latitude(), $this->southWest->longitude());
     }
@@ -114,7 +117,7 @@ final class LatLngBounds
     /**
      * Get west longitude.
      */
-    public function west() : float
+    public function west(): float
     {
         return $this->southWest->longitude();
     }
@@ -122,7 +125,7 @@ final class LatLngBounds
     /**
      * Get south latitude.
      */
-    public function south() : float
+    public function south(): float
     {
         return $this->southWest->latitude();
     }
@@ -130,7 +133,7 @@ final class LatLngBounds
     /**
      * Get east longitude.
      */
-    public function east() : float
+    public function east(): float
     {
         return $this->northEast->longitude();
     }
@@ -138,7 +141,7 @@ final class LatLngBounds
     /**
      * Get north latitude.
      */
-    public function north() : float
+    public function north(): float
     {
         return $this->northEast->latitude();
     }
@@ -146,11 +149,11 @@ final class LatLngBounds
     /**
      * Get the center of the bounding box.
      */
-    public function center() : LatLng
+    public function center(): LatLng
     {
         return new LatLng(
-            ($this->north() - $this->south()),
-            ($this->west() - $this->east())
+            $this->north() - $this->south(),
+            $this->west() - $this->east()
         );
     }
 
@@ -159,9 +162,9 @@ final class LatLngBounds
      *
      * @param LatLngBounds $other The other bounds.
      */
-    public function equals(LatLngBounds $other) : bool
+    public function equals(LatLngBounds $other): bool
     {
-        if (!$this->northEast()->equals($other->northEast())) {
+        if (! $this->northEast()->equals($other->northEast())) {
             return false;
         }
 
@@ -173,7 +176,7 @@ final class LatLngBounds
      *
      * @param LatLngBounds $other The over bounds to check.
      */
-    public function overlaps(LatLngBounds $other) : bool
+    public function overlaps(LatLngBounds $other): bool
     {
         $southWest = $other->southWest();
         $northEast = $other->northEast();
@@ -181,7 +184,7 @@ final class LatLngBounds
         $latOverlaps = ($northEast->latitude() > $this->southWest->latitude())
             && ($southWest->latitude() < $this->northEast->latitude());
 
-        if (!$latOverlaps) {
+        if (! $latOverlaps) {
             return false;
         }
 
@@ -193,10 +196,8 @@ final class LatLngBounds
      * Check if bounds intersects.
      *
      * @param LatLngBounds $other The other bounds.
-     *
-     * @return bool
      */
-    public function intersects(LatLngBounds $other) : bool
+    public function intersects(LatLngBounds $other): bool
     {
         $southWest = $other->southWest();
         $northEast = $other->northEast();
@@ -213,9 +214,9 @@ final class LatLngBounds
     /**
      * Get value as valid json string.
      *
-     * @return array
+     * @return array<int, float>
      */
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         return [
             $this->southWest(),
@@ -226,9 +227,9 @@ final class LatLngBounds
     /**
      * Get bounds as geo json coordinate.
      *
-     * @return array
+     * @return array<int, float>
      */
-    public function toGeoJson() : array
+    public function toGeoJson(): array
     {
         return [
             $this->southWest()->toGeoJson(),
@@ -240,10 +241,8 @@ final class LatLngBounds
      * Create a string representation.
      *
      * @param bool $ignoreAltitude If true the altitude is not included.
-     *
-     * @return string
      */
-    public function toString($ignoreAltitude = false) : string
+    public function toString(bool $ignoreAltitude = false): string
     {
         return sprintf(
             '%s,%s',
@@ -256,10 +255,8 @@ final class LatLngBounds
      * Check if given object in in the bounds.
      *
      * @param LatLng|LatLngBounds $latLng The given object.
-     *
-     * @return bool
      */
-    public function containsCoordinate(LatLng $latLng) : bool
+    public function containsCoordinate(LatLng $latLng): bool
     {
         $lat = $latLng->latitude();
         $lng = $latLng->longitude();
@@ -268,6 +265,6 @@ final class LatLngBounds
             return false;
         }
 
-        return ($this->south() <= $lat && $this->north() >= $lat);
+        return $this->south() <= $lat && $this->north() >= $lat;
     }
 }

@@ -18,11 +18,11 @@ abstract class DefinitionIdDecorator implements DefinitionId
     }
 
     /**
-     * @param $value
+     * @param mixed $value
      *
      * @return static
      */
-    public static function fromValue($value) : DefinitionId
+    public static function fromValue($value): DefinitionId
     {
         if (! $value instanceof DefinitionId) {
             throw new RuntimeException('Given value must be an instance of ' . DefinitionId::class);
@@ -36,11 +36,13 @@ abstract class DefinitionIdDecorator implements DefinitionId
         return $this->definitionId;
     }
 
+    /** @return mixed */
     public function value()
     {
         return $this->definitionId->value();
     }
 
+    /** @return mixed */
     public function jsonSerialize()
     {
         return $this->definitionId->jsonSerialize();

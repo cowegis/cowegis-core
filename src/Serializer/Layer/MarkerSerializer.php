@@ -6,10 +6,12 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use ArrayObject;
 use Cowegis\Core\Definition\SimpleStyle\SimpleStyleMarker;
+use Cowegis\Core\Definition\UI\Marker;
 use Cowegis\Core\Serializer\Serializer;
 use Cowegis\GeoJson\Feature\Feature;
 use Cowegis\GeoJson\Geometry\Point;
-use Cowegis\Core\Definition\UI\Marker;
+
+use function assert;
 
 final class MarkerSerializer implements Serializer
 {
@@ -21,7 +23,12 @@ final class MarkerSerializer implements Serializer
         $this->serializer = $serializer;
     }
 
-    public function serialize($marker) : Feature
+    /**
+     * @param Marker $marker
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($marker): Feature
     {
         assert($marker instanceof Marker);
 

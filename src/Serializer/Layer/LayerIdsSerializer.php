@@ -7,11 +7,22 @@ namespace Cowegis\Core\Serializer\Layer;
 use Cowegis\Core\Definition\Layer\LayerId;
 use Cowegis\Core\Definition\Layer\LayerIds;
 use Cowegis\Core\Serializer\Serializer;
+
 use function array_map;
+use function assert;
 
 final class LayerIdsSerializer implements Serializer
 {
-    public function serialize($layerIds) : array
+    /**
+     * @param LayerIds $layerIds
+     *
+     * @return array<int,mixed>
+     *
+     * @psalm-return list<mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layerIds): array
     {
         assert($layerIds instanceof LayerIds);
 

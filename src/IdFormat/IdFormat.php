@@ -8,7 +8,9 @@ use Cowegis\Core\Definition\DefinitionId;
 
 interface IdFormat
 {
-    public function createDefinitionId(string $definitionClass, $value) : DefinitionId;
+    /** @param mixed $value */
+    public function createDefinitionId(string $definitionClass, $value): DefinitionId;
 
-    public function supports($value) : bool;
+    /** @param mixed $value */
+    public function supports($value): bool;
 }

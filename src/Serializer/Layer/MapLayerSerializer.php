@@ -10,7 +10,14 @@ use Cowegis\Core\Serializer\DataSerializer;
 
 abstract class MapLayerSerializer extends DataSerializer
 {
-    public function serialize($layer) : array
+    /**
+     * @param Layer $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         if (! $layer instanceof Layer) {
             throw new RuntimeException('Layer is not an instance of ' . Layer::class);

@@ -8,9 +8,9 @@ use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\HasName;
 use Cowegis\Core\Definition\HasTitle;
+use Cowegis\Core\Definition\LayerObject;
 use Cowegis\Core\Definition\NamePlugin;
 use Cowegis\Core\Definition\TitlePlugin;
-use Cowegis\Core\Definition\LayerObject;
 
 abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
 {
@@ -31,12 +31,12 @@ abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
         $this->initialVisible = $initialVisible;
     }
 
-    public function layerId() : LayerId
+    public function layerId(): LayerId
     {
         return $this->layerId;
     }
 
-    public function initialVisible() : bool
+    public function initialVisible(): bool
     {
         return $this->initialVisible;
     }

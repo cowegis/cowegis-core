@@ -6,6 +6,7 @@ namespace Cowegis\Core\IdFormat;
 
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Definition\DefinitionId\IntegerDefinitionId;
+
 use function assert;
 use function is_a;
 use function is_int;
@@ -15,7 +16,8 @@ use function strpos;
 
 final class IntegerIdFormat implements IdFormat
 {
-    public function createDefinitionId(string $definitionClass, $value) : DefinitionId
+    /** {@inheritDoc} */
+    public function createDefinitionId(string $definitionClass, $value): DefinitionId
     {
         assert(is_a($definitionClass, DefinitionId::class, true));
 
@@ -26,7 +28,8 @@ final class IntegerIdFormat implements IdFormat
         return $definitionClass::fromValue(IntegerDefinitionId::fromValue($value));
     }
 
-    public function supports($value) : bool
+    /** {@inheritDoc} */
+    public function supports($value): bool
     {
         if (is_int($value)) {
             return true;

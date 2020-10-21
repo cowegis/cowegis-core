@@ -11,12 +11,12 @@ use Cowegis\Core\Filter\RuleFactory;
 
 final class DistanceRuleFactory implements RuleFactory
 {
-    public function name() : string
+    public function name(): string
     {
         return 'distance';
     }
 
-    public function supports(Query $query) : bool
+    public function supports(Query $query): bool
     {
         if (! $query->has($this->name())) {
             return false;
@@ -27,7 +27,7 @@ final class DistanceRuleFactory implements RuleFactory
         return isset($data['coordinates'], $data['radius']);
     }
 
-    public function create(Query $query) : Rule
+    public function create(Query $query): Rule
     {
         $data = $query->getArray($this->name());
 

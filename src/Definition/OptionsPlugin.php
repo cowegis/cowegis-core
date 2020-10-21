@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\Constraints;
 
 trait OptionsPlugin
@@ -11,14 +12,15 @@ trait OptionsPlugin
     /** @var Options|null */
     protected $options;
 
-    public function options() : Options
+    public function options(): Options
     {
-        if (null === $this->options) {
+        if ($this->options === null) {
             $this->options = new Options(new Constraints($this->optionConstraints()));
         }
 
         return $this->options;
     }
 
-    abstract protected function optionConstraints() : array;
+    /** @return array<string, Constraint> */
+    abstract protected function optionConstraints(): array;
 }

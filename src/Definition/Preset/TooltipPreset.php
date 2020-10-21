@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Preset;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Definition;
@@ -25,12 +26,13 @@ final class TooltipPreset implements Definition, HasOptions
         $this->tooltipPresetId = $tooltipPresetId;
     }
 
-    public function tooltipPresetId() : TooltipPresetId
+    public function tooltipPresetId(): TooltipPresetId
     {
         return $this->tooltipPresetId;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = [
             'attribution' => new StringConstraint(),

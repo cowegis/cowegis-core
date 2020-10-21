@@ -24,12 +24,6 @@ final class Tooltip extends LayerObject implements HasEvents
     /** @var TooltipPresetId|null */
     private $presetId;
 
-    /**
-     * Tooltip constructor.
-     *
-     * @param string      $content
-     * @param LatLng|null $coordinates
-     */
     public function __construct(string $content, ?LatLng $coordinates = null, ?TooltipPresetId $presetId = null)
     {
         $this->content     = $content;
@@ -37,17 +31,17 @@ final class Tooltip extends LayerObject implements HasEvents
         $this->presetId    = $presetId;
     }
 
-    public function content() : string
+    public function content(): string
     {
         return $this->content;
     }
 
-    public function coordinates() : ?LatLng
+    public function coordinates(): ?LatLng
     {
         return $this->coordinates;
     }
 
-    public function presetId() : ?TooltipPresetId
+    public function presetId(): ?TooltipPresetId
     {
         return $this->presetId;
     }

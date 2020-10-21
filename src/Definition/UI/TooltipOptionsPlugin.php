@@ -5,15 +5,23 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\UI;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\Point;
 
+use function array_merge;
+
 trait TooltipOptionsPlugin
 {
-    protected function tooltipOptionsConstraints(array $constraints) : array
+    /**
+     * @param array<string, Constraint> $constraints
+     *
+     * @return array<string, Constraint>
+     */
+    protected function tooltipOptionsConstraints(array $constraints): array
     {
         return array_merge(
             $constraints,

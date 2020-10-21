@@ -6,7 +6,7 @@ namespace Cowegis\Core\Filter;
 
 interface Rule
 {
-    public function name() : string;
+    public function name(): string;
 
-    public function toQuery(Query $query) : Query;
+    public function toQuery(Query $query): Query;
 }

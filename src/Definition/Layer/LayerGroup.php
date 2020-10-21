@@ -16,7 +16,7 @@ class LayerGroup extends Layer
         $this->layers = new LayerIds();
     }
 
-    public function layers() : LayerIds
+    public function layers(): LayerIds
     {
         return $this->layers;
     }

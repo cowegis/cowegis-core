@@ -28,7 +28,7 @@ final class LayerDataContext extends RootContext
         $this->layerId = $layerId;
     }
 
-    public static function create(Filter $filter, MapId $mapId, LayerId $layerId, string $locale) : self
+    public static function create(Filter $filter, MapId $mapId, LayerId $layerId, string $locale): self
     {
         return new self(
             new Callbacks(static::createIdentifier($layerId)),
@@ -40,12 +40,12 @@ final class LayerDataContext extends RootContext
         );
     }
 
-    private static function createIdentifier(LayerId $layerId) : string
+    private static function createIdentifier(LayerId $layerId): string
     {
         return 'layer_' . $layerId->value();
     }
 
-    public function layerId() : LayerId
+    public function layerId(): LayerId
     {
         return $this->layerId;
     }

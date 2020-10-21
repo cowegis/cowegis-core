@@ -12,14 +12,14 @@ use Cowegis\Core\Filter\RuleFactory;
 
 final class BboxRuleFactory implements RuleFactory
 {
-    public function name() : string
+    public function name(): string
     {
         return 'bbox';
     }
 
-    public function supports(Query $query) : bool
+    public function supports(Query $query): bool
     {
-        if (!$query->has('bbox')) {
+        if (! $query->has('bbox')) {
             return false;
         }
 
@@ -28,7 +28,7 @@ final class BboxRuleFactory implements RuleFactory
         return isset($bbox['from'], $bbox['to']);
     }
 
-    public function create(Query $query) : Rule
+    public function create(Query $query): Rule
     {
         $bbox        = $query->getArray('bbox');
         $boundingBox = new LatLngBounds(

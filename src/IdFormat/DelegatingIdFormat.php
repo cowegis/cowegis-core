@@ -12,12 +12,14 @@ final class DelegatingIdFormat implements IdFormat
     /** @var IdFormat[] */
     private $idFormats;
 
+    /** @param IdFormat[] $idFormats */
     public function __construct(iterable $idFormats)
     {
         $this->idFormats = $idFormats;
     }
 
-    public function createDefinitionId(string $definitionClass, $value) : DefinitionId
+    /** {@inheritDoc} */
+    public function createDefinitionId(string $definitionClass, $value): DefinitionId
     {
         foreach ($this->idFormats as $idFormat) {
             if ($idFormat->supports($value)) {
@@ -28,7 +30,8 @@ final class DelegatingIdFormat implements IdFormat
         throw new InvalidArgument($value);
     }
 
-    public function supports($value) : bool
+    /** {@inheritDoc} */
+    public function supports($value): bool
     {
         foreach ($this->idFormats as $idFormat) {
             if ($idFormat->supports($value)) {

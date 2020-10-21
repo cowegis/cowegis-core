@@ -12,7 +12,7 @@ final class LayerSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -41,7 +41,7 @@ final class LayerSchema extends Schema
                 ->description('If true layer should be visible on every map'),
             HashMap::create('options')
                 ->title('Layer type options')
-                ->description('Key value map of layer type options')
+                ->description('Key value map of layer type options'),
         ];
     }
 }

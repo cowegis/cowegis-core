@@ -11,39 +11,49 @@ namespace Cowegis\Core\Definition\SimpleStyle;
  */
 interface SimpleStyleGeometry
 {
-    // OPTIONAL: default "555555"
-    // the color of a line as part of a polygon, polyline, or
-    // multigeometry
-    //
-    // value must follow COLOR RULES
-    public function stroke() : ?string;
+    /**
+     * OPTIONAL: default "555555"
+     * the color of a line as part of a polygon, polyline, or
+     * multigeometry
+     *
+     * value must follow COLOR RULES
+     */
+    public function stroke(): ?string;
 
-    // OPTIONAL: default 1.0
-    // the opacity of the line component of a polygon, polyline, or
-    // multigeometry
-    //
-    // value must be a floating point number greater than or equal to
-    // zero and less or equal to than one
-    public function strokeOpacity() : ?float;
+    /**
+     * OPTIONAL: default 1.0
+     * the opacity of the line component of a polygon, polyline, or
+     * multigeometry
+     *
+     * value must be a floating point number greater than or equal to
+     * zero and less or equal to than one
+     */
+    public function strokeOpacity(): ?float;
 
-    // OPTIONAL: default 2
-    // the width of the line component of a polygon, polyline, or
-    // multigeometry
-    //
-    // value must be a floating point number greater than or equal to 0
-    public function strokeWidth() : ?int;
+    /**
+     *  OPTIONAL: default 2
+     * the width of the line component of a polygon, polyline, or
+     * multigeometry
+     *
+     * value must be a floating point number greater than or equal to 0
+     */
+    public function strokeWidth(): ?int;
 
-    // OPTIONAL: default "555555"
-    // the color of the interior of a polygon
-    //
-    // value must follow COLOR RULES
-    public function fill() : ?string;
+    /**
+     * OPTIONAL: default "555555"
+     * the color of the interior of a polygon
+     *
+     * value must follow COLOR RULES
+     */
+    public function fill(): ?string;
 
-    // OPTIONAL: default 0.6
-    // the opacity of the interior of a polygon. Implementations
-    // may choose to set this to 0 for line features.
-    //
-    // value must be a floating point number greater than or equal to
-    // zero and less or equal to than one
-    public function fillOpacity() : ?float;
+    /**
+     * OPTIONAL: default 0.6
+     * the opacity of the interior of a polygon. Implementations
+     * may choose to set this to 0 for line features.
+     *
+     * value must be a floating point number greater than or equal to
+     * zero and less or equal to than one
+     */
+    public function fillOpacity(): ?float;
 }

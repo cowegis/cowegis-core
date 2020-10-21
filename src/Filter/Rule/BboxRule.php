@@ -20,17 +20,17 @@ final class BboxRule implements Rule
         $this->boundingBox = $boundingBox;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return self::QUERY_PARAM;
     }
 
-    public function boundingBox() : LatLngBounds
+    public function boundingBox(): LatLngBounds
     {
         return $this->boundingBox;
     }
 
-    public function toQuery(Query $query) : Query
+    public function toQuery(Query $query): Query
     {
         return $query->with(
             $this->name(),

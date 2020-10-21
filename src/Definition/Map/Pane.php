@@ -7,6 +7,14 @@ namespace Cowegis\Core\Definition\Map;
 use Cowegis\Core\Definition\Definition;
 use JsonSerializable;
 
+/**
+ * @psalm-type TSerializedPane = array{
+ *   paneId: mixed,
+ *   name: string,
+ *   zIndex: ?int,
+ *   pointerEvents: string|null
+ * }
+ */
 final class Pane implements Definition, JsonSerializable
 {
     /** @var string */
@@ -33,27 +41,32 @@ final class Pane implements Definition, JsonSerializable
         $this->pointerEvents = $pointerEvents;
     }
 
-    public function paneId() : PaneId
+    public function paneId(): PaneId
     {
         return $this->definitionId;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function zIndex() : ?int
+    public function zIndex(): ?int
     {
         return $this->zIndex;
     }
 
-    public function pointerEvents() : ?string
+    public function pointerEvents(): ?string
     {
         return $this->pointerEvents;
     }
 
-    public function jsonSerialize() : array
+    /**
+     * @return array<string,mixed>
+     *
+     * @psalm-return TSerializedPane
+     */
+    public function jsonSerialize(): array
     {
         return [
             'paneId'        => $this->paneId()->value(),

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\UI;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
@@ -48,9 +49,6 @@ final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPo
     /** @var Icon */
     private $icon;
 
-    /** @var string|null */
-    private $iconSymbol;
-
     public function __construct(MarkerId $markerId, string $name, LatLng $coordinates)
     {
         $this->markerId    = $markerId;
@@ -59,32 +57,33 @@ final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPo
         $this->properties  = new Properties();
     }
 
-    public function markerId() : MarkerId
+    public function markerId(): MarkerId
     {
         return $this->markerId;
     }
 
-    public function coordinates() : LatLng
+    public function coordinates(): LatLng
     {
         return $this->coordinates;
     }
 
-    public function properties() : Properties
+    public function properties(): Properties
     {
         return $this->properties;
     }
 
-    public function customizeIcon(Icon $icon) : void
+    public function customizeIcon(Icon $icon): void
     {
         $this->icon = $icon;
     }
 
-    public function icon() : ?Icon
+    public function icon(): ?Icon
     {
         return $this->icon;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = [];
 

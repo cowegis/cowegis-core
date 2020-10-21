@@ -9,12 +9,20 @@ use Cowegis\Core\Exception\RuntimeException;
 
 final class TileLayerSerializer extends MapLayerSerializer
 {
-    public function supports($object) : bool
+    /** @param mixed $object */
+    public function supports($object): bool
     {
         return $object instanceof TileLayer;
     }
 
-    public function serialize($layer) : array
+    /**
+     * @param TileLayer $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         if (! $layer instanceof TileLayer) {
             throw new RuntimeException('Unsupported layer type');

@@ -6,11 +6,12 @@ namespace Cowegis\Core\Exception;
 
 use Cowegis\Core\Definition\Layer\LayerId;
 use Cowegis\Core\Definition\Map\MapId;
+
 use function sprintf;
 
 final class LayerNotFound extends RuntimeException
 {
-    public static function withLayerId(LayerId $layerId, ?MapId $mapId) : self
+    public static function withLayerId(LayerId $layerId, ?MapId $mapId): self
     {
         if ($mapId) {
             return new self(

@@ -9,28 +9,30 @@ use Cowegis\Core\Provider\LayerData\MarkersLayerData;
 use Cowegis\Core\Serializer\Serializer;
 use Cowegis\GeoJson\Feature\FeatureCollection;
 
+use function assert;
+
 final class MarkersLayerDataSerializer implements Serializer
 {
     /** @var Serializer */
     private $serializer;
 
-    /**
-     * MarkersLayerDataSerializer constructor.
-     *
-     * @param Serializer $serializer
-     */
     public function __construct(Serializer $serializer)
     {
         $this->serializer = $serializer;
     }
 
-    public function serialize($data)
+    /**
+     * @param MarkersLayerData $data
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($data): FeatureCollection
     {
         assert($data instanceof MarkersLayerData);
 
         $features = [];
-        /** @var Marker $marker */
         foreach ($data as $marker) {
+            assert($marker instanceof Marker);
             $features[] = $this->serializer->serialize($marker);
         }
 

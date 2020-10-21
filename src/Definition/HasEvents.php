@@ -8,5 +8,5 @@ use Cowegis\Core\Definition\Event\Events;
 
 interface HasEvents
 {
-    public function events() : Events;
+    public function events(): Events;
 }

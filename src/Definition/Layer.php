@@ -6,5 +6,4 @@ namespace Cowegis\Core\Definition;
 
 interface Layer extends Definition, MapObject
 {
-
 }

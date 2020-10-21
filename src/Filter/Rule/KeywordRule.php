@@ -19,17 +19,17 @@ final class KeywordRule implements Rule
         $this->keyword = $keyword;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return self::QUERY_PARAM;
     }
 
-    public function keyword() : string
+    public function keyword(): string
     {
         return $this->keyword;
     }
 
-    public function toQuery(Query $query) : Query
+    public function toQuery(Query $query): Query
     {
         return $query->with($this->name(), $this->keyword());
     }

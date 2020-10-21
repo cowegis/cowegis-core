@@ -13,54 +13,57 @@ final class ControlIterator implements Iterator
      * @psalm-var list<Control>
      * @var Control[]
      */
-    private $Controls;
+    private $controls;
 
     /** @var int */
     private $index = 0;
 
     /**
-     * ControlIterator constructor.
+     * @param Control[] $controls
      *
-     * @psalm-var list<Control> $Controls
-     *
-     * @param Control[] $Controls
+     * @psalm-var list<Control> $controls
      */
-    public function __construct(array $Controls)
+    public function __construct(array $controls)
     {
-        $this->Controls = $Controls;
+        $this->controls = $controls;
     }
 
-    public static function fromArray(array $Controls) : self
+    /**
+     * @param Control[] $controls
+     *
+     * @psalm-var list<Control> $controls
+     */
+    public static function fromArray(array $controls): self
     {
-        return new self($Controls);
+        return new self($controls);
     }
 
-    public static function fromList(Control ... $Controls) : self
+    public static function fromList(Control ...$controls): self
     {
-        return new self($Controls);
+        return new self($controls);
     }
 
-    public function current() : Control
+    public function current(): Control
     {
-        return $this->Controls[$this->index];
+        return $this->controls[$this->index];
     }
 
-    public function next() : void
+    public function next(): void
     {
         $this->index++;
     }
 
-    public function key() : int
+    public function key(): int
     {
         return $this->index;
     }
 
-    public function valid() : bool
+    public function valid(): bool
     {
-        return isset($this->Controls[$this->index]);
+        return isset($this->controls[$this->index]);
     }
 
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->index = 0;
     }

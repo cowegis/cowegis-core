@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Icon\Icon;
+
 use function assert;
 
 final class IconSerializer extends DataSerializer
@@ -19,7 +20,14 @@ final class IconSerializer extends DataSerializer
         $this->type = $type;
     }
 
-    public function serialize($data) : array
+    /**
+     * @param Icon $data
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($data): array
     {
         assert($data instanceof Icon);
 

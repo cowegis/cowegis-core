@@ -11,9 +11,9 @@ use Cowegis\Core\IdFormat\IdFormat;
 
 interface Provider
 {
-    public function idFormat() : IdFormat;
+    public function idFormat(): IdFormat;
 
-    public function findMap(MapId $mapId, Context $context) : Map;
+    public function findMap(MapId $mapId, Context $context): Map;
 
-    public function findLayerData(MapId $mapId, LayerId $layerId, Context $context) : LayerData;
+    public function findLayerData(MapId $mapId, LayerId $layerId, Context $context): LayerData;
 }

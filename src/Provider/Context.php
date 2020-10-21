@@ -11,13 +11,13 @@ use Cowegis\Core\Filter\Filter;
 
 interface Context
 {
-    public function mapId() : MapId;
+    public function mapId(): MapId;
 
-    public function assets() : Assets;
+    public function assets(): Assets;
 
-    public function callbacks() : Callbacks;
+    public function callbacks(): Callbacks;
 
-    public function filter() : Filter;
+    public function filter(): Filter;
 
-    public function locale() : string;
+    public function locale(): string;
 }

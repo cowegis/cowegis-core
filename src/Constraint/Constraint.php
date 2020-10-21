@@ -6,9 +6,15 @@ namespace Cowegis\Core\Constraint;
 
 interface Constraint
 {
-    public function match($value) : bool;
+    /** @param mixed $value */
+    public function match($value): bool;
 
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
     public function filter($value);
 
-    public function required() : bool;
+    public function required(): bool;
 }

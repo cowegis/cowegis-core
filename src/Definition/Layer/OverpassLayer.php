@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Layer;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
@@ -11,7 +12,8 @@ use Cowegis\Core\Definition\Expression\Reference;
 
 final class OverpassLayer extends Layer
 {
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 
@@ -25,5 +27,4 @@ final class OverpassLayer extends Layer
 
         return $constraints;
     }
-
 }

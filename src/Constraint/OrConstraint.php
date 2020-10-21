@@ -6,31 +6,41 @@ namespace Cowegis\Core\Constraint;
 
 final class OrConstraint extends BaseConstraint
 {
+    /** @var Constraint[] */
     private $constraints;
 
-    public function __construct($constraints, bool $required = false)
+    /**
+     * @param Constraint[] $constraints
+     */
+    public function __construct(iterable $constraints, bool $required = false)
     {
         parent::__construct($required);
 
         $this->constraints = $constraints;
     }
 
-    public static function withDefaultValue($defaultValue, Constraint ...$constraints) : Constraint
+    /** @param mixed $defaultValue */
+    public static function withDefaultValue($defaultValue, Constraint ...$constraints): Constraint
     {
         return new DefaultValueConstraint(new self($constraints), $defaultValue);
     }
 
-    public static function asRequired(Constraint ...$constraints) : self
+    public static function asRequired(Constraint ...$constraints): self
     {
         return new self($constraints, true);
     }
 
+    /**
+     * @param mixed $defaultValue
+     * @param mixed $value
+     */
     public static function valueOr($defaultValue, $value, Constraint ...$constraints): Constraint
     {
         return self::withDefaultValue($defaultValue, new EnumConstraint([$value]), ...$constraints);
     }
 
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
         foreach ($this->constraints as $constraint) {
             if ($constraint->match($value)) {
@@ -41,6 +51,7 @@ final class OrConstraint extends BaseConstraint
         return false;
     }
 
+    /** {@inheritDoc} */
     public function filter($value)
     {
         foreach ($this->constraints as $constraint) {

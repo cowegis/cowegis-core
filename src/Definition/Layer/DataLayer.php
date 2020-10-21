@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Layer;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\Expression\Reference;
@@ -19,23 +20,24 @@ final class DataLayer extends Layer
     /** @var GeoJsonData|null */
     private $data;
 
-    public function dataFromUri(ExternalData $dataUri) : void
+    public function dataFromUri(ExternalData $dataUri): void
     {
         $this->data    = null;
         $this->dataUri = $dataUri;
     }
 
-    public function withData(GeoJsonData $data) : void
+    public function withData(GeoJsonData $data): void
     {
         $this->data = $data;
     }
 
-    public function data() : ?GeoJsonData
+    public function data(): ?GeoJsonData
     {
         return $this->data;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Control;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Definition\Control as ControlContract;
 use Cowegis\Core\Definition\Map\Map;
@@ -31,22 +32,23 @@ abstract class Control implements ControlContract
         $this->name      = $name;
     }
 
-    public function controlId() : ControlId
+    public function controlId(): ControlId
     {
         return $this->controlId;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
-    public function addTo(Map $map) : void
+    public function addTo(Map $map): void
     {
         $map->controls()->add($this);
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         return [
             'position' => EnumConstraint::withDefaultValue(
@@ -56,5 +58,5 @@ abstract class Control implements ControlContract
         ];
     }
 
-    abstract protected function defaultPosition() : ?string;
+    abstract protected function defaultPosition(): ?string;
 }

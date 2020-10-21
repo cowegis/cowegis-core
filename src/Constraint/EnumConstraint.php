@@ -8,35 +8,43 @@ use function in_array;
 
 final class EnumConstraint extends BaseConstraint
 {
-    /** @var array */
+    /** @var array<int,mixed> */
     private $values;
 
+    /** @param array<int,mixed> $values */
     public function __construct(array $values, bool $required = false)
     {
         parent::__construct($required);
 
-        $this->values   = $values;
+        $this->values = $values;
     }
 
-    public static function withDefaultValue(array $values, $defaultValue) : Constraint
+    /**
+     * @param array<int,mixed> $values
+     * @param mixed            $defaultValue
+     */
+    public static function withDefaultValue(array $values, $defaultValue): Constraint
     {
         return new DefaultValueConstraint(new self($values), $defaultValue);
     }
 
-    public static function asRequired(array $values) : Constraint
+    /** @param array<int,mixed> $values */
+    public static function asRequired(array $values): Constraint
     {
         return new self($values, true);
     }
 
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
         return in_array($value, $this->values, true);
     }
 
+    /** {@inheritDoc} */
     public function filter($value)
     {
         foreach ($this->values as $allowed) {
-            if ($allowed == $value) {
+            if ($allowed === $value) {
                 return $allowed;
             }
         }

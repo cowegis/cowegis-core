@@ -6,9 +6,9 @@ namespace Cowegis\Core\Filter;
 
 interface RuleFactory
 {
-    public function name() : string;
+    public function name(): string;
 
-    public function supports(Query $query) : bool;
+    public function supports(Query $query): bool;
 
-    public function create(Query $query) : Rule;
+    public function create(Query $query): Rule;
 }

@@ -24,22 +24,22 @@ final class DistanceRule implements Rule
         $this->radius      = $radius;
     }
 
-    public function name() : string
+    public function name(): string
     {
         return self::QUERY_PARAM;
     }
 
-    public function coordinates() : LatLng
+    public function coordinates(): LatLng
     {
         return $this->coordinates;
     }
 
-    public function radius() : int
+    public function radius(): int
     {
         return $this->radius;
     }
 
-    public function toQuery(Query $query) : Query
+    public function toQuery(Query $query): Query
     {
         return $query->with(
             $this->name(),

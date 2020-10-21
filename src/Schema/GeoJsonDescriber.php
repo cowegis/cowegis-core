@@ -18,7 +18,7 @@ use Cowegis\Core\Schema\GeoJson\PolygonSchema;
 
 final class GeoJsonDescriber implements SchemaDescriber
 {
-    public function describe(SchemaBuilder $builder) : void
+    public function describe(SchemaBuilder $builder): void
     {
         $components = $builder->components();
         $components->withSchema(new BboxSchema(), BboxSchema::SHORT_REF);

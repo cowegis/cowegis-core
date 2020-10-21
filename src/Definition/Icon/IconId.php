@@ -8,5 +8,4 @@ use Cowegis\Core\Definition\DefinitionId\DefinitionIdDecorator;
 
 final class IconId extends DefinitionIdDecorator
 {
-
 }

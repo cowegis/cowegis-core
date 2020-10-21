@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Layer;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\NumberConstraint;
 use Cowegis\Core\Constraint\OrConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
@@ -21,12 +22,13 @@ final class TileLayer extends GridLayer
         $this->urlTemplate = $urlTemplate;
     }
 
-    public function urlTemplate() : string
+    public function urlTemplate(): string
     {
         return $this->urlTemplate;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

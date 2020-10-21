@@ -9,5 +9,5 @@ use Cowegis\Core\Definition\HasOptions;
 
 interface Icon extends Definition, HasOptions
 {
-    public function iconId() : IconId;
+    public function iconId(): IconId;
 }

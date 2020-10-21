@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Schema;
 
 use GoldSpecDigital\ObjectOrientedOAS\Contracts\SchemaContract;
+use GoldSpecDigital\ObjectOrientedOAS\Objects\ExternalDocs;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Info;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\PathItem;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
@@ -14,16 +15,22 @@ use GoldSpecDigital\ObjectOrientedOAS\OpenApi;
 
 final class SchemaBuilder
 {
+    /** @var string */
     private $openApiVersion;
 
+    /** @var Info */
     private $info;
 
+    /** @var ExternalDocs|null */
     private $externalDocs;
 
+    /** @var Server[] */
     private $servers = [];
 
+    /** @var PathItem[] */
     private $paths = [];
 
+    /** @var Tag[] */
     private $tags = [];
 
     /** @var ComponentsBuilder */
@@ -36,9 +43,12 @@ final class SchemaBuilder
     {
     }
 
-    public static function create(Info $info, SchemaContract $idSchema, string $openApiVersion = OpenApi::OPENAPI_3_0_2) : self
-    {
-        $instance                 = new self;
+    public static function create(
+        Info $info,
+        SchemaContract $idSchema,
+        string $openApiVersion = OpenApi::OPENAPI_3_0_2
+    ): self {
+        $instance                 = new self();
         $instance->info           = $info;
         $instance->openApiVersion = $openApiVersion;
         $instance->components     = new ComponentsBuilder();
@@ -53,12 +63,12 @@ final class SchemaBuilder
         return $instance;
     }
 
-    public function idSchemaRef(?string $objectId = null) : Schema
+    public function idSchemaRef(?string $objectId = null): Schema
     {
         return $objectId ? $this->idSchemaRef->objectId($objectId) : $this->idSchemaRef;
     }
 
-    public function withTags(Tag ... $tags) : self
+    public function withTags(Tag ...$tags): self
     {
         foreach ($tags as $tag) {
             $this->tags[] = $tag;
@@ -67,14 +77,14 @@ final class SchemaBuilder
         return $this;
     }
 
-    public function withPathItem(PathItem $pathItem) : self
+    public function withPathItem(PathItem $pathItem): self
     {
         $this->paths[] = $pathItem;
 
         return $this;
     }
 
-    public function withServers(Server ... $servers) : self
+    public function withServers(Server ...$servers): self
     {
         foreach ($servers as $server) {
             $this->servers[] = $server;
@@ -83,19 +93,26 @@ final class SchemaBuilder
         return $this;
     }
 
-    public function components() : ComponentsBuilder
+    public function withExternalDocs(ExternalDocs $externalDocs): self
+    {
+        $this->externalDocs = $externalDocs;
+
+        return $this;
+    }
+
+    public function components(): ComponentsBuilder
     {
         return $this->components;
     }
 
-    public function build() : OpenApi
+    public function build(): OpenApi
     {
         return OpenApi::create()
             ->openapi($this->openApiVersion)
             ->externalDocs($this->externalDocs)
             ->info($this->info)
-            ->tags(... $this->tags)
-            ->paths(... $this->paths)
+            ->tags(...$this->tags)
+            ->paths(...$this->paths)
             ->components($this->components->build());
     }
 }

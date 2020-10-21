@@ -6,5 +6,5 @@ namespace Cowegis\Core\Definition;
 
 interface Compareable
 {
-    public function equals(Compareable $other) : bool;
+    public function equals(Compareable $other): bool;
 }

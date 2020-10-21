@@ -19,32 +19,32 @@ abstract class ContextDecorator implements Context
         $this->inner = $context;
     }
 
-    public function inner() : Context
+    public function inner(): Context
     {
         return $this->inner;
     }
 
-    public function mapId() : MapId
+    public function mapId(): MapId
     {
         return $this->inner->mapId();
     }
 
-    public function assets() : Assets
+    public function assets(): Assets
     {
         return $this->inner->assets();
     }
 
-    public function callbacks() : Callbacks
+    public function callbacks(): Callbacks
     {
         return $this->inner->callbacks();
     }
 
-    public function filter() : Filter
+    public function filter(): Filter
     {
         return $this->inner->filter();
     }
 
-    public function locale() : string
+    public function locale(): string
     {
         return $this->inner->locale();
     }

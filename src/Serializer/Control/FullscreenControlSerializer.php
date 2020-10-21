@@ -6,11 +6,19 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\FullscreenControl;
 use Cowegis\Core\Serializer\DataSerializer;
+
 use function assert;
 
 final class FullscreenControlSerializer extends DataSerializer
 {
-    public function serialize($data) : array
+    /**
+     * @param FullscreenControl $data
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($data): array
     {
         assert($data instanceof FullscreenControl);
 

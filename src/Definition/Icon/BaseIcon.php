@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Icon;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\OptionsPlugin;
@@ -21,12 +22,13 @@ abstract class BaseIcon implements Icon
         $this->iconId = $iconId;
     }
 
-    public function iconId() : IconId
+    public function iconId(): IconId
     {
         return $this->iconId;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         return [
             'iconAnchor'    => new InstanceOfConstraint(Point::class),

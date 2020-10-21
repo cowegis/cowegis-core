@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Expression;
 
 use Countable;
+
 use function count;
+use function implode;
 use function is_numeric;
+use function sprintf;
 
 final class Callbacks implements Countable
 {
@@ -19,8 +22,10 @@ JAVASCRIPT;
     /** @var Expression[] */
     private $callbacks = [];
 
+    /** @var int */
     private $prefix = 0;
 
+    /** @var string */
     private $identifier;
 
     public function __construct(string $identifier)
@@ -28,12 +33,12 @@ JAVASCRIPT;
         $this->identifier = is_numeric($identifier) ? 'callbacks_' . $identifier : $identifier;
     }
 
-    public function identifier() : string
+    public function identifier(): string
     {
         return $this->identifier;
     }
 
-    public function add(Expression $expression) : Reference
+    public function add(Expression $expression): Reference
     {
         do {
             $this->prefix++;
@@ -45,12 +50,12 @@ JAVASCRIPT;
         return new Reference($identifier, [$this->identifier]);
     }
 
-    public function count() : int
+    public function count(): int
     {
         return count($this->callbacks);
     }
 
-    public function asJavascript() : string
+    public function asJavascript(): string
     {
         $references = [];
         foreach ($this->callbacks as $identifier => $callback) {

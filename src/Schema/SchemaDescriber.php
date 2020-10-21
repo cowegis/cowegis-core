@@ -6,5 +6,5 @@ namespace Cowegis\Core\Schema;
 
 interface SchemaDescriber
 {
-    public function describe(SchemaBuilder $builder) : void;
+    public function describe(SchemaBuilder $builder): void;
 }

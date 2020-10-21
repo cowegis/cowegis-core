@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Icon;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
@@ -12,27 +13,28 @@ use Cowegis\Core\Definition\SimpleStyle\SimpleStyleMarker;
 
 abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
 {
-    public function markerSize() : ?string
+    public function markerSize(): ?string
     {
         return $this->options()->get('size');
     }
 
-    public function markerColor() : ?string
+    public function markerColor(): ?string
     {
         return $this->options()->get('bgColor');
     }
 
-    public function symbolColor() : ?string
+    public function symbolColor(): ?string
     {
         return $this->options()->get('color');
     }
 
-    public function markerSymbol() : ?string
+    public function markerSymbol(): ?string
     {
         return null;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

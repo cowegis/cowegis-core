@@ -5,11 +5,19 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\ProviderLayer;
+
 use function assert;
 
 final class ProviderLayerSerializer extends MapLayerSerializer
 {
-    public function serialize($layer) : array
+    /**
+     * @param ProviderLayer $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         assert($layer instanceof ProviderLayer);
 

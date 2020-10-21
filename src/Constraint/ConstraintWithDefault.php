@@ -6,14 +6,14 @@ namespace Cowegis\Core\Constraint;
 
 abstract class ConstraintWithDefault extends BaseConstraint
 {
-    public static function withDefaultValue($value) : Constraint
+    /** @param mixed $value */
+    public static function withDefaultValue($value): Constraint
     {
         return new DefaultValueConstraint(new static(), $value);
     }
 
-    public static function asRequired() : Constraint
+    public static function asRequired(): Constraint
     {
         return new static(true);
     }
 }
-

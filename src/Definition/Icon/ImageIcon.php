@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Icon;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Point;
 
 final class ImageIcon extends BaseIcon
 {
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

@@ -11,12 +11,12 @@ trait TooltipPlugin
     /** @var Tooltip|null */
     private $tooltip;
 
-    public function tooltip() : ?Tooltip
+    public function tooltip(): ?Tooltip
     {
         return $this->tooltip;
     }
 
-    public function showTooltip(Tooltip $tooltip) : void
+    public function showTooltip(Tooltip $tooltip): void
     {
         $this->tooltip = $tooltip;
     }

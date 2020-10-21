@@ -6,5 +6,5 @@ namespace Cowegis\Core\Definition;
 
 interface HasOptions
 {
-    public function options() : Options;
+    public function options(): Options;
 }

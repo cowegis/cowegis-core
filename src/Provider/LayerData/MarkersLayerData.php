@@ -7,8 +7,8 @@ namespace Cowegis\Core\Provider\LayerData;
 use ArrayIterator;
 use Cowegis\Core\Definition\Asset\Assets;
 use Cowegis\Core\Definition\Expression\Callbacks;
-use Cowegis\Core\Provider\LayerData;
 use Cowegis\Core\Definition\UI\Marker;
+use Cowegis\Core\Provider\LayerData;
 use IteratorAggregate;
 
 final class MarkersLayerData implements LayerData, IteratorAggregate
@@ -22,6 +22,7 @@ final class MarkersLayerData implements LayerData, IteratorAggregate
     /** @var Assets */
     private $assets;
 
+    /** @param Marker[] $markers */
     public function __construct(array $markers, Assets $assets, Callbacks $callbacks)
     {
         $this->markers   = $markers;
@@ -29,17 +30,17 @@ final class MarkersLayerData implements LayerData, IteratorAggregate
         $this->assets    = $assets;
     }
 
-    public function assets() : Assets
+    public function assets(): Assets
     {
         return $this->assets;
     }
 
-    public function callbacks() : Callbacks
+    public function callbacks(): Callbacks
     {
         return $this->callbacks;
     }
 
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->markers);
     }

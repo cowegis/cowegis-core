@@ -10,8 +10,6 @@ final class DelegatingSchemaDescriber implements SchemaDescriber
     private $builders;
 
     /**
-     * DelegatingSchemaBuilder constructor.
-     *
      * @param SchemaDescriber[] $builders
      */
     public function __construct(iterable $builders)
@@ -19,7 +17,7 @@ final class DelegatingSchemaDescriber implements SchemaDescriber
         $this->builders = $builders;
     }
 
-    public function describe(SchemaBuilder $builder) : void
+    public function describe(SchemaBuilder $builder): void
     {
         foreach ($this->builders as $schemaBuilder) {
             $schemaBuilder->describe($builder);

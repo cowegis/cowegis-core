@@ -8,7 +8,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 
 final class HashMap extends Schema
 {
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId);
 

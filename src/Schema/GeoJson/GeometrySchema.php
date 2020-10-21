@@ -14,7 +14,7 @@ final class GeometrySchema extends OneOf
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -28,7 +28,7 @@ final class GeometrySchema extends OneOf
         ];
     }
 
-    public static function ref(string $ref = '', string $objectId = null) : BaseObject
+    public static function ref(string $ref = '', ?string $objectId = null): BaseObject
     {
         return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'bbox');
     }

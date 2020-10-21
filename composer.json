@@ -1,43 +1,55 @@
 {
-    "name": "cowegis/cowegis-core",
-    "type": "library",
-    "description": "Cowegis Core - Content Web GIS Core",
-    "keywords": [
-        "gis",
-        "leaflet",
-        "osm",
-        "open street map",
-        "webgis"
-    ],
-    "license": "LGPL-3.0-or-later",
-    "authors": [
-        {
-            "name": "David Molineus",
-            "email": "david.molineus@netzmacht.de"
-        }
-    ],
-    "require": {
-        "php": "^7.2",
-        "ext-json": "*",
-        "ext-pdo": "*",
-        "beberlei/assert": "^3.2",
-        "cowegis/cowegis-geojson": "^1.0@dev",
-        "goldspecdigital/oooas": "^2.8",
-        "psr/container": "^1.0",
-        "psr/event-dispatcher": "^1.0"
-    },
-    "require-dev": {
-        "doctrine/coding-standard": "^7.0",
-        "phpspec/phpspec": "^6.1"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Cowegis\\Core\\": "src/"
-        }
+  "name": "cowegis/cowegis-core",
+  "type": "library",
+  "description": "Cowegis Core - Content Web GIS Core",
+  "keywords": [
+    "gis",
+    "leaflet",
+    "osm",
+    "open street map",
+    "webgis"
+  ],
+  "license": "LGPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "David Molineus",
+      "email": "david.molineus@netzmacht.de"
     }
+  ],
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "beberlei/assert": "^3.2",
+    "cowegis/cowegis-geojson": "^1.0@dev",
+    "goldspecdigital/oooas": "^2.8",
+    "psr/container": "^1.0",
+    "psr/event-dispatcher": "^1.0",
+    "psr/http-message": "^1.0"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^8.0",
+    "phpspec/phpspec": "^6.1"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Cowegis\\Core\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Cowegis\\Core\\": "spec/"
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/home/netzmacht/Daten/Projekte/Entwicklung/vcs/cowegis/cowegis-geojson"
+    }
+  ]
 }

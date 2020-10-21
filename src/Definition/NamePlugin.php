@@ -9,7 +9,7 @@ trait NamePlugin
     /** @var string */
     protected $name;
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }

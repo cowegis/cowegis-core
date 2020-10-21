@@ -5,11 +5,19 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\OverpassLayer;
+
 use function assert;
 
 final class OverpassLayerSerializer extends MapLayerSerializer
 {
-    public function serialize($layer) : array
+    /**
+     * @param OverpassLayer $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         assert($layer instanceof OverpassLayer);
 

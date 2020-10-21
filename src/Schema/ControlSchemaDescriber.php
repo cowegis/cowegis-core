@@ -8,5 +8,5 @@ use GoldSpecDigital\ObjectOrientedOAS\Contracts\SchemaContract;
 
 abstract class ControlSchemaDescriber
 {
-    abstract public function describe(SchemaBuilder $specificationBuilder) : SchemaContract;
+    abstract public function describe(SchemaBuilder $specificationBuilder): SchemaContract;
 }

@@ -14,7 +14,7 @@ final class InlineExpression implements Expression
         $this->code = $code;
     }
 
-    public function toString() : string
+    public function toString(): string
     {
         return $this->code;
     }

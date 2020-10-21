@@ -11,13 +11,17 @@ namespace Cowegis\Core\Definition\SimpleStyle;
  */
 interface SimpleStyleContent
 {
-    // OPTIONAL: default ""
-    // A title to show when this item is clicked or
-    // hovered over
-    public function title() : ?string;
+    /**
+     * OPTIONAL: default ""
+     * A title to show when this item is clicked or
+     * hovered over
+     */
+    public function title(): ?string;
 
-    // OPTIONAL: default ""
-    // A description to show when this item is clicked or
-    // hovered over
-    public function description() : ?string;
+    /**
+     * OPTIONAL: default ""
+     * A description to show when this item is clicked or
+     * hovered over
+     */
+    public function description(): ?string;
 }

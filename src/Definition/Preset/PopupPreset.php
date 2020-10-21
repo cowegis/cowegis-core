@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Preset;
 
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
-use Cowegis\Core\Definition\Map\PaneId;
-use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\Definition;
 use Cowegis\Core\Definition\HasOptions;
+use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\OptionsPlugin;
+use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\UI\PopupOptionsPlugin;
 
 final class PopupPreset implements Definition, HasOptions
@@ -26,12 +27,13 @@ final class PopupPreset implements Definition, HasOptions
         $this->popupPresetId = $popupPresetId;
     }
 
-    public function popupPresetId() : PopupPresetId
+    public function popupPresetId(): PopupPresetId
     {
         return $this->popupPresetId;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = [
             'attribution' => new StringConstraint(),

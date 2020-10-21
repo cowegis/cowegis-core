@@ -31,7 +31,7 @@ abstract class RootContext implements Context
         Assets $assets,
         Filter $filter,
         MapId $mapId,
-        string $locale = null
+        ?string $locale = null
     ) {
         $this->callbacks = $callbacks;
         $this->filter    = $filter;
@@ -40,27 +40,27 @@ abstract class RootContext implements Context
         $this->locale    = $locale;
     }
 
-    public function mapId() : MapId
+    public function mapId(): MapId
     {
         return $this->mapId;
     }
 
-    public function assets() : Assets
+    public function assets(): Assets
     {
         return $this->assets;
     }
 
-    public function callbacks() : Callbacks
+    public function callbacks(): Callbacks
     {
         return $this->callbacks;
     }
 
-    public function filter() : Filter
+    public function filter(): Filter
     {
         return $this->filter;
     }
 
-    public function locale() : string
+    public function locale(): string
     {
         return $this->locale;
     }

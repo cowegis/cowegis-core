@@ -6,26 +6,35 @@ namespace Cowegis\Core\Definition\GeoJson;
 
 final class Properties
 {
+    /** @var array<string, mixed> */
     private $properties = [];
 
-    public function merge(array $data) : void
+    /** @param array<string, mixed> $data */
+    public function merge(array $data): void
     {
         foreach ($data as $key => $value) {
             $this->properties[$key] = $value;
         }
     }
 
-    public function set(string $name, $value) : void
+    /** @param mixed $value */
+    public function set(string $name, $value): void
     {
         $this->properties[$name] = $value;
     }
 
+    /**
+     * @param mixed $default
+     *
+     * @return mixed
+     */
     public function get(string $name, $default = null)
     {
         return $this->properties[$name] ?? $default;
     }
 
-    public function toArray() : array
+    /** @return array<string, mixed> */
+    public function toArray(): array
     {
         return $this->properties;
     }

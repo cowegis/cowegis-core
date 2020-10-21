@@ -6,11 +6,19 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\LayersControl;
 use Cowegis\Core\Serializer\DataSerializer;
+
 use function assert;
 
 final class LayersControlSerializer extends DataSerializer
 {
-    public function serialize($control) : array
+    /**
+     * @param LayersControl $control
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($control): array
     {
         assert($control instanceof LayersControl);
 

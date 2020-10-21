@@ -6,9 +6,11 @@ namespace Cowegis\Core\Exception;
 
 use Cowegis\Core\Definition\Map\MapId;
 
+use function sprintf;
+
 final class MapNotFound extends RuntimeException
 {
-    public static function withMapId(MapId $mapId) : self
+    public static function withMapId(MapId $mapId): self
     {
         return new self(sprintf('Map (ID %s) not found', $mapId->value()));
     }

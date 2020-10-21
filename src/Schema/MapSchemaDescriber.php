@@ -23,8 +23,6 @@ final class MapSchemaDescriber implements SchemaDescriber
     private $controlSchemas;
 
     /**
-     * MapSchemaBuilder constructor.
-     *
      * @param LayerSchemaDescriber[]   $layerSchemas
      * @param ControlSchemaDescriber[] $controlSchemas
      */
@@ -34,7 +32,7 @@ final class MapSchemaDescriber implements SchemaDescriber
         $this->controlSchemas = $controlSchemas;
     }
 
-    public function describe(SchemaBuilder $builder) : void
+    public function describe(SchemaBuilder $builder): void
     {
         $tag = Tag::create()
             ->name('Map')
@@ -64,7 +62,8 @@ final class MapSchemaDescriber implements SchemaDescriber
         $builder->withPathItem($path);
     }
 
-    private function buildLayerSchemas(SchemaBuilder $builder) : array
+    /** @return Schema[] */
+    private function buildLayerSchemas(SchemaBuilder $builder): array
     {
         $builder->components()->withSchema(LayerSchema::create('LayerType'), LayerSchema::SHORT_REF);
 
@@ -76,7 +75,8 @@ final class MapSchemaDescriber implements SchemaDescriber
         return $schemas;
     }
 
-    private function buildControlSchemas(SchemaBuilder $builder) : array
+    /** @return Schema[] */
+    private function buildControlSchemas(SchemaBuilder $builder): array
     {
         $schemas = [];
         foreach ($this->controlSchemas as $describer) {
@@ -86,7 +86,7 @@ final class MapSchemaDescriber implements SchemaDescriber
         return $schemas;
     }
 
-    private function mapSchema(SchemaBuilder $builder) : Schema
+    private function mapSchema(SchemaBuilder $builder): Schema
     {
         $mapLocateReference = $builder->components()->withSchema(
             OneOf::create()->schemas(Schema::boolean()->example('true'), new HashMap()),
@@ -106,7 +106,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                     ->description('Key value map of map options'),
                 Schema::array('layers')
                     ->description('Layers containing to the map')
-                    ->items(OneOf::create()->schemas(... $this->buildLayerSchemas($builder))),
+                    ->items(OneOf::create()->schemas(...$this->buildLayerSchemas($builder))),
                 Schema::array('controls')
                     ->description('Map controls')
                     ->items(OneOf::create()->schemas(...$this->buildControlSchemas($builder))),
@@ -151,10 +151,7 @@ final class MapSchemaDescriber implements SchemaDescriber
             );
     }
 
-    /**
-     * @return Schema
-     */
-    private function paneSchema(SchemaBuilder $builder) : Schema
+    private function paneSchema(SchemaBuilder $builder): Schema
     {
         return Schema::object('Pane')
             ->properties(

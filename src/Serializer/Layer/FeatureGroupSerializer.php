@@ -6,7 +6,7 @@ namespace Cowegis\Core\Serializer\Layer;
 
 final class FeatureGroupSerializer extends LayerGroupSerializer
 {
-    protected function type() : string
+    protected function type(): string
     {
         return 'featureGroup';
     }

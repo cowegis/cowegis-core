@@ -14,7 +14,8 @@ final class UriData implements GeoJsonData
         $this->uri = $uri;
     }
 
-    public function jsonSerialize()
+    /** @return array<string, string> */
+    public function jsonSerialize(): array
     {
         return [
             'type'   => 'uri',

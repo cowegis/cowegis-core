@@ -9,11 +9,13 @@ use function strpos;
 
 final class IntegerConstraint extends ConstraintWithDefault
 {
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
         return is_numeric($value) && strpos((string) $value, '.') === false;
     }
 
+    /** {@inheritDoc} */
     public function filter($value)
     {
         return (int) $value;

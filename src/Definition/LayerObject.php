@@ -12,16 +12,16 @@ abstract class LayerObject implements Layer, HasOptions
 {
     use OptionsPlugin;
 
-    public function addTo(Map $map) : void
+    public function addTo(Map $map): void
     {
         $map->layers()->add($this);
     }
 
     /** @return Constraint[] */
-    protected function optionConstraints() : array
+    protected function optionConstraints(): array
     {
         return [
-            'attribution' => new StringConstraint()
+            'attribution' => new StringConstraint(),
         ];
     }
 }

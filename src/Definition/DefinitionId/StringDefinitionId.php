@@ -6,5 +6,4 @@ namespace Cowegis\Core\Definition\DefinitionId;
 
 final class StringDefinitionId
 {
-
 }

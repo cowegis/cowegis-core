@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Filter;
 
+use Generator;
 use Psr\Http\Message\UriInterface;
 use Traversable;
+
 use function parse_str;
 
 final class FilterFactory
@@ -21,19 +23,20 @@ final class FilterFactory
         $this->ruleFactories = $ruleFactories;
     }
 
-    public function ruleNames() : Traversable
+    /** @return Generator|RuleFactory[] */
+    public function ruleNames(): Traversable
     {
         foreach ($this->ruleFactories as $factory) {
             yield $factory->name();
         }
     }
 
-    public function createFromUri(UriInterface $uri) : Filter
+    public function createFromUri(UriInterface $uri): Filter
     {
         return $this->createFromQuery($this->createQuery($uri));
     }
 
-    public function createFromQuery(Query $query) : Filter
+    public function createFromQuery(Query $query): Filter
     {
         $filter = new Filter();
 
@@ -48,7 +51,7 @@ final class FilterFactory
         return $filter;
     }
 
-    private function createQuery(UriInterface $uri) : Query
+    private function createQuery(UriInterface $uri): Query
     {
         $query = [];
         parse_str($uri->getQuery(), $query);

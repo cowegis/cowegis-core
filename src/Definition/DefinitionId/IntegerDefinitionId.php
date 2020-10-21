@@ -6,8 +6,8 @@ namespace Cowegis\Core\Definition\DefinitionId;
 
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Exception\RuntimeException;
+
 use function is_int;
-use function is_numeric;
 
 final class IntegerDefinitionId implements DefinitionId
 {
@@ -19,7 +19,8 @@ final class IntegerDefinitionId implements DefinitionId
         $this->value = $value;
     }
 
-    public static function fromValue($value) : DefinitionId
+    /** @param mixed $value */
+    public static function fromValue($value): DefinitionId
     {
         if (! is_int($value)) {
             throw new RuntimeException('Value has to be an int');
@@ -28,12 +29,12 @@ final class IntegerDefinitionId implements DefinitionId
         return new self($value);
     }
 
-    public function value() : int
+    public function value(): int
     {
         return $this->value;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): int
     {
         return $this->value;
     }

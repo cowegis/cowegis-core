@@ -18,8 +18,6 @@ final class DelegatingProvider implements Provider
     private $providers;
 
     /**
-     * DelegatingProvider constructor.
-     *
      * @param Provider[] $providers
      */
     public function __construct(iterable $providers)
@@ -27,7 +25,7 @@ final class DelegatingProvider implements Provider
         $this->providers = $providers;
     }
 
-    public function idFormat() : IdFormat
+    public function idFormat(): IdFormat
     {
         static $idFormat;
 
@@ -42,7 +40,7 @@ final class DelegatingProvider implements Provider
         return $idFormat;
     }
 
-    public function findMap(MapId $mapId, Context $context) : Map
+    public function findMap(MapId $mapId, Context $context): Map
     {
         foreach ($this->providers as $provider) {
             try {
@@ -55,7 +53,7 @@ final class DelegatingProvider implements Provider
         throw MapNotFound::withMapId($mapId);
     }
 
-    public function findLayerData(MapId $mapId, LayerId $layerId, Context $context) : LayerData
+    public function findLayerData(MapId $mapId, LayerId $layerId, Context $context): LayerData
     {
         foreach ($this->providers as $provider) {
             try {

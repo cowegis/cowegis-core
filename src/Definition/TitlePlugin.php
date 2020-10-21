@@ -20,17 +20,15 @@ trait TitlePlugin
      *
      * @param string $label The new title.
      */
-    public function changeTitle(string $label) : void
+    public function changeTitle(string $label): void
     {
         $this->title = $label;
     }
 
     /**
      * Get elements title.
-     *
-     * @return string
      */
-    public function title() : ?string
+    public function title(): ?string
     {
         if ($this->title !== null) {
             return $this->title;

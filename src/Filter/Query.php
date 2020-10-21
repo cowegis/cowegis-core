@@ -8,10 +8,11 @@ use function array_key_exists;
 
 final class Query
 {
-    /** @var array */
+    /** @var array<string, mixed> */
     private $params = [];
 
-    public static function fromArray(array $params) : self
+    /** @param array<string, mixed> $params */
+    public static function fromArray(array $params): self
     {
         $query         = new self();
         $query->params = $params;
@@ -19,35 +20,47 @@ final class Query
         return $query;
     }
 
-    public function with(string $name, $value) : self
+    /** @param mixed $value */
+    public function with(string $name, $value): self
     {
-        $instance = clone $this;
+        $instance                = clone $this;
         $instance->params[$name] = $value;
 
         return $instance;
     }
 
+    /**
+     * @param mixed $default
+     *
+     * @return mixed
+     */
     public function get(string $name, $default = null)
     {
         return $this->params[$name] ?? $default;
     }
 
-    public function getArray(string $name, array $default = []) : array
+    /**
+     * @param array<mixed,mixed> $default
+     *
+     * @return array<mixed,mixed>
+     */
+    public function getArray(string $name, array $default = []): array
     {
         return (array) $this->get($name, $default);
     }
 
-    public function getString(string $name, string $default = '') : string
+    public function getString(string $name, string $default = ''): string
     {
         return (string) $this->get($name, $default);
     }
 
-    public function has(string $name) : bool
+    public function has(string $name): bool
     {
         return array_key_exists($name, $this->params);
     }
 
-    public function toArray() : array
+    /** @return array<string, mixed> */
+    public function toArray(): array
     {
         return $this->params;
     }

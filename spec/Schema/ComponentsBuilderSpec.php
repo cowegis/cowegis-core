@@ -10,12 +10,12 @@ use PhpSpec\ObjectBehavior;
 
 final class ComponentsBuilderSpec extends ObjectBehavior
 {
-    public function it_is_initializable() : void
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(ComponentsBuilder::class);
     }
 
-    public function it_add_schemas() : void
+    public function it_add_schemas(): void
     {
         $schemaA = Schema::create('foo');
         $schemaB = Schema::create('bar');
@@ -23,10 +23,12 @@ final class ComponentsBuilderSpec extends ObjectBehavior
         $this->withSchema($schemaA)->ref->shouldBe('#/components/schemas/foo');
         $this->withSchema($schemaB)->ref->shouldBe('#/components/schemas/bar');
 
-        $this->build()->schemas->shouldReturn([$schemaA, $schemaB]);
+        $this->build()->schemas->shouldHaveCount(2);
+        $this->build()->schemas[0]->objectId->shouldBe('foo');
+        $this->build()->schemas[1]->objectId->shouldBe('bar');
     }
 
-    public function it_creates_unique_schema_reference() : void
+    public function it_creates_unique_schema_reference(): void
     {
         $schemaA = Schema::create('foo');
         $schemaB = Schema::create('foo');
@@ -38,6 +40,9 @@ final class ComponentsBuilderSpec extends ObjectBehavior
         $ref = $this->withSchema($schemaC, 'bar');
         $ref->ref->shouldBe('#/components/schemas/bar');
 
-        $this->build()->schemas->shouldReturn([$schemaA, $schemaB, $schemaC]);
+        $this->build()->schemas->shouldHaveCount(3);
+        $this->build()->schemas[0]->objectId->shouldBe('foo');
+        $this->build()->schemas[1]->objectId->shouldBe('foo2');
+        $this->build()->schemas[2]->objectId->shouldBe('bar');
     }
 }

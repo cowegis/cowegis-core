@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Map;
 
 use Cowegis\Core\Constraint;
-use Cowegis\Core\Definition\Asset\Assets;
 use Cowegis\Core\Definition\Control\ControlCollection;
 use Cowegis\Core\Definition\Control\Controls;
 use Cowegis\Core\Definition\Definition;
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Definition\Event\EventsPlugin;
-use Cowegis\Core\Definition\Expression\Callbacks;
 use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\HasOptions;
 use Cowegis\Core\Definition\HasPopup;
@@ -24,6 +22,9 @@ use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\PopupPlugin;
 use Cowegis\Core\Definition\TitlePlugin;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
 {
     use EventsPlugin;
@@ -55,12 +56,6 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     /** @var Options */
     private $boundsOptions;
 
-    /** @var Callbacks */
-    private $callbacks;
-
-    /** @var Assets */
-    private $assets;
-
     /** @var View */
     private $view;
 
@@ -81,64 +76,65 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
         $this->presets       = new Presets();
     }
 
-    public function mapId() : MapId
+    public function mapId(): MapId
     {
         return $this->mapId;
     }
 
-    public function elementId() : string
+    public function elementId(): string
     {
         return $this->elementId;
     }
 
-    public function layers() : Layers
+    public function layers(): Layers
     {
         return $this->layers;
     }
 
-    public function controls() : Controls
+    public function controls(): Controls
     {
         return $this->controls;
     }
 
-    public function panes() : Panes
+    public function panes(): Panes
     {
         return $this->panes;
     }
 
-    public function presets() : Presets
+    public function presets(): Presets
     {
         return $this->presets;
     }
 
-    public function enableLocate() : Options
+    public function enableLocate(): Options
     {
         $this->locate = true;
 
         return $this->locateOptions;
     }
 
-    public function locate() : bool
+    public function locate(): bool
     {
         return $this->locate;
     }
 
-    public function locateOptions() : Options
+    public function locateOptions(): Options
     {
         return $this->locateOptions;
     }
 
-    public function boundsOptions() : Options
+    public function boundsOptions(): Options
     {
         return $this->boundsOptions;
     }
 
-    public function view() : View
+    public function view(): View
     {
         return $this->view;
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint\Constraint> */
+    protected function optionConstraints(): array
     {
         return [
             'preferCanvas'           => Constraint\BooleanConstraint::withDefaultValue(false),
@@ -195,7 +191,8 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
         ];
     }
 
-    protected function locateOptionConstraints() : array
+    /** @return array<string, Constraint\Constraint> */
+    protected function locateOptionConstraints(): array
     {
         return [
             'watch'              => Constraint\BooleanConstraint::withDefaultValue(false),
@@ -207,7 +204,8 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
         ];
     }
 
-    private function boundOptionConstraints() : array
+    /** @return array<string, Constraint\Constraint> */
+    private function boundOptionConstraints(): array
     {
         return [
             'adjustAfterLoad'     => Constraint\BooleanConstraint::withDefaultValue(false),

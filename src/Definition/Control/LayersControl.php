@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Control;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Definition\Expression\Reference;
 use Cowegis\Core\Definition\Layer\LayerIds;
@@ -29,22 +30,23 @@ final class LayersControl extends Control
         $this->overlays   = $overlays ?: new LayerIds();
     }
 
-    public function baseLayers() : LayerIds
+    public function baseLayers(): LayerIds
     {
         return $this->baseLayers;
     }
 
-    public function overlays() : LayerIds
+    public function overlays(): LayerIds
     {
         return $this->overlays;
     }
 
-    protected function defaultPosition() : ?string
+    protected function defaultPosition(): string
     {
         return 'topright';
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Layer;
 
 use Cowegis\Core\Constraint\ArrayConstraint;
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
@@ -13,7 +14,8 @@ use Cowegis\Core\Definition\Expression\Reference;
 
 final class MarkerClusterGroup extends FeatureGroup
 {
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

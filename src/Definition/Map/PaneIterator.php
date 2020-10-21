@@ -18,48 +18,51 @@ final class PaneIterator implements Iterator
     private $index = 0;
 
     /**
-     * PaneIterator constructor.
+     * @param Pane[] $panes
      *
      * @psalm-var list<Pane> $panes
-     *
-     * @param Pane[] $panes
      */
     public function __construct(array $panes)
     {
         $this->panes = $panes;
     }
 
-    public static function fromArray(array $panes) : self
+    /**
+     * @param Pane[] $panes
+     *
+     * @psalm-var list<Pane> $panes
+     */
+    public static function fromArray(array $panes): self
     {
         return new self($panes);
     }
 
-    public static function fromList(Pane ... $panes) : self
+    public static function fromList(Pane ...$panes): self
     {
         return new self($panes);
     }
 
-    public function current() : Pane
+    public function current(): Pane
     {
         return $this->panes[$this->index];
     }
 
-    public function next() : void
+    public function next(): void
     {
         $this->index++;
     }
 
-    public function key() : int
+    public function key(): int
     {
         return $this->index;
     }
 
-    public function valid() : bool
+    public function valid(): bool
     {
         return isset($this->panes[$this->index]);
     }
 
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->index = 0;
     }

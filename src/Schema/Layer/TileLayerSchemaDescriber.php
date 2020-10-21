@@ -10,13 +10,14 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 
 final class TileLayerSchemaDescriber extends LayerSchemaDescriber
 {
-    protected function requiredProperties(SchemaBuilder $specificationBuilder) : array
+    /** @return Schema[] */
+    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
     {
         return [
             Schema::string('urlTemplate')
                 ->title('URL template')
                 ->example('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-                ->description('Used to load and display tile layers on the map')
+                ->description('Used to load and display tile layers on the map'),
         ];
     }
 }

@@ -8,20 +8,24 @@ use Cowegis\Core\Definition\Expression\Expression;
 use Cowegis\Core\Definition\Expression\Reference;
 use JsonSerializable;
 
+/**
+ * @psalm-import-type TSerializedReference from \Cowegis\Core\Definition\Expression\Reference
+ * @psalm-type TEvent = array{eventName: string, reference: TSerializedReference }
+*/
 final class Events implements JsonSerializable
 {
     /**
-     * @psalm-var array<string, list<Expression>>
-     *
-     * @var array[]
+     * @psalm-var list<TEvent>
+     * @var array<int, array<string, mixed>
      */
     private $listeners = [];
 
-    public function on(string $eventName, Reference $reference) : self
+    /** @SuppressWarnings(PHPMD.ShortMethodName) */
+    public function on(string $eventName, Reference $reference): self
     {
         $this->listeners[] = [
             'eventName' => $eventName,
-            'reference' => $reference
+            'reference' => $reference,
         ];
 
         return $this;
@@ -30,16 +34,21 @@ final class Events implements JsonSerializable
     /**
      * Get all listeners grouped by event name.
      *
-     * @psalm-return array<string, list<Expression>>
-     *
      * @return Expression[][]
+     *
+     * @psalm-return list<TEvent>
      */
-    public function listeners() : array
+    public function listeners(): array
     {
         return $this->listeners;
     }
 
-    public function jsonSerialize() : array
+    /**
+     * @return array<int, array<string,mixed>>
+     *
+     * @psalm-return list<TEvent>
+     */
+    public function jsonSerialize(): array
     {
         return $this->listeners;
     }

@@ -15,7 +15,7 @@ final class FeatureSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -31,7 +31,7 @@ final class FeatureSchema extends Schema
                     Schema::ref('#/components/schemas/NullValue'),
                     Schema::ref(GeometrySchema::FULL_REF)
                 ),
-            BboxSchema::ref()
+            BboxSchema::ref(),
         ];
         $this->externalDocs = ExternalDocs::create()->url('https://geojson.org/schema/Feature.json');
     }

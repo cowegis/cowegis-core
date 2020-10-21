@@ -6,5 +6,5 @@ namespace Cowegis\Core\Definition\Expression;
 
 interface Expression
 {
-    public function toString() : string;
+    public function toString(): string;
 }

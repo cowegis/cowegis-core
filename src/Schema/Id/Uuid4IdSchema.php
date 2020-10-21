@@ -8,7 +8,7 @@ use Cowegis\Core\Schema\IdSchema;
 
 final class Uuid4IdSchema extends IdSchema
 {
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId ?: 'id');
 

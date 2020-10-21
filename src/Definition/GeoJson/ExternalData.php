@@ -18,17 +18,18 @@ final class ExternalData implements GeoJsonData
         $this->format = $format;
     }
 
-    public function uri() : string
+    public function uri(): string
     {
         return $this->uri;
     }
 
-    public function format() : string
+    public function format(): string
     {
         return $this->format;
     }
 
-    public function jsonSerialize() : array
+    /** @return array<string, string> */
+    public function jsonSerialize(): array
     {
         return [
             'type'   => 'external',

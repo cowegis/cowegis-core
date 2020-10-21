@@ -9,9 +9,9 @@ trait EventsPlugin
     /** @var Events */
     private $events;
 
-    public function events() : Events
+    public function events(): Events
     {
-        if (null === $this->events) {
+        if ($this->events === null) {
             $this->events = new Events();
         }
 

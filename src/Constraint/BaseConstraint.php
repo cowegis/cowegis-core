@@ -14,7 +14,7 @@ abstract class BaseConstraint implements Constraint
         $this->required = $required;
     }
 
-    public function required() : bool
+    public function required(): bool
     {
         return $this->required;
     }

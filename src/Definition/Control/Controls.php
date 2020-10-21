@@ -10,13 +10,13 @@ use IteratorAggregate;
 
 interface Controls extends IteratorAggregate
 {
-    public function add(Control $control) : void;
+    public function add(Control $control): void;
 
-    public function has(Control $control) : bool;
+    public function has(Control $control): bool;
 
-    public function remove(Control $control) : void;
+    public function remove(Control $control): void;
 
-    public function get(DefinitionId $controlId) : Control;
+    public function get(DefinitionId $controlId): Control;
 
-    public function getIterator() : ControlIterator;
+    public function getIterator(): ControlIterator;
 }

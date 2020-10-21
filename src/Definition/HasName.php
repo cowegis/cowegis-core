@@ -6,5 +6,5 @@ namespace Cowegis\Core\Definition;
 
 interface HasName
 {
-    public function name() : string;
+    public function name(): string;
 }

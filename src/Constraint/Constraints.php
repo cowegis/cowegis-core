@@ -12,8 +12,6 @@ final class Constraints
     private $constraints;
 
     /**
-     * Constraints constructor.
-     *
      * @param Constraint[] $constraints
      */
     public function __construct(array $constraints)
@@ -21,16 +19,19 @@ final class Constraints
         $this->constraints = $constraints;
     }
 
-    public function requiredKeys() : Generator
+    public function requiredKeys(): Generator
     {
         foreach ($this->constraints as $key => $constraint) {
-            if ($constraint->required()) {
-                yield $key;
+            if (! $constraint->required()) {
+                continue;
             }
+
+            yield $key;
         }
     }
 
-    public function isDefaultValueOf(string $key, $value) : ?bool
+    /** @param mixed $value */
+    public function isDefaultValueOf(string $key, $value): ?bool
     {
         if (! isset($this->constraints[$key])) {
             return null;
@@ -43,6 +44,11 @@ final class Constraints
         return $this->constraints[$key]->defaultValue() === $value;
     }
 
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
     public function filterValue(string $key, $value)
     {
         if (! isset($this->constraints[$key])) {
@@ -52,6 +58,11 @@ final class Constraints
         return $this->constraints[$key]->filter($value);
     }
 
+    /**
+     * @param mixed $fallback
+     *
+     * @return mixed
+     */
     public function defaultValueOf(string $key, $fallback = null)
     {
         if (! isset($this->constraints[$key])) {

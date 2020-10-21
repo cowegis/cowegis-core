@@ -19,6 +19,11 @@ final class EventDispatchingSerializer extends DataSerializer
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * @param mixed $data
+     *
+     * @return mixed
+     */
     public function serialize($data)
     {
         $serialized = $this->serializer->serialize($data);

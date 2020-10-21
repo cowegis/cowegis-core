@@ -9,17 +9,19 @@ final class Assets
     /** @var Asset[] */
     private $assets;
 
+    /** @param Asset[] $assets */
     public function __construct(array $assets = [])
     {
         $this->assets = $assets;
     }
 
-    public function add(Asset $asset) : void
+    public function add(Asset $asset): void
     {
         $this->assets[] = $asset;
     }
 
-    public function toArray() : array
+    /** @return Asset[] */
+    public function toArray(): array
     {
         return $this->assets;
     }

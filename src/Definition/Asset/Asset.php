@@ -26,47 +26,57 @@ final class Asset implements JsonSerializable
     private function __construct(string $type, string $url)
     {
         $this->type = $type;
-        $this->url = $url;
+        $this->url  = $url;
     }
 
-    public static function JAVASCRIPT(string $url) : self
+    /**
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
+     */
+    public static function JAVASCRIPT(string $url): self
     {
         return new self(self::TYPE_JAVASCRIPT, $url);
     }
 
-    public static function STYLESHEET(string $url) : self
+    /**
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
+     */
+    public static function STYLESHEET(string $url): self
     {
         return new self(self::TYPE_STYLESHEET, $url);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
+     */
     public static function CALLBACKS(string $identifier, string $url): self
     {
-        $instance = new self(self::TYPE_CALLBACKS, $url);
+        $instance             = new self(self::TYPE_CALLBACKS, $url);
         $instance->identifier = $identifier;
 
         return $instance;
     }
 
-    public function type() : string
+    public function type(): string
     {
         return $this->type;
     }
 
-    public function url() : string
+    public function url(): string
     {
         return $this->url;
     }
 
-    public function identifier() : ?string
+    public function identifier(): ?string
     {
         return $this->identifier;
     }
 
-    public function jsonSerialize() : array
+    /** @return array<string, mixed> */
+    public function jsonSerialize(): array
     {
         $data = [
             'type' => $this->type,
-            'url'  => $this->url
+            'url'  => $this->url,
         ];
 
         if ($this->type === self::TYPE_CALLBACKS) {

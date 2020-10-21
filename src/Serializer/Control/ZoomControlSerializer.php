@@ -6,11 +6,19 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\ZoomControl;
 use Cowegis\Core\Serializer\DataSerializer;
+
 use function assert;
 
 final class ZoomControlSerializer extends DataSerializer
 {
-    public function serialize($data) : array
+    /**
+     * @param ZoomControl $data
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($data): array
     {
         assert($data instanceof ZoomControl);
 

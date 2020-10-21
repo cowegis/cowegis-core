@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition;
 
-use Cowegis\Core\Definition\Compareable;
 use JsonSerializable;
 
+/**
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ * @SuppressWarnings(PHPMD.ShortMethodName)
+ */
 final class Point implements Compareable, JsonSerializable
 {
     /**
@@ -25,22 +28,23 @@ final class Point implements Compareable, JsonSerializable
         $this->y = $y;
     }
 
-    public static function fromArray(array $point) : self
+    /** @param int[] $point */
+    public static function fromArray(array $point): self
     {
-        return new self(... $point);
+        return new self(...$point);
     }
 
-    public function x() : int
+    public function x(): int
     {
         return $this->x;
     }
 
-    public function y() : int
+    public function y(): int
     {
         return $this->y;
     }
 
-    public function equals(Compareable $other) : bool
+    public function equals(Compareable $other): bool
     {
         if (! $other instanceof self) {
             return false;
@@ -49,7 +53,8 @@ final class Point implements Compareable, JsonSerializable
         return $other->x === $this->x && $this->y === $other->y;
     }
 
-    public function jsonSerialize() : array
+    /** @return array<int, int> */
+    public function jsonSerialize(): array
     {
         return [$this->x, $this->y];
     }

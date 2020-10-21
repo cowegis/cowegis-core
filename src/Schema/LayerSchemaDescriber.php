@@ -7,6 +7,7 @@ namespace Cowegis\Core\Schema;
 use GoldSpecDigital\ObjectOrientedOAS\Contracts\SchemaContract;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\AllOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+
 use function array_merge;
 use function ucfirst;
 
@@ -21,37 +22,45 @@ abstract class LayerSchemaDescriber
     }
 
     /**
+     * @return Schema[]
+     *
      * @psalam-return list<Schema>
      *
-     * @return Schema[]
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the schema builder
      */
-    protected function requiredProperties(SchemaBuilder $specificationBuilder) : array
+    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
     {
         return [];
     }
 
     /**
+     * @return Schema[]
+     *
      * @psalam-return list<Schema>
      *
-     * @return Schema[]
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the schema builder
      */
-    protected function optionalProperties(SchemaBuilder $specificationBuilder) : array
+    protected function optionalProperties(SchemaBuilder $specificationBuilder): array
     {
         return [];
     }
 
-    private function buildOptionalProperties(SchemaBuilder $builder) : array
+    /** @return array<string,mixed> */
+    private function buildOptionalProperties(SchemaBuilder $builder): array
     {
         $properties = [];
 
         return array_merge($properties, $this->optionalProperties($builder));
     }
 
-    protected function registerRequirements(SchemaBuilder $specificationBuilder, Schema $schema) : void
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the parameters
+     */
+    protected function registerRequirements(SchemaBuilder $specificationBuilder, Schema $schema): void
     {
     }
 
-    final public function describe(SchemaBuilder $specificationBuilder) : SchemaContract
+    final public function describe(SchemaBuilder $specificationBuilder): SchemaContract
     {
         $requiredProperties = $this->requiredProperties($specificationBuilder);
         $optionalProperties = $this->buildOptionalProperties($specificationBuilder);
@@ -60,7 +69,7 @@ abstract class LayerSchemaDescriber
         $schema = Schema::object()
             ->title('Layer type ' . $this->layerType)
             ->description('Schema description of layer type ' . $this->layerType)
-            ->required(... $requiredProperties)
+            ->required(...$requiredProperties)
             ->properties(...$properties);
 
         $this->registerRequirements($specificationBuilder, $schema);

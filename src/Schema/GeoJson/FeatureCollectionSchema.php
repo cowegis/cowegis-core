@@ -13,7 +13,7 @@ final class FeatureCollectionSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(string $objectId = null)
+    public function __construct(?string $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -25,7 +25,7 @@ final class FeatureCollectionSchema extends Schema
                 ->enum('FeatureCollection'),
             Schema::array('features')
                 ->items(Schema::ref(FeatureSchema::FULL_REF)),
-            BboxSchema::ref()
+            BboxSchema::ref(),
         ];
         $this->externalDocs = ExternalDocs::create()->url('https://geojson.org/schema/FeatureCollection.json');
     }

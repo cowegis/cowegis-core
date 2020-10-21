@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Exception\RuntimeException;
+
 use function get_class;
 use function gettype;
 use function is_object;
+use function sprintf;
 
 final class InstanceOfConstraint extends BaseConstraint
 {
@@ -21,16 +23,19 @@ final class InstanceOfConstraint extends BaseConstraint
         $this->expectedClass = $expectedClass;
     }
 
-    public static function withDefaultValue(string $expectedClass, $defaultValue) : Constraint
+    /** @param mixed $defaultValue */
+    public static function withDefaultValue(string $expectedClass, $defaultValue): Constraint
     {
         return new DefaultValueConstraint(new self($expectedClass), $defaultValue);
     }
 
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
         return $value instanceof $this->expectedClass;
     }
 
+    /** {@inheritDoc} */
     public function filter($value)
     {
         if ($this->match($value)) {

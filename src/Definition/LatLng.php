@@ -9,10 +9,14 @@ use Assert\InvalidArgumentException;
 use Cowegis\Core\Exception\InvalidArgument;
 use Cowegis\GeoJson\Position\Coordinates;
 use JsonSerializable;
+
 use function abs;
 use function explode;
 use function max;
 
+/**
+ * @psalm-type TSerializedLatLng = array{0: float, 1: float, 2?: float}
+ */
 final class LatLng implements JsonSerializable
 {
     /**
@@ -48,23 +52,26 @@ final class LatLng implements JsonSerializable
         $this->latitude  = $latitude;
         $this->longitude = $longitude;
 
-        if ($altitude !== null) {
-            $this->altitude = $altitude;
+        if ($altitude === null) {
+            return;
         }
+
+        $this->altitude = $altitude;
     }
 
     /**
      * Create LatLng from array.
      *
-     * @psalm-param array{0:float,1:float,2:float|null}|array{lat:float,lng:float,alt:float|null}|array{latitude:float,longitude:float,altitude:float|null}
-     *              $native
-     *
      * @param array $native Native array.
      *
      * @return LatLng
+     *
      * @throws \InvalidArgumentException If format is not supported.
+     *
+     * @psalm-param array{0:float,1:float,2:float|null}|array{lat:float,lng:float,alt:float|null}|array{latitude:float,longitude:float,altitude:float|null}
+     *              $native
      */
-    public static function fromArray(array $native) : self
+    public static function fromArray(array $native): self
     {
         $keys = [
             [0, 1, 2],
@@ -90,10 +97,9 @@ final class LatLng implements JsonSerializable
      *
      * @param string $latLng Comma separated list of latlng values.
      *
-     * @return LatLng
      * @throws InvalidArgumentException If LatLng could not be created.
      */
-    public static function fromString($latLng)
+    public static function fromString(string $latLng): LatLng
     {
         [$latitude, $longitude, $altitude] = explode(',', $latLng) + [null, null, null];
 
@@ -106,22 +112,22 @@ final class LatLng implements JsonSerializable
         return new static((float) $latitude, (float) $longitude, $altitude);
     }
 
-    public function latitude() : float
+    public function latitude(): float
     {
         return $this->latitude;
     }
 
-    public function longitude() : float
+    public function longitude(): float
     {
         return $this->longitude;
     }
 
-    public function altitude() : ?float
+    public function altitude(): ?float
     {
         return $this->altitude;
     }
 
-    public function hasAltitude() : bool
+    public function hasAltitude(): bool
     {
         return $this->altitude !== null;
     }
@@ -132,25 +138,23 @@ final class LatLng implements JsonSerializable
      * @param LatLng $other          Another coordinate.
      * @param int    $maxMargin      Margin of tolerance.
      * @param bool   $ignoreAltitude If true only longitude and latitude are compared.
-     *
-     * @return bool
      */
-    public function equals(LatLng $other, ?int $maxMargin = null, bool $ignoreAltitude = true) : bool
+    public function equals(LatLng $other, ?int $maxMargin = null, bool $ignoreAltitude = true): bool
     {
         if ($maxMargin !== null) {
             $margin = max(
-                abs(($this->latitude() - $other->latitude())),
-                abs(($this->longitude() - $other->longitude()))
+                abs($this->latitude() - $other->latitude()),
+                abs($this->longitude() - $other->longitude())
             );
 
-            if (!$ignoreAltitude) {
+            if (! $ignoreAltitude) {
                 $margin = max(
                     $margin,
-                    abs(($this->altitude() - $other->longitude()))
+                    abs($this->altitude() - $other->longitude())
                 );
             }
 
-            return ($margin <= $maxMargin);
+            return $margin <= $maxMargin;
         }
 
         if ($this->latitude() !== $other->latitude()) {
@@ -161,17 +165,13 @@ final class LatLng implements JsonSerializable
             return false;
         }
 
-        if (!$ignoreAltitude && $this->altitude() !== $other->altitude()) {
-            return false;
-        }
-
-        return true;
+        return $ignoreAltitude || $this->altitude() === $other->altitude();
     }
 
     /**
      * Get latlng as geo json coordinate.
      */
-    public function toGeoJson() : Coordinates
+    public function toGeoJson(): Coordinates
     {
         return new Coordinates($this->longitude(), $this->latitude(), $this->altitude());
     }
@@ -179,7 +179,7 @@ final class LatLng implements JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         $raw = [
             $this->latitude(),
@@ -198,11 +198,11 @@ final class LatLng implements JsonSerializable
      *
      * @param bool $ignoreAltitude If true the altitude is not included.
      */
-    public function toString(bool $ignoreAltitude = false) : string
+    public function toString(bool $ignoreAltitude = false): string
     {
         $buffer = $this->latitude() . ',' . $this->longitude();
 
-        if (!$ignoreAltitude && $this->hasAltitude()) {
+        if (! $ignoreAltitude && $this->hasAltitude()) {
             $buffer .= ',' . $this->altitude();
         }
 

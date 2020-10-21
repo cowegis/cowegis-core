@@ -6,12 +6,14 @@ namespace Cowegis\Core\Definition\Control;
 
 use Cowegis\Core\Constraint\ArrayConstraint;
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 
 final class LoadingControl extends Control
 {
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 
@@ -24,7 +26,7 @@ final class LoadingControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition() : ?string
+    protected function defaultPosition(): ?string
     {
         return 'topleft';
     }

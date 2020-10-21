@@ -9,17 +9,17 @@ final class Filter
     /** @var Rule[] */
     private $rules = [];
 
-    public function add(Rule $rule) : void
+    public function add(Rule $rule): void
     {
         $this->rules[] = $rule;
     }
 
-    public function rules() : RuleIterator
+    public function rules(): RuleIterator
     {
         return new RuleIterator($this->rules);
     }
 
-    public function toQuery() : Query
+    public function toQuery(): Query
     {
         $query = new Query();
 

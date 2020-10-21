@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Exception\RuntimeException;
+
 use function get_class;
 use function gettype;
 use function is_array;
@@ -21,14 +22,16 @@ final class ListConstraint extends BaseConstraint
         $this->constraint = $constraint;
     }
 
-    public function defaultValue() : array
+    /** @return array<int, mixed> */
+    public function defaultValue(): array
     {
         return [];
     }
 
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             return false;
         }
 
@@ -49,9 +52,10 @@ final class ListConstraint extends BaseConstraint
         return true;
     }
 
+    /** {@inheritDoc} */
     public function filter($value)
     {
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             throw new RuntimeException('Values has to be an array, given ' . gettype($value));
         }
 

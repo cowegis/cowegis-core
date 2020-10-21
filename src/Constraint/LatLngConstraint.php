@@ -6,12 +6,14 @@ namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Exception\InvalidArgument;
+
 use function is_array;
 use function is_string;
 
 final class LatLngConstraint extends ConstraintWithDefault
 {
-    public function match($value) : bool
+    /** {@inheritDoc} */
+    public function match($value): bool
     {
         try {
             $this->createFromValue($value);
@@ -22,11 +24,13 @@ final class LatLngConstraint extends ConstraintWithDefault
         return true;
     }
 
-    public function filter($value) : LatLng
+    /** {@inheritDoc} */
+    public function filter($value): LatLng
     {
         return $this->createFromValue($value);
     }
 
+    /** @param mixed $value */
     private function createFromValue($value): LatLng
     {
         if ($value instanceof LatLng) {

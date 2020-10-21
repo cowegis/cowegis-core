@@ -25,12 +25,12 @@ final class ProviderLayer extends GridLayer
         $this->variant  = $variant;
     }
 
-    public function provider() : string
+    public function provider(): string
     {
         return $this->provider;
     }
 
-    public function variant() : ?string
+    public function variant(): ?string
     {
         return $this->variant;
     }

@@ -6,7 +6,7 @@ namespace Cowegis\Core\Definition;
 
 interface HasTitle
 {
-    public function changeTitle(string $label) : void;
+    public function changeTitle(string $label): void;
 
-    public function title() : ?string;
+    public function title(): ?string;
 }

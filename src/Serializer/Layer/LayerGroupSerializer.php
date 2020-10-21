@@ -6,9 +6,18 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\LayerGroup;
 
+use function assert;
+
 class LayerGroupSerializer extends MapLayerSerializer
 {
-    public function serialize($layer) : array
+    /**
+     * @param LayerGroup $layer
+     *
+     * @return array<string,mixed>
+     *
+     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
+     */
+    public function serialize($layer): array
     {
         assert($layer instanceof LayerGroup);
 
@@ -19,7 +28,7 @@ class LayerGroupSerializer extends MapLayerSerializer
         return $data;
     }
 
-    protected function type() : string
+    protected function type(): string
     {
         return 'layerGroup';
     }

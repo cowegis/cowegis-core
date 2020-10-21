@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Control;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
+use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\StringConstraint;
 
 final class FullscreenControl extends Control
 {
-    protected function defaultPosition() : ?string
+    protected function defaultPosition(): ?string
     {
         return 'topleft';
     }
 
-    protected function optionConstraints() : array
+    /** @return array<string, Constraint> */
+    protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
 

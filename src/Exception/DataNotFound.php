@@ -6,6 +6,7 @@ namespace Cowegis\Core\Exception;
 
 use Cowegis\Core\Definition\Layer\LayerId;
 use Cowegis\Core\Definition\Map\MapId;
+
 use function sprintf;
 
 final class DataNotFound extends RuntimeException

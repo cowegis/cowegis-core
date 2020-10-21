@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Cowegis\Core\Schema\Layer;
 
 use Cowegis\Core\Schema\GeoJson\FeatureCollectionSchema;
-use Cowegis\Core\Schema\Layer\GeoJsonLayerDescriber;
 use Cowegis\Core\Schema\SchemaBuilder;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Operation;
@@ -17,7 +16,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
 
 final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
 {
-    protected function registerRequirements(SchemaBuilder $builder, Schema $schema) : void
+    protected function registerRequirements(SchemaBuilder $builder, Schema $schema): void
     {
         parent::registerRequirements($builder, $schema);
 
