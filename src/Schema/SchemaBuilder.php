@@ -13,6 +13,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Server;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
 use GoldSpecDigital\ObjectOrientedOAS\OpenApi;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 final class SchemaBuilder
 {
     /** @var string */

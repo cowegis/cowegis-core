@@ -11,7 +11,7 @@ use Cowegis\Core\Filter\Filter;
 
 final class ProviderContext extends RootContext
 {
-    public static function create(Filter $filter, MapId $mapId, ?string $locale = null): self
+    public static function create(Filter $filter, MapId $mapId, string $locale): self
     {
         return new self(
             new Callbacks(static::createIdentifier($mapId)),
@@ -24,6 +24,6 @@ final class ProviderContext extends RootContext
 
     private static function createIdentifier(MapId $mapId): string
     {
-        return 'map_' . $mapId->value();
+        return 'map_' . (string) $mapId->value();
     }
 }

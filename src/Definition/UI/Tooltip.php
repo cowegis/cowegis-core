@@ -8,7 +8,9 @@ use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\LayerObject;
+use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\Preset\TooltipPresetId;
+use Cowegis\Core\Exception\RuntimeException;
 
 final class Tooltip extends LayerObject implements HasEvents
 {
@@ -29,6 +31,11 @@ final class Tooltip extends LayerObject implements HasEvents
         $this->content     = $content;
         $this->coordinates = $coordinates;
         $this->presetId    = $presetId;
+    }
+
+    public function addTo(Map $map): void
+    {
+        throw new RuntimeException('Add to map is not supported right so far.');
     }
 
     public function content(): string

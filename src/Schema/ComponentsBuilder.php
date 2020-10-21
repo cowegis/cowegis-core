@@ -24,8 +24,8 @@ use function get_class;
 final class ComponentsBuilder
 {
     /**
-     * @psalm-param list<Schema>
-     * @var Schema[]
+     * @psalm-param list<SchemaContract>
+     * @var SchemaContract[]
      */
     private $schemas = [];
 
@@ -231,7 +231,7 @@ final class ComponentsBuilder
         $suffix    = 1;
 
         while (isset($collection[$reference])) {
-            $objectId  = $object->objectId . ++$suffix;
+            $objectId  = ($object->objectId ?: $defaultReference) . ++$suffix;
             $reference = $prefix . $objectId;
         }
 

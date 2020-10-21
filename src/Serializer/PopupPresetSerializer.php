@@ -17,7 +17,7 @@ use function assert;
 final class PopupPresetSerializer extends DataSerializer
 {
     /**
-     * @param PopupPreset $popup
+     * @param PopupPreset|mixed $popup
      *
      * @return array<string, mixed>
      *
@@ -29,9 +29,12 @@ final class PopupPresetSerializer extends DataSerializer
     {
         assert($popup instanceof PopupPreset);
 
+        /** @psalm-var array<string,mixed> $options */
+        $options = $this->serializer->serialize($popup->options());
+
         return [
             'presetId' => $popup->popupPresetId()->value(),
-            'options'  => $this->serializer->serialize($popup->options()),
+            'options'  => $options,
         ];
     }
 }

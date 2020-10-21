@@ -12,7 +12,7 @@ use function assert;
 final class LoadingControlSerializer extends DataSerializer
 {
     /**
-     * @param LoadingControl $data
+     * @param LoadingControl|mixed $data
      *
      * @return array<string,mixed>
      *

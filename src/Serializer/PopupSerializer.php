@@ -9,18 +9,18 @@ use Cowegis\Core\Definition\UI\Popup;
 use function assert;
 
 /**
- * @psalm-import-type TEvent from \Cowegis\Core\Definition\Event\Events
+ * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
  * @psalm-type TSerializedPopup = array{
  *   content: string,
  *   presetId: mixed,
  *   options: array<string,mixed>,
- *   events: list<TEvent>
+ *   events: list<TSerializedEvent>
  * }
  */
 final class PopupSerializer extends DataSerializer
 {
     /**
-     * @param Popup $popup
+     * @param Popup|mixed $popup
      *
      * @return array<string, mixed>
      *
@@ -32,11 +32,17 @@ final class PopupSerializer extends DataSerializer
     {
         assert($popup instanceof Popup);
 
+        $presetId = $popup->presetId();
+        /** @psalm-var array<string,mixed> $options */
+        $options = $this->serializer->serialize($popup->options());
+        /** @psalm-var list<TSerializedEvent> $events */
+        $events = $this->serializer->serialize($popup->events());
+
         return [
             'content'  => $popup->content(),
-            'presetId' => $popup->presetId() ? $popup->presetId()->value() : null,
-            'options'  => $this->serializer->serialize($popup->options()),
-            'events'   => $this->serializer->serialize($popup->events()),
+            'presetId' => $presetId ? $presetId->value() : null,
+            'options'  => $options,
+            'events'   => $events,
         ];
     }
 }

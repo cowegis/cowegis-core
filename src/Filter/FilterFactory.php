@@ -23,7 +23,11 @@ final class FilterFactory
         $this->ruleFactories = $ruleFactories;
     }
 
-    /** @return Generator|RuleFactory[] */
+    /**
+     * @return Traversable|Generator|string[]
+     *
+     * @psalm-return Generator<string>
+     */
     public function ruleNames(): Traversable
     {
         foreach ($this->ruleFactories as $factory) {

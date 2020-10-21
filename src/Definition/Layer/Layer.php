@@ -9,6 +9,7 @@ use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\HasName;
 use Cowegis\Core\Definition\HasTitle;
 use Cowegis\Core\Definition\LayerObject;
+use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\NamePlugin;
 use Cowegis\Core\Definition\TitlePlugin;
 
@@ -29,6 +30,11 @@ abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
         $this->layerId        = $layerId;
         $this->name           = $name;
         $this->initialVisible = $initialVisible;
+    }
+
+    public function addTo(Map $map): void
+    {
+        $map->layers()->add($this);
     }
 
     public function layerId(): LayerId

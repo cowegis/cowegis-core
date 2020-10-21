@@ -11,7 +11,7 @@ use Cowegis\Core\Serializer\DataSerializer;
 abstract class MapLayerSerializer extends DataSerializer
 {
     /**
-     * @param Layer $layer
+     * @param Layer|mixed $layer
      *
      * @return array<string,mixed>
      *

@@ -9,36 +9,40 @@ use Cowegis\Core\Definition\UI\Tooltip;
 use function assert;
 
 /**
- * @psalm-import-type TEvent from \Cowegis\Core\Definition\Event\Events
+ * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
  * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
- * @psalm-type TSerializedToolTip = array{
+ * @psalm-type TSerializedTooltip = array{
  *   content: string,
  *   coordinates: null|TSerializedLatLng,
- *   options: array<string,mixed>
+ *   options: array<string,mixed>,
  *   presetId: mixed,
- *   events: list<TEvent>
+ *   events: list<TSerializedEvent>
  * }
  */
 final class TooltipSerializer extends DataSerializer
 {
     /**
-     * @param Tooltip $tooltip
+     * @param Tooltip|mixed $tooltip
      *
      * @return array<string,mixed>
      *
-     * @psalm-return TSerializedToolTip
+     * @psalm-return TSerializedTooltip
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($tooltip): array
     {
         assert($tooltip instanceof Tooltip);
-        $presetId = $tooltip->presetId();
+
+        /** @psalm-var array<string,mixed> $options */
+        $options     = $this->serializer->serialize($tooltip->options());
+        $presetId    = $tooltip->presetId();
+        $coordinates = $tooltip->coordinates();
 
         return [
             'content'        => $tooltip->content(),
-            'coordinates'    => $tooltip->coordinates(),
-            'options'        => $this->serializer->serialize($tooltip->options()),
+            'coordinates'    => $coordinates ? $coordinates->jsonSerialize() : null,
+            'options'        => $options,
             'presetId'       => $presetId ? $presetId->value() : null,
             'events'         => $tooltip->events()->jsonSerialize(),
         ];

@@ -14,7 +14,7 @@ use function assert;
 final class LayerIdsSerializer implements Serializer
 {
     /**
-     * @param LayerIds $layerIds
+     * @param LayerIds|mixed $layerIds
      *
      * @return array<int,mixed>
      *
@@ -27,6 +27,7 @@ final class LayerIdsSerializer implements Serializer
         assert($layerIds instanceof LayerIds);
 
         return array_map(
+            /** @psalm-return mixed */
             static function (LayerId $layerId) {
                 return $layerId->value();
             },

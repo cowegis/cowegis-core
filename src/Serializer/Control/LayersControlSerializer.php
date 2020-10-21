@@ -12,7 +12,7 @@ use function assert;
 final class LayersControlSerializer extends DataSerializer
 {
     /**
-     * @param LayersControl $control
+     * @param LayersControl|mixed $control
      *
      * @return array<string,mixed>
      *

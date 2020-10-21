@@ -10,7 +10,7 @@ use Iterator;
 final class LayerIterator implements Iterator
 {
     /**
-     * @psalm-var list<MapLayer>
+     * @psalm-var list<Layer>
      * @var Layer[]
      */
     private $layers;
@@ -21,7 +21,7 @@ final class LayerIterator implements Iterator
     /**
      * @param Layer[] $layers
      *
-     * @psalm-var list<MapLayer> $layers
+     * @psalm-var list<Layer> $layers
      */
     public function __construct(array $layers)
     {
@@ -31,7 +31,7 @@ final class LayerIterator implements Iterator
     /**
      * @param Layer[] $layers
      *
-     * @psalm-var list<MapLayer> $layers
+     * @psalm-var list<Layer> $layers
      */
     public static function fromArray(array $layers): self
     {

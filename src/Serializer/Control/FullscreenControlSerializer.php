@@ -12,7 +12,7 @@ use function assert;
 final class FullscreenControlSerializer extends DataSerializer
 {
     /**
-     * @param FullscreenControl $data
+     * @param FullscreenControl|mixed $data
      *
      * @return array<string,mixed>
      *

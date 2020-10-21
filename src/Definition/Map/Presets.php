@@ -8,21 +8,19 @@ use Cowegis\Core\Definition\Icon\Icon;
 use Cowegis\Core\Definition\Path\Style;
 use Cowegis\Core\Definition\Preset\PopupPreset;
 use Cowegis\Core\Definition\Preset\TooltipPreset;
-use Cowegis\Core\Definition\UI\Popup;
-use Cowegis\Core\Definition\UI\Tooltip;
 
 final class Presets
 {
     /** @var Icon[] */
     private $icons = [];
 
-    /** @var Popup[] */
+    /** @var PopupPreset[] */
     private $popups = [];
 
     /** @var Style[] */
     private $styles = [];
 
-    /** @var Tooltip[] */
+    /** @var TooltipPreset[] */
     private $tooltips = [];
 
     public function addPopup(PopupPreset $popup): void
@@ -46,7 +44,7 @@ final class Presets
         return $this->icons;
     }
 
-    /** @return Popup[] */
+    /** @return PopupPreset[] */
     public function popups(): array
     {
         return $this->popups;
@@ -58,7 +56,7 @@ final class Presets
         return $this->styles;
     }
 
-    /** @return Tooltip[] */
+    /** @return TooltipPreset[] */
     public function tooltips(): array
     {
         return $this->tooltips;

@@ -13,9 +13,9 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 class GeoJsonLayerDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
-    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
+    protected function requiredProperties(SchemaBuilder $builder): array
     {
-        $reference = $specificationBuilder->components()->withSchema(
+        $reference = $builder->components()->withSchema(
             OneOf::create('data')
                 ->schemas(
                     Schema::string()->format('url'),

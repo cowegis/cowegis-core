@@ -11,7 +11,7 @@ use function assert;
 final class OverpassLayerSerializer extends MapLayerSerializer
 {
     /**
-     * @param OverpassLayer $layer
+     * @param OverpassLayer|mixed $layer
      *
      * @return array<string,mixed>
      *

@@ -9,7 +9,11 @@ use function array_values;
 
 final class LayerIds
 {
-    /** @var LayerId[] */
+    /**
+     * @var LayerId[]
+     *
+     * @psalm-var list<LayerId>
+     */
     private $layers = [];
 
     public function addLayer(LayerId $layerId): void
@@ -44,7 +48,11 @@ final class LayerIds
         );
     }
 
-    /** @return LayerId[] */
+    /**
+     * @return LayerId[]
+     *
+     * @psalm-return list<LayerId>
+     */
     public function toArray(): array
     {
         return $this->layers;

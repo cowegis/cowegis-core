@@ -12,7 +12,7 @@ use function assert;
 final class ZoomControlSerializer extends DataSerializer
 {
     /**
-     * @param ZoomControl $data
+     * @param ZoomControl|mixed $data
      *
      * @return array<string,mixed>
      *

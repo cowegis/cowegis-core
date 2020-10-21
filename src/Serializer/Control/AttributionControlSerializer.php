@@ -12,7 +12,7 @@ use function assert;
 final class AttributionControlSerializer extends DataSerializer
 {
     /**
-     * @param AttributionControl $data
+     * @param AttributionControl|mixed $data
      *
      * @return array<string,mixed>
      *

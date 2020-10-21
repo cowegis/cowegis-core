@@ -18,7 +18,7 @@ final class StringConstraint extends ConstraintWithDefault
             return $value->__toString();
         }
 
-        return in_array(gettype(), ['string', 'float', 'int'], true);
+        return in_array(gettype($value), ['string', 'float', 'int'], true);
     }
 
     /** {@inheritDoc} */

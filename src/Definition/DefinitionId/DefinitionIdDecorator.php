@@ -12,7 +12,7 @@ abstract class DefinitionIdDecorator implements DefinitionId
     /** @var DefinitionId */
     private $definitionId;
 
-    public function __construct(DefinitionId $definitionId)
+    final public function __construct(DefinitionId $definitionId)
     {
         $this->definitionId = $definitionId;
     }
@@ -37,7 +37,7 @@ abstract class DefinitionIdDecorator implements DefinitionId
     }
 
     /** @return mixed */
-    public function value()
+    public function value(): string
     {
         return $this->definitionId->value();
     }

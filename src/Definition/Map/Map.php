@@ -8,7 +8,6 @@ use Cowegis\Core\Constraint;
 use Cowegis\Core\Definition\Control\ControlCollection;
 use Cowegis\Core\Definition\Control\Controls;
 use Cowegis\Core\Definition\Definition;
-use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\HasOptions;
@@ -32,7 +31,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     use OptionsPlugin;
     use PopupPlugin;
 
-    /** @var DefinitionId */
+    /** @var MapId */
     private $mapId;
 
     /** @var Layers */

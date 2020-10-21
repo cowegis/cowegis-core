@@ -20,10 +20,17 @@ final class Reference implements Expression, JsonSerializable
     /** @var string */
     private $reference;
 
-    /** @var array<int, string>|null */
+    /**
+     * @var array<int, string>|null
+     * @psalm-var list<string>|null
+     */
     private $namespace;
 
-    /** @param array<int, string> $namespace */
+    /**
+     * @param array<int, string> $namespace
+     *
+     * @psalm-param list<string>|null $namespace
+     */
     public function __construct(string $reference, ?array $namespace = null)
     {
         $this->reference = $reference;

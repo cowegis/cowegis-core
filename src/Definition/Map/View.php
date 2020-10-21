@@ -19,7 +19,7 @@ final class View implements HasOptions
     /** @var LatLng|null */
     private $center;
 
-    /** @var int|null */
+    /** @var float|null */
     private $zoom;
 
     public function changeView(?LatLng $center, ?float $zoom): void

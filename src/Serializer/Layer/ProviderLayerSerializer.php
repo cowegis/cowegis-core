@@ -11,7 +11,7 @@ use function assert;
 final class ProviderLayerSerializer extends MapLayerSerializer
 {
     /**
-     * @param ProviderLayer $layer
+     * @param ProviderLayer|mixed $layer
      *
      * @return array<string,mixed>
      *

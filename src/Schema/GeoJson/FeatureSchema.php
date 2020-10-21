@@ -19,9 +19,11 @@ final class FeatureSchema extends Schema
     {
         parent::__construct($objectId);
 
-        $this->title        = 'GeoJSON Feature';
-        $this->type         = 'object';
-        $this->required     = ['type', 'properties', 'geometry'];
+        $this->title    = 'GeoJSON Feature';
+        $this->type     = 'object';
+        $this->required = ['type', 'properties', 'geometry'];
+
+        /** @psalm-suppress InvalidPropertyAssignmentValue */
         $this->properties   = [
             Schema::string('type')
                 ->enum('Feature'),

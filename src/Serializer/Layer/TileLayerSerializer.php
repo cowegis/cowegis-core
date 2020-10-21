@@ -16,7 +16,7 @@ final class TileLayerSerializer extends MapLayerSerializer
     }
 
     /**
-     * @param TileLayer $layer
+     * @param TileLayer|mixed $layer
      *
      * @return array<string,mixed>
      *

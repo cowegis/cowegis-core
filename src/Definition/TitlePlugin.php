@@ -11,7 +11,7 @@ trait TitlePlugin
     /**
      * The title.
      *
-     * @var string
+     * @var string|null
      */
     private $title;
 

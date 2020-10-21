@@ -26,6 +26,7 @@ final class EventDispatchingSerializer extends DataSerializer
      */
     public function serialize($data)
     {
+        /** @psalm-var mixed */
         $serialized = $this->serializer->serialize($data);
         $event      = new SerializeEvent($data, $serialized);
 

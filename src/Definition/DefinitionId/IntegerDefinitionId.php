@@ -29,9 +29,9 @@ final class IntegerDefinitionId implements DefinitionId
         return new self($value);
     }
 
-    public function value(): int
+    public function value(): string
     {
-        return $this->value;
+        return (string) $this->value;
     }
 
     public function jsonSerialize(): int

@@ -46,7 +46,7 @@ final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPo
     /** @var Properties */
     private $properties;
 
-    /** @var Icon */
+    /** @var Icon|null */
     private $icon;
 
     public function __construct(MarkerId $markerId, string $name, LatLng $coordinates)

@@ -11,7 +11,7 @@ use function assert;
 class LayerGroupSerializer extends MapLayerSerializer
 {
     /**
-     * @param LayerGroup $layer
+     * @param LayerGroup|mixed $layer
      *
      * @return array<string,mixed>
      *
@@ -21,8 +21,9 @@ class LayerGroupSerializer extends MapLayerSerializer
     {
         assert($layer instanceof LayerGroup);
 
-        $data           = parent::serialize($layer);
-        $data['type']   = $this->type();
+        $data         = parent::serialize($layer);
+        $data['type'] = $this->type();
+        /** @psalm-var list<array<string, mixed>> */
         $data['layers'] = $this->serializer->serialize($layer->layers());
 
         return $data;

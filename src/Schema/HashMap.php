@@ -12,7 +12,8 @@ final class HashMap extends Schema
     {
         parent::__construct($objectId);
 
-        $this->type                 = 'object';
+        $this->type = 'object';
+        /** @psalm-suppress InvalidPropertyAssignmentValue */
         $this->additionalProperties = true;
     }
 }

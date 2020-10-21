@@ -12,19 +12,18 @@ use function assert;
 /**
  * @psalm-import-type TSerializedIcon from \Cowegis\Core\Serializer\IconSerializer
  * @psalm-import-type TSerializedPopup from \Cowegis\Core\Serializer\PopupSerializer
- * @psalm-import-type TSerializedStyle from \Cowegis\Core\Serializer\StyleSerializer
  * @psalm-import-type TSerializedTooltip from \Cowegis\Core\Serializer\TooltipSerializer
  * @psalm-type TSerializedPresets = array{
- *   icons: \ArrayObject|array<string,TSerializedIcon>
+ *   icons: \ArrayObject|array<string,TSerializedIcon>,
  *   popups: \ArrayObject|array<string,TSerializedPopup>,
- *   styles: \ArrayObject|array<string,TSerializedStyle>,
+ *   styles: \ArrayObject|array<string,mixed>,
  *   tooltips: \ArrayObject|array<string,TSerializedTooltip>
  * }
  */
 final class PresetsSerializer extends DataSerializer
 {
     /**
-     * @param Presets $data
+     * @param Presets|mixed $data
      *
      * @return array<string, mixed>
      *
@@ -36,11 +35,20 @@ final class PresetsSerializer extends DataSerializer
     {
         assert($data instanceof Presets);
 
+        /** @psalm-var ArrayObject|array<string,TSerializedIcon> $icons */
+        $icons = $this->serializer->serialize($data->icons()) ?: new ArrayObject();
+        /** @psalm-var ArrayObject|array<string,TSerializedPopup> $popups */
+        $popups = $this->serializer->serialize($data->popups()) ?: new ArrayObject();
+        /** @psalm-var ArrayObject|array<string,mixed> $styles */
+        $styles = $this->serializer->serialize($data->styles()) ?: new ArrayObject();
+        /** @psalm-var ArrayObject|array<string,TSerializedTooltip> $tooltips */
+        $tooltips = $this->serializer->serialize($data->tooltips()) ?: new ArrayObject();
+
         return [
-            'icons'    => $this->serializer->serialize($data->icons()) ?: new ArrayObject(),
-            'popups'   => $this->serializer->serialize($data->popups()) ?: new ArrayObject(),
-            'styles'   => $this->serializer->serialize($data->styles()) ?: new ArrayObject(),
-            'tooltips' => $this->serializer->serialize($data->tooltips()) ?: new ArrayObject(),
+            'icons'    => $icons,
+            'popups'   => $popups,
+            'styles'   => $styles,
+            'tooltips' => $tooltips,
         ];
     }
 }

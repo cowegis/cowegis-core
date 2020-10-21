@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition;
 
+use Cowegis\GeoJson\Position\Coordinates;
 use InvalidArgumentException;
 
+use function array_map;
 use function count;
 use function explode;
 use function sprintf;
 
-/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
+/**
+ * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ */
 final class LatLngBounds
 {
     /**
@@ -42,9 +47,11 @@ final class LatLngBounds
     /**
      * Create from native array format.
      *
-     * @param array<int, float> $native The native boundary.
+     * @param array<int, array<int, float>> $native The native boundary
      *
      * @throws InvalidArgumentException If the array format is not supported.
+     *
+     * @psalm-param array{0: TSerializedLatLng, 1: TSerializedLatLng} $native
      */
     public static function fromArray(array $native): self
     {
@@ -75,6 +82,8 @@ final class LatLngBounds
                 sprintf('LatLngBounds can not be created from string "%s"', $native)
             );
         }
+
+        $values = array_map('floatval', $values);
 
         return new LatLngBounds(
             new LatLng($values[0], $values[1]),
@@ -214,20 +223,20 @@ final class LatLngBounds
     /**
      * Get value as valid json string.
      *
-     * @return array<int, float>
+     * @return array<int, array<int, float>>
      */
     public function jsonSerialize(): array
     {
         return [
-            $this->southWest(),
-            $this->northEast(),
+            $this->southWest()->jsonSerialize(),
+            $this->northEast()->jsonSerialize(),
         ];
     }
 
     /**
      * Get bounds as geo json coordinate.
      *
-     * @return array<int, float>
+     * @return array<int, Coordinates>
      */
     public function toGeoJson(): array
     {
@@ -254,7 +263,7 @@ final class LatLngBounds
     /**
      * Check if given object in in the bounds.
      *
-     * @param LatLng|LatLngBounds $latLng The given object.
+     * @param LatLng $latLng The given object.
      */
     public function containsCoordinate(LatLng $latLng): bool
     {

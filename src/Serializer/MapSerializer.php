@@ -6,7 +6,6 @@ namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Control\Controls;
 use Cowegis\Core\Definition\Map\Map;
-use Cowegis\Core\Definition\Map\Pane;
 use Cowegis\Core\Definition\Map\Panes;
 use Cowegis\Core\Definition\Map\View;
 
@@ -14,27 +13,27 @@ use function assert;
 use function count;
 
 /**
- * @psalm-import-type TSerializedControl from \Cowegis\Core\Definition\Control
  * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
- * @psalm-import-type TSerializedLayer from \Cowegis\Core\Definition\Layer\Layer
  * @psalm-import-type TSerializedPane from \Cowegis\Core\Definition\Map\Pane
  * @psalm-type TSerializedMap = array{
  *   definitionId: mixed,
  *   elementId: string,
  *   title: string|null,
  *   options: array<string, mixed>,
+ *   layers: list<array<string, mixed>>,
+ *   controls: list<array<string, mixed>>,
  *   panes: list<TSerializedPane>
  * }
  * @psalm-type TSerializedView = array{
- *   center null|TLatLng,
+ *   center: null|TSerializedLatLng,
  *   zoom: float|null,
- *   options: array<string, mixed>,
+ *   options: array<string, mixed>
  * }
  */
 final class MapSerializer extends DataSerializer
 {
     /**
-     * @param Map $map
+     * @param Map|mixed $map
      *
      * @return array<string, mixed>
      *
@@ -65,7 +64,7 @@ final class MapSerializer extends DataSerializer
     /**
      * @return array<int, array<string, mixed>>
      *
-     * @psalm-return list<TSerializedLayer>
+     * @psalm-return list<array<string, mixed>>
      */
     private function serializeLayers(Map $map): array
     {
@@ -82,7 +81,7 @@ final class MapSerializer extends DataSerializer
     /**
      * @return array<int, array<string, mixed>>
      *
-     * @psalm-return list<TSerializedControl>
+     * @psalm-return list<array<string, mixed>>
      */
     private function serializeControls(Controls $controls): array
     {
@@ -104,14 +103,17 @@ final class MapSerializer extends DataSerializer
         $data = [];
 
         foreach ($panes as $pane) {
-            assert($pane instanceof Pane);
-            $data[] = $this->serializer->serialize($pane);
+            /** @psalm-var TSerializedPane $serialized */
+            $serialized = $this->serializer->serialize($pane);
+            $data[]     = $serialized;
         }
 
         return $data;
     }
 
-    /** @return bool|array<string, mixed> */
+    /**
+     * @return bool|array<string, mixed>
+     */
     private function serializeLocate(Map $map)
     {
         if ($map->locate() === false) {
@@ -123,7 +125,10 @@ final class MapSerializer extends DataSerializer
             return true;
         }
 
-        return $this->serializer->serialize($map->locateOptions());
+        /** @psalm-var array<string,mixed> $options */
+        $options = $this->serializer->serialize($map->options());
+
+        return $options;
     }
 
     /**
@@ -135,10 +140,13 @@ final class MapSerializer extends DataSerializer
     {
         $center = $view->center();
 
+        /** @psalm-var array<string,mixed> $options */
+        $options = $this->serializer->serialize($view->options());
+
         return [
             'center'  => $center ? $center->jsonSerialize() : null,
             'zoom'    => $view->zoom(),
-            'options' => $this->serializer->serialize($view->options()),
+            'options' => $options,
         ];
     }
 }

@@ -36,7 +36,7 @@ final class LatLng implements JsonSerializable
     /**
      * Optional altitude value.
      *
-     * @var float
+     * @var float|null
      */
     private $altitude;
 
@@ -68,8 +68,9 @@ final class LatLng implements JsonSerializable
      *
      * @throws \InvalidArgumentException If format is not supported.
      *
-     * @psalm-param array{0:float,1:float,2:float|null}|array{lat:float,lng:float,alt:float|null}|array{latitude:float,longitude:float,altitude:float|null}
-     *              $native
+     * @psalm-param array{0:float,1:float,2:float|null}
+     *   |array{lat:float,lng:float,alt:float|null}
+     *   |array{latitude:float,longitude:float,altitude:float|null} $native
      */
     public static function fromArray(array $native): self
     {
@@ -80,11 +81,11 @@ final class LatLng implements JsonSerializable
         ];
 
         foreach ($keys as $key) {
-            if (isset($native[$key[0]]) && isset($native[$key[1]])) {
+            if (isset($native[$key[0]], $native[$key[1]])) {
                 return new static(
-                    $native[$key[0]],
-                    $native[$key[1]],
-                    empty($native[$key[2]]) ? null : $native[$key[2]]
+                    (float) $native[$key[0]],
+                    (float) $native[$key[1]],
+                    isset($native[$key[2]]) ? ((float) $native[$key[2]]) : null
                 );
             }
         }
@@ -135,9 +136,9 @@ final class LatLng implements JsonSerializable
     /**
      * Compare 2 coordinates. It ignores the altitude.
      *
-     * @param LatLng $other          Another coordinate.
-     * @param int    $maxMargin      Margin of tolerance.
-     * @param bool   $ignoreAltitude If true only longitude and latitude are compared.
+     * @param LatLng   $other          Another coordinate.
+     * @param int|null $maxMargin      Margin of tolerance.
+     * @param bool     $ignoreAltitude If true only longitude and latitude are compared.
      */
     public function equals(LatLng $other, ?int $maxMargin = null, bool $ignoreAltitude = true): bool
     {
@@ -147,10 +148,11 @@ final class LatLng implements JsonSerializable
                 abs($this->longitude() - $other->longitude())
             );
 
-            if (! $ignoreAltitude) {
+            $altitude = $this->altitude();
+            if (! $ignoreAltitude && $altitude !== null) {
                 $margin = max(
                     $margin,
-                    abs($this->altitude() - $other->longitude())
+                    abs($altitude - $other->longitude())
                 );
             }
 
@@ -178,6 +180,8 @@ final class LatLng implements JsonSerializable
 
     /**
      * {@inheritdoc}
+     *
+     * @psalm-return TSerializedLatLng
      */
     public function jsonSerialize(): array
     {
@@ -187,6 +191,7 @@ final class LatLng implements JsonSerializable
         ];
 
         if ($this->hasAltitude()) {
+            /** @psalm-var float */
             $raw[] = $this->altitude();
         }
 
@@ -200,10 +205,11 @@ final class LatLng implements JsonSerializable
      */
     public function toString(bool $ignoreAltitude = false): string
     {
-        $buffer = $this->latitude() . ',' . $this->longitude();
+        $buffer   = $this->latitude() . ',' . $this->longitude();
+        $altitude = $this->altitude();
 
-        if (! $ignoreAltitude && $this->hasAltitude()) {
-            $buffer .= ',' . $this->altitude();
+        if (! $ignoreAltitude && $altitude !== null) {
+            $buffer .= ',' . $altitude;
         }
 
         return $buffer;

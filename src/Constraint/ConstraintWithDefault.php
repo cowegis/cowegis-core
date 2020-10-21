@@ -6,6 +6,11 @@ namespace Cowegis\Core\Constraint;
 
 abstract class ConstraintWithDefault extends BaseConstraint
 {
+    final public function __construct(bool $required = false)
+    {
+        parent::__construct($required);
+    }
+
     /** @param mixed $value */
     public static function withDefaultValue($value): Constraint
     {

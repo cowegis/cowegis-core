@@ -8,6 +8,13 @@ use Cowegis\Core\Definition\Icon\Icon;
 
 use function assert;
 
+/**
+ * @psalm-type TSerializedIcon = array{
+ *   iconId: mixed,
+ *   type: string,
+ *   options: array<string, mixed>
+ * }
+ */
 final class IconSerializer extends DataSerializer
 {
     /** @var string */
@@ -21,9 +28,11 @@ final class IconSerializer extends DataSerializer
     }
 
     /**
-     * @param Icon $data
+     * @param Icon|mixed $data
      *
      * @return array<string,mixed>
+     *
+     * @psalm-return TSerializedIcon
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
@@ -31,10 +40,13 @@ final class IconSerializer extends DataSerializer
     {
         assert($data instanceof Icon);
 
+        /** @psalm-var array<string,mixed> $options */
+        $options = $this->serializer->serialize($data->options());
+
         return [
             'iconId'  => $data->iconId()->value(),
             'type'    => $this->type,
-            'options' => $this->serializer->serialize($data->options()),
+            'options' => $options,
         ];
     }
 }

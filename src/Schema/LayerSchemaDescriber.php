@@ -28,7 +28,7 @@ abstract class LayerSchemaDescriber
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the schema builder
      */
-    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
+    protected function requiredProperties(SchemaBuilder $builder): array
     {
         return [];
     }
@@ -40,7 +40,7 @@ abstract class LayerSchemaDescriber
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the schema builder
      */
-    protected function optionalProperties(SchemaBuilder $specificationBuilder): array
+    protected function optionalProperties(SchemaBuilder $builder): array
     {
         return [];
     }
@@ -56,14 +56,14 @@ abstract class LayerSchemaDescriber
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the parameters
      */
-    protected function registerRequirements(SchemaBuilder $specificationBuilder, Schema $schema): void
+    protected function registerRequirements(SchemaBuilder $builder, Schema $schema): void
     {
     }
 
-    final public function describe(SchemaBuilder $specificationBuilder): SchemaContract
+    final public function describe(SchemaBuilder $builder): SchemaContract
     {
-        $requiredProperties = $this->requiredProperties($specificationBuilder);
-        $optionalProperties = $this->buildOptionalProperties($specificationBuilder);
+        $requiredProperties = $this->requiredProperties($builder);
+        $optionalProperties = $this->buildOptionalProperties($builder);
         $properties         = array_merge($requiredProperties, $optionalProperties);
 
         $schema = Schema::object()
@@ -72,7 +72,7 @@ abstract class LayerSchemaDescriber
             ->required(...$requiredProperties)
             ->properties(...$properties);
 
-        $this->registerRequirements($specificationBuilder, $schema);
+        $this->registerRequirements($builder, $schema);
 
         return AllOf::create('LayerType' . ucfirst($this->layerType))
             ->schemas(

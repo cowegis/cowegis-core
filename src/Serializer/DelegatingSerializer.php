@@ -46,13 +46,19 @@ final class DelegatingSerializer implements Serializer
         throw new RuntimeException('Serializing data failed');
     }
 
-    /** @param mixed $data */
+    /**
+     * @param mixed $data
+     *
+     * @psalm-suppress MixedInferredReturnType
+     */
     private function determineSerializer($data): Serializer
     {
         if (is_object($data) && $this->serializers->has(get_class($data))) {
+            /** @psalm-suppress MixedReturnStatement: */
             return $this->serializers->get(get_class($data));
         }
 
+        /** @psalm-suppress MixedReturnStatement: */
         return $this->serializers->get(gettype($data));
     }
 }

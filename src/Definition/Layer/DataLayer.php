@@ -22,8 +22,7 @@ final class DataLayer extends Layer
 
     public function dataFromUri(ExternalData $dataUri): void
     {
-        $this->data    = null;
-        $this->dataUri = $dataUri;
+        $this->data = $dataUri;
     }
 
     public function withData(GeoJsonData $data): void

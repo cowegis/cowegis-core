@@ -31,7 +31,7 @@ abstract class RootContext implements Context
         Assets $assets,
         Filter $filter,
         MapId $mapId,
-        ?string $locale = null
+        string $locale
     ) {
         $this->callbacks = $callbacks;
         $this->filter    = $filter;

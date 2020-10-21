@@ -24,7 +24,7 @@ final class MarkerSerializer implements Serializer
     }
 
     /**
-     * @param Marker $marker
+     * @param Marker|mixed $marker
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
@@ -44,10 +44,12 @@ final class MarkerSerializer implements Serializer
 
         $icon = $marker->icon();
         if ($icon !== null) {
+            /** @psalm-var mixed */
             $properties['icon'] = $this->serializer->serialize($icon->iconId()->value());
         }
 
         if ($icon instanceof SimpleStyleMarker) {
+            /** @psalm-var mixed */
             $properties['marker-symbol'] = $icon->markerSymbol();
             $properties['marker-size']   = $icon->markerSize();
             $properties['marker-color']  = $icon->markerColor();
