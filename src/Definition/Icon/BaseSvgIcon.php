@@ -11,21 +11,33 @@ use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\SimpleStyle\SimpleStyleMarker;
 
+use function assert;
+use function is_string;
+
 abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
 {
     public function markerSize(): ?string
     {
-        return $this->options()->get('size');
+        $value = $this->options()->get('size');
+        assert($value === null || is_string($value));
+
+        return $value;
     }
 
     public function markerColor(): ?string
     {
-        return $this->options()->get('bgColor');
+        $value = $this->options()->get('bgColor');
+        assert($value === null || is_string($value));
+
+        return $value;
     }
 
     public function symbolColor(): ?string
     {
-        return $this->options()->get('color');
+        $value = $this->options()->get('color');
+        assert($value === null || is_string($value));
+
+        return $value;
     }
 
     public function markerSymbol(): ?string

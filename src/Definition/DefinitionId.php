@@ -11,6 +11,5 @@ interface DefinitionId extends JsonSerializable
     /** @param mixed $value */
     public static function fromValue($value): self;
 
-    /** @return mixed */
-    public function value() : string;
+    public function value(): string;
 }

@@ -27,7 +27,7 @@ final class DelegatingIdFormat implements IdFormat
             }
         }
 
-        throw new InvalidArgument($value);
+        throw new InvalidArgument((string) $value);
     }
 
     /** {@inheritDoc} */

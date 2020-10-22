@@ -20,7 +20,7 @@ final class PaneIterator implements Iterator
     /**
      * @param Pane[] $panes
      *
-     * @psalm-var list<Pane> $panes
+     * @psalm-param list<Pane> $panes
      */
     public function __construct(array $panes)
     {
@@ -30,7 +30,7 @@ final class PaneIterator implements Iterator
     /**
      * @param Pane[] $panes
      *
-     * @psalm-var list<Pane> $panes
+     * @psalm-param list<Pane> $panes
      */
     public static function fromArray(array $panes): self
     {

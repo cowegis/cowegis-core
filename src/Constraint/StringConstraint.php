@@ -15,7 +15,7 @@ final class StringConstraint extends ConstraintWithDefault
     public function match($value): bool
     {
         if (is_object($value) && method_exists($value, '__toString')) {
-            return $value->__toString();
+            return true;
         }
 
         return in_array(gettype($value), ['string', 'float', 'int'], true);

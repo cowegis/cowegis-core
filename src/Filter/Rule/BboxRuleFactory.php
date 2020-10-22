@@ -30,6 +30,7 @@ final class BboxRuleFactory implements RuleFactory
 
     public function create(Query $query): Rule
     {
+        /** @psalm-var array{from: string, to: string} */
         $bbox        = $query->getArray('bbox');
         $boundingBox = new LatLngBounds(
             LatLng::fromString($bbox['from']),

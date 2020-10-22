@@ -10,6 +10,9 @@ use Traversable;
 
 use function parse_str;
 
+/**
+ * @psalm-import-type TParams from \Cowegis\Core\Filter\Query
+ */
 final class FilterFactory
 {
     /** @var RuleFactory[] */
@@ -59,6 +62,7 @@ final class FilterFactory
     {
         $query = [];
         parse_str($uri->getQuery(), $query);
+        /** @psalm-var TParams $query */
 
         return Query::fromArray($query);
     }

@@ -24,55 +24,55 @@ use function get_class;
 final class ComponentsBuilder
 {
     /**
-     * @psalm-param list<SchemaContract>
+     * @psalm-var array<array-key, SchemaContract>
      * @var SchemaContract[]
      */
     private $schemas = [];
 
     /**
-     * @psalm-param list<Response>
+     * @psalm-var array<array-key, Response>
      * @var Response[]
      */
     private $responses = [];
 
     /**
-     * @psalm-param list<Parameter>
+     * @psalm-var array<array-key, Parameter>
      * @var Parameter[]
      */
     private $parameters = [];
 
     /**
-     * @psalm-param list<Example>
-     * @var Example[]
+     * @psalm-var array<array-key, Example>
+     * @var Example[]|
      */
     private $examples = [];
 
     /**
-     * @psalm-param list<RequestBody>
+     * @psalm-var array<array-key, RequestBody>
      * @var RequestBody[]
      */
     private $requestBodies = [];
 
     /**
-     * @psalm-param list<Header>
+     * @psalm-var array<array-key, Header>
      * @var Header[]
      */
     private $headers = [];
 
     /**
-     * @psalm-param list<SecurityScheme>
+     * @psalm-var array<array-key, SecurityScheme>
      * @var SecurityScheme[]
      */
     private $securitySchemes = [];
 
     /**
-     * @psalm-param list<Link>
+     * @psalm-var array<array-key, Link>
      * @var Link[]
      */
     private $links = [];
 
     /**
-     * @psalm-param list<PathItem>
+     * @psalm-var array<array-key, PathItem>
      * @var PathItem[]
      */
     private $callbacks = [];
@@ -205,7 +205,10 @@ final class ComponentsBuilder
         return $components;
     }
 
-    /** @param array<string,mixed> $collection */
+    /**
+     * @psalm-template TCollectionType
+     * @psalm-param array<array-key, TCollectionType> $collection
+     */
     private function addWithUniqueReference(
         BaseObject $object,
         array &$collection,
@@ -220,6 +223,7 @@ final class ComponentsBuilder
             $reference = $prefix . $objectId;
 
             if (! isset($collection[$reference])) {
+                /** @psalm-var TCollectionType */
                 $collection[$reference] = $object->objectId($objectId);
 
                 return $reference;
@@ -235,6 +239,7 @@ final class ComponentsBuilder
             $reference = $prefix . $objectId;
         }
 
+        /** @psalm-var TCollectionType */
         $collection[$reference] = $object->objectId($objectId);
 
         return $reference;

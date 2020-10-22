@@ -16,7 +16,14 @@ final class ArrayConstraint extends ConstraintWithDefault
         return is_array($value) || $value instanceof ArrayObject;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @return array<array-key, mixed>
+     *
+     * @psalm-param array<array-key, mixed>|ArrayObject $value
+     * @psalm-suppress MoreSpecificImplementedParamType
+     */
     public function filter($value): array
     {
         if ($value instanceof ArrayObject) {

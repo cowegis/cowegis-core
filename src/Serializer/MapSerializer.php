@@ -13,8 +13,15 @@ use function assert;
 use function count;
 
 /**
+ * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
  * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
  * @psalm-import-type TSerializedPane from \Cowegis\Core\Definition\Map\Pane
+ * @psalm-import-type TSerializedPresets from \Cowegis\Core\Serializer\PresetsSerializer
+ * @psalm-type TSerializedView = array{
+ *   center: null|TSerializedLatLng,
+ *   zoom: float|null,
+ *   options: array<string, mixed>
+ * }
  * @psalm-type TSerializedMap = array{
  *   definitionId: mixed,
  *   elementId: string,
@@ -22,12 +29,12 @@ use function count;
  *   options: array<string, mixed>,
  *   layers: list<array<string, mixed>>,
  *   controls: list<array<string, mixed>>,
- *   panes: list<TSerializedPane>
- * }
- * @psalm-type TSerializedView = array{
- *   center: null|TSerializedLatLng,
- *   zoom: float|null,
- *   options: array<string, mixed>
+ *   panes: list<TSerializedPane>,
+ *   view: TSerializedView,
+ *   locate: bool|array<string, mixed>,
+ *   bounds: array<string, mixed>,
+ *   presets: TSerializedPresets,
+ *   events: list<TSerializedEvent>
  * }
  */
 final class MapSerializer extends DataSerializer
@@ -45,19 +52,28 @@ final class MapSerializer extends DataSerializer
     {
         assert($map instanceof Map);
 
+        /** @psalm-var array<string, mixed> */
+        $options = $this->serializer->serialize($map->options());
+        /** @psalm-var array<string, mixed> */
+        $bounds = $this->serializer->serialize($map->boundsOptions());
+        /** @psalm-var TSerializedPresets */
+        $presets = $this->serializer->serialize($map->presets());
+        /** @psalm-var list<TSerializedEvent> */
+        $events = $this->serializer->serialize($map->events());
+
         return [
             'definitionId' => $map->mapId()->value(),
             'elementId'    => $map->elementId(),
             'title'        => $map->title(),
-            'options'      => $this->serializer->serialize($map->options()),
+            'options'      => $options,
             'layers'       => $this->serializeLayers($map),
             'controls'     => $this->serializeControls($map->controls()),
             'panes'        => $this->serializePanes($map->panes()),
             'view'         => $this->serializeView($map->view()),
             'locate'       => $this->serializeLocate($map),
-            'bounds'       => $this->serializer->serialize($map->boundsOptions()),
-            'presets'      => $this->serializer->serialize($map->presets()),
-            'events'       => $this->serializer->serialize($map->events()),
+            'bounds'       => $bounds,
+            'presets'      => $presets,
+            'events'       => $events,
         ];
     }
 
@@ -70,9 +86,8 @@ final class MapSerializer extends DataSerializer
     {
         $data = [];
         foreach ($map->layers() as $layer) {
-            $serialized = $this->serializer->serialize($layer);
-
-            $data[] = $serialized;
+            /** @psalm-var array<string, mixed> */
+            $data[] = $this->serializer->serialize($layer);
         }
 
         return $data;
@@ -87,6 +102,7 @@ final class MapSerializer extends DataSerializer
     {
         $data = [];
         foreach ($controls as $control) {
+            /** @psalm-var array<string, mixed> */
             $data[] = $this->serializer->serialize($control);
         }
 

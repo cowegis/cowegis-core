@@ -29,6 +29,7 @@ final class DistanceRuleFactory implements RuleFactory
 
     public function create(Query $query): Rule
     {
+        /** @psalm-var array{coordinates: string, radius: string} */
         $data = $query->getArray($this->name());
 
         return new DistanceRule(LatLng::fromString($data['coordinates']), (int) $data['radius']);

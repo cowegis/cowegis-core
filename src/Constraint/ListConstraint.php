@@ -37,6 +37,7 @@ final class ListConstraint extends BaseConstraint
 
         $index = 0;
 
+        /** @psalm-var mixed $item */
         foreach ($value as $key => $item) {
             if ($key !== $index) {
                 return false;
@@ -61,6 +62,7 @@ final class ListConstraint extends BaseConstraint
 
         $index = 0;
 
+        /** @psalm-var mixed $item */
         foreach ($value as $key => $item) {
             if ($key !== $index) {
                 throw new RuntimeException('Expected list but detected invalid array key ' . $key);

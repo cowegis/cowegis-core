@@ -5,13 +5,28 @@ declare(strict_types=1);
 namespace Cowegis\Core\Filter;
 
 use function array_key_exists;
+use function assert;
+use function is_array;
+use function is_string;
 
+/**
+ * @psalm-type TArrayParam = array<array-key, string|array<array-key, mixed>>
+ * @psalm-type TParam = string|TArrayParam
+ * @psalm-type TParams = array<string, TParam>
+ */
 final class Query
 {
-    /** @var array<string, mixed> */
+    /**
+     * @var array<string,mixed>
+     * @psalm-var TParams
+     */
     private $params = [];
 
-    /** @param array<string, mixed> $params */
+    /**
+     * @param array<string,mixed> $params
+     *
+     * @psalm-param TParams $params
+     */
     public static function fromArray(array $params): self
     {
         $query         = new self();
@@ -20,7 +35,7 @@ final class Query
         return $query;
     }
 
-    /** @param mixed $value */
+    /** @param string|array<string,string> $value */
     public function with(string $name, $value): self
     {
         $instance                = clone $this;
@@ -32,7 +47,10 @@ final class Query
     /**
      * @param mixed $default
      *
-     * @return mixed
+     * @return string|array<string, mixed>
+     *
+     * @psalm-param TParam $default
+     * @psalm-return TParam|null
      */
     public function get(string $name, $default = null)
     {
@@ -40,18 +58,27 @@ final class Query
     }
 
     /**
-     * @param array<mixed,mixed> $default
+     * @param array<string, mixed> $default
      *
-     * @return array<mixed,mixed>
+     * @return array<array-key,string>
+     *
+     * @psalm-param TArrayParam $default
+     * @psalm-return TArrayParam
      */
     public function getArray(string $name, array $default = []): array
     {
-        return (array) $this->get($name, $default);
+        $value = $this->get($name, $default);
+        assert(is_array($value));
+
+        return $value;
     }
 
     public function getString(string $name, string $default = ''): string
     {
-        return (string) $this->get($name, $default);
+        $value = $this->get($name, $default);
+        assert(is_string($value));
+
+        return $value;
     }
 
     public function has(string $name): bool

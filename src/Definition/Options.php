@@ -28,6 +28,7 @@ final class Options implements IteratorAggregate, Countable
     /** @param array<string, mixed> $options */
     public function merge(array $options): self
     {
+        /** @psalm-var mixed $value */
         foreach ($options as $key => $value) {
             $this->set($key, $value);
         }
@@ -38,6 +39,7 @@ final class Options implements IteratorAggregate, Countable
     /** @param mixed $value */
     public function set(string $key, $value): self
     {
+        /** @psalm-var mixed $value */
         $value = $this->constraints->filterValue($key, $value);
 
         if ($this->constraints->isDefaultValueOf($key, $value)) {

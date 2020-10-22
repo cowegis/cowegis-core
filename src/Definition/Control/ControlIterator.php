@@ -21,7 +21,7 @@ final class ControlIterator implements Iterator
     /**
      * @param Control[] $controls
      *
-     * @psalm-var list<Control> $controls
+     * @psalm-param list<Control> $controls
      */
     public function __construct(array $controls)
     {
@@ -31,7 +31,7 @@ final class ControlIterator implements Iterator
     /**
      * @param Control[] $controls
      *
-     * @psalm-var list<Control> $controls
+     * @psalm-param list<Control> $controls
      */
     public static function fromArray(array $controls): self
     {

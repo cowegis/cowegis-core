@@ -43,6 +43,7 @@ final class EnumConstraint extends BaseConstraint
     /** {@inheritDoc} */
     public function filter($value)
     {
+        /** @psalm-var mixed $allowed */
         foreach ($this->values as $allowed) {
             if ($allowed === $value) {
                 return $allowed;

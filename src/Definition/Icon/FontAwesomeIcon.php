@@ -8,11 +8,17 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 
+use function assert;
+use function is_string;
+
 final class FontAwesomeIcon extends BaseSvgIcon
 {
     public function markerSymbol(): ?string
     {
-        return $this->options()->get('icon');
+        $value = $this->options()->get('icon');
+        assert($value === null || is_string($value));
+
+        return $value;
     }
 
     /** @return array<string, Constraint> */

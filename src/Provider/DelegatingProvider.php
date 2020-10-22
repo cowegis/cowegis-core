@@ -27,6 +27,7 @@ final class DelegatingProvider implements Provider
 
     public function idFormat(): IdFormat
     {
+        /** @var IdFormat|null $idFormat */
         static $idFormat;
 
         if ($idFormat === null) {

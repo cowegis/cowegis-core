@@ -11,7 +11,6 @@ final class LayerIds
 {
     /**
      * @var LayerId[]
-     *
      * @psalm-var list<LayerId>
      */
     private $layers = [];

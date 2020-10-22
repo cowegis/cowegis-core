@@ -12,6 +12,7 @@ final class Properties
     /** @param array<string, mixed> $data */
     public function merge(array $data): void
     {
+        /** @psalm-var mixed $value */
         foreach ($data as $key => $value) {
             $this->properties[$key] = $value;
         }

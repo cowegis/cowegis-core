@@ -35,7 +35,7 @@ trait TitlePlugin
         }
 
         if (method_exists($this, 'name')) {
-            return $this->name();
+            return (string) $this->name();
         }
 
         return null;

@@ -36,7 +36,6 @@ abstract class DefinitionIdDecorator implements DefinitionId
         return $this->definitionId;
     }
 
-    /** @return mixed */
     public function value(): string
     {
         return $this->definitionId->value();
