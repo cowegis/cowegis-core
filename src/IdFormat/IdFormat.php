@@ -8,7 +8,14 @@ use Cowegis\Core\Definition\DefinitionId;
 
 interface IdFormat
 {
-    /** @param mixed $value */
+    /**
+     * @param mixed $value
+     *
+     * @psalm-template TDefinitionClass
+     * @psalm-param class-string<TDefinitionClass> $definitionClass
+     *
+     * @psalm-return TDefinitionClass
+     */
     public function createDefinitionId(string $definitionClass, $value): DefinitionId;
 
     /** @param mixed $value */
