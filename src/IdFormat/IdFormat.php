@@ -11,10 +11,7 @@ interface IdFormat
     /**
      * @param mixed $value
      *
-     * @psalm-template TDefinitionClass
-     * @psalm-param class-string<TDefinitionClass> $definitionClass
-     *
-     * @psalm-return TDefinitionClass
+     * @psalm-param class-string<DefinitionId> $definitionClass
      */
     public function createDefinitionId(string $definitionClass, $value): DefinitionId;
 
