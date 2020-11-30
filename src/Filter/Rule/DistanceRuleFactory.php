@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Filter\Rule;
 
+use AssertionError;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Filter\Query;
 use Cowegis\Core\Filter\Rule;
@@ -22,7 +23,11 @@ final class DistanceRuleFactory implements RuleFactory
             return false;
         }
 
-        $data = $query->getArray($this->name());
+        try {
+            $data = $query->getArray($this->name());
+        } catch (AssertionError $exception) {
+            return false;
+        }
 
         return isset($data['coordinates'], $data['radius']);
     }
