@@ -20,7 +20,7 @@ final class InlineData implements GeoJsonData
     public function jsonSerialize(): array
     {
         return [
-            'type'   => 'internal',
+            'type'   => 'inline',
             'format' => 'geojson',
             'data'   => $this->geoJsonObject,
         ];
