@@ -15,9 +15,19 @@ final class DistanceRule implements Rule
     /** @var LatLng */
     private $coordinates;
 
-    /** @var int */
+    /**
+     * The radius in meter.
+     *
+     * @var int
+     */
     private $radius;
 
+    /**
+     * DistanceRule constructor.
+     *
+     * @param LatLng $latLng The center point.
+     * @param int    $radius The radius in meter.
+     */
     public function __construct(LatLng $latLng, int $radius)
     {
         $this->coordinates = $latLng;
@@ -34,6 +44,9 @@ final class DistanceRule implements Rule
         return $this->coordinates;
     }
 
+    /**
+     * Get the radius in meter.
+     */
     public function radius(): int
     {
         return $this->radius;
