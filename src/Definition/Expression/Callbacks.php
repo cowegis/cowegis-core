@@ -20,8 +20,8 @@ export default {
 JAVASCRIPT;
 
     private const JS_ES5_TEMPLATE = <<<'JAVASCRIPT'
-var cowegis_%1$s {
-  %1$s
+var cowegis_%2$s = {
+%1$s
 };
 JAVASCRIPT;
 
@@ -66,7 +66,7 @@ JAVASCRIPT;
         return $this->generateJavascript(self::JS_TEMPLATE);
     }
 
-    public function asEs5JAvascript(): string
+    public function asEs5Javascript(): string
     {
         return $this->generateJavascript(self::JS_ES5_TEMPLATE);
     }
@@ -75,7 +75,7 @@ JAVASCRIPT;
     {
         $references = [];
         foreach ($this->callbacks as $identifier => $callback) {
-            $references[] = sprintf('  %s: %s', $identifier, $callback->toString());
+            $references[] = sprintf('%s: %s', $identifier, $callback->toString());
         }
 
         return sprintf($template, implode(',' . "\n", $references), $this->identifier);
