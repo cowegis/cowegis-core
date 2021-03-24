@@ -44,7 +44,7 @@ final class MapSchemaDescriber implements SchemaDescriber
         // TODO error responses
 
         $mapDetails = Operation::get()
-            ->description('')
+            ->description('This entrypoint provides all information to render a map with cowegis.')
             ->summary('Show full map details')
             ->parameters(
                 Parameter::path()
@@ -147,7 +147,30 @@ final class MapSchemaDescriber implements SchemaDescriber
                             ->minimum(0),
                         HashMap::create('options')
                     ),
-                $mapLocateReference->objectId('locate')
+                $mapLocateReference->objectId('locate'),
+                HashMap::create('bounds')
+                    ->description('Describes how map bounds are managed')
+                    ->properties(
+                        Schema::boolean('dynamic')
+                            ->default(false)
+                            ->description('Indicates if bounds should be calculated dynamically'),
+                        Schema::boolean('adjustAfterLoad')
+                            ->default(false)
+                            ->description('Indicates if bounds should be calculated dynamically after map is loaded'),
+                        Schema::boolean('adjustAfterDeferred')
+                            ->default(false)
+                            ->description('Indicates if bounds should be calculated dynamically after all deferred map data is loaded'),
+                        Schema::array('paddingTopLeft')
+                            ->description('Recognize top left padding when calculating bounds')
+                            ->minItems(2)
+                            ->maxItems(2)
+                            ->items(Schema::create()->type('number')),
+                        Schema::array('paddingBottomRight')
+                            ->description('Recognize top left padding when calculating bounds')
+                            ->minItems(2)
+                            ->maxItems(2)
+                            ->items(Schema::create()->type('number'))
+                    )
             );
     }
 
