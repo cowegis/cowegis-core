@@ -15,7 +15,13 @@ final class Callbacks implements Countable
 {
     private const JS_TEMPLATE = <<<'JAVASCRIPT'
 export default {
-  %s
+  %1$s
+};
+JAVASCRIPT;
+
+    private const JS_ES5_TEMPLATE = <<<'JAVASCRIPT'
+var cowegis_%1$s {
+  %1$s
 };
 JAVASCRIPT;
 
@@ -57,11 +63,21 @@ JAVASCRIPT;
 
     public function asJavascript(): string
     {
+        return $this->generateJavascript(self::JS_TEMPLATE);
+    }
+
+    public function asEs5JAvascript(): string
+    {
+        return $this->generateJavascript(self::JS_ES5_TEMPLATE);
+    }
+
+    private function generateJavascript(string $template): string
+    {
         $references = [];
         foreach ($this->callbacks as $identifier => $callback) {
             $references[] = sprintf('  %s: %s', $identifier, $callback->toString());
         }
 
-        return sprintf(self::JS_TEMPLATE, implode(',' . "\n", $references));
+        return sprintf($template, implode(',' . "\n", $references), $this->identifier);
     }
 }
