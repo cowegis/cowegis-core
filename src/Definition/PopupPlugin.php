@@ -8,8 +8,7 @@ use Cowegis\Core\Definition\UI\Popup;
 
 trait PopupPlugin
 {
-    /** @var Popup|null */
-    private $popup;
+    private ?Popup $popup = null;
 
     public function popup(): ?Popup
     {

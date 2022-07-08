@@ -7,7 +7,7 @@ namespace Cowegis\Core\Schema;
 final class DelegatingSchemaDescriber implements SchemaDescriber
 {
     /** @var SchemaDescriber[] */
-    private $builders;
+    private array $builders;
 
     /**
      * @param SchemaDescriber[] $builders

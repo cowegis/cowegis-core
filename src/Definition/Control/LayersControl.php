@@ -12,11 +12,9 @@ use Cowegis\Core\Definition\Layer\LayerIds;
 
 final class LayersControl extends Control
 {
-    /** @var LayerIds */
-    private $baseLayers;
+    private LayerIds $baseLayers;
 
-    /** @var LayerIds */
-    private $overlays;
+    private LayerIds $overlays;
 
     public function __construct(
         ControlId $controlId,

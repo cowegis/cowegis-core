@@ -6,8 +6,7 @@ namespace Cowegis\Core\Serializer;
 
 abstract class DataSerializer implements Serializer
 {
-    /** @var Serializer */
-    protected $serializer;
+    protected Serializer $serializer;
 
     public function __construct(Serializer $serializer)
     {

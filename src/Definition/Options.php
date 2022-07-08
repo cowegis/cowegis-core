@@ -14,11 +14,10 @@ use function count;
 
 final class Options implements IteratorAggregate, Countable
 {
-    /** @var Constraints */
-    private $constraints;
+    private Constraints $constraints;
 
     /** @var array<string, mixed> */
-    private $options = [];
+    private array $options = [];
 
     public function __construct(Constraints $constraints)
     {

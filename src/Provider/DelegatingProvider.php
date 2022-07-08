@@ -15,7 +15,7 @@ use Cowegis\Core\IdFormat\IdFormat;
 final class DelegatingProvider implements Provider
 {
     /** @var Provider[] */
-    private $providers;
+    private array $providers;
 
     /**
      * @param Provider[] $providers

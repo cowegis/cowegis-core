@@ -12,8 +12,7 @@ use Cowegis\Core\Constraint\StringConstraint;
 
 final class TileLayer extends GridLayer
 {
-    /** @var string */
-    private $urlTemplate;
+    private string $urlTemplate;
 
     public function __construct(LayerId $layerId, string $name, string $urlTemplate, bool $initialVisible)
     {

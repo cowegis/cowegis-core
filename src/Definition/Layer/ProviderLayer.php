@@ -6,11 +6,9 @@ namespace Cowegis\Core\Definition\Layer;
 
 final class ProviderLayer extends GridLayer
 {
-    /** @var string */
-    private $provider;
+    private string $provider;
 
-    /** @var string|null */
-    private $variant;
+    private ?string $variant = null;
 
     public function __construct(
         LayerId $layerId,

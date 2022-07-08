@@ -10,7 +10,7 @@ use Cowegis\Core\Exception\InvalidArgument;
 final class DelegatingIdFormat implements IdFormat
 {
     /** @var IdFormat[] */
-    private $idFormats;
+    private array $idFormats;
 
     /** @param IdFormat[] $idFormats */
     public function __construct(iterable $idFormats)

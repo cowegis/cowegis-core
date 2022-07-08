@@ -20,7 +20,7 @@ final class Query
      * @var array<string,mixed>
      * @psalm-var TParams
      */
-    private $params = [];
+    private array $params = [];
 
     /**
      * @param array<string,mixed> $params

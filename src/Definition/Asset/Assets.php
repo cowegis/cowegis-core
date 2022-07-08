@@ -7,7 +7,7 @@ namespace Cowegis\Core\Definition\Asset;
 final class Assets
 {
     /** @var Asset[] */
-    private $assets;
+    private array $assets;
 
     /** @param Asset[] $assets */
     public function __construct(array $assets = [])

@@ -11,8 +11,7 @@ use Cowegis\Core\Filter\Filter;
 
 abstract class ContextDecorator implements Context
 {
-    /** @var Context */
-    private $inner;
+    private Context $inner;
 
     public function __construct(Context $context)
     {

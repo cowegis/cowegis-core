@@ -13,10 +13,9 @@ final class ControlIterator implements Iterator
      * @psalm-var list<Control>
      * @var Control[]
      */
-    private $controls;
+    private array $controls;
 
-    /** @var int */
-    private $index = 0;
+    private int $index = 0;
 
     /**
      * @param Control[] $controls

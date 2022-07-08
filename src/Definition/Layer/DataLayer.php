@@ -17,8 +17,7 @@ final class DataLayer extends Layer
 {
     use EventsPlugin;
 
-    /** @var GeoJsonData|null */
-    private $data;
+    private ?GeoJsonData $data = null;
 
     public function dataFromUri(ExternalData $dataUri): void
     {

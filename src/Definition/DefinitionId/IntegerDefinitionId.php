@@ -11,8 +11,7 @@ use function is_int;
 
 final class IntegerDefinitionId implements DefinitionId
 {
-    /** @var int */
-    private $value;
+    private int $value;
 
     public function __construct(int $value)
     {

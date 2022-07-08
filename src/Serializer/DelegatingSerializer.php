@@ -15,8 +15,7 @@ use function is_object;
 
 final class DelegatingSerializer implements Serializer
 {
-    /** @var ContainerInterface */
-    private $serializers;
+    private ContainerInterface $serializers;
 
     public function __construct(ContainerInterface $serializers)
     {

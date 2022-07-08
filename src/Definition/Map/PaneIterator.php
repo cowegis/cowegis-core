@@ -12,10 +12,9 @@ final class PaneIterator implements Iterator
      * @psalm-var list<Pane>
      * @var Pane[]
      */
-    private $panes;
+    private array $panes;
 
-    /** @var int */
-    private $index = 0;
+    private int $index = 0;
 
     /**
      * @param Pane[] $panes

@@ -13,7 +13,7 @@ use function sprintf;
 final class Layers implements IteratorAggregate
 {
     /** @var array<string, Layer>|Layer[] */
-    private $layers = [];
+    private array $layers = [];
 
     public function add(Layer $layer): void
     {

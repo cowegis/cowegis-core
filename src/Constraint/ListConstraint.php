@@ -12,8 +12,7 @@ use function is_array;
 
 final class ListConstraint extends BaseConstraint
 {
-    /** @var Constraint */
-    private $constraint;
+    private Constraint $constraint;
 
     public function __construct(Constraint $constraint, bool $required = false)
     {

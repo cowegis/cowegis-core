@@ -8,8 +8,7 @@ use Cowegis\GeoJson\GeoJsonObject;
 
 final class InlineData implements GeoJsonData
 {
-    /** @var GeoJsonObject */
-    private $geoJsonObject;
+    private GeoJsonObject $geoJsonObject;
 
     public function __construct(GeoJsonObject $geoJsonObject)
     {

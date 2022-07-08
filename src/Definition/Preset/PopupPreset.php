@@ -19,8 +19,7 @@ final class PopupPreset implements Definition, HasOptions
     use OptionsPlugin;
     use PopupOptionsPlugin;
 
-    /** @var PopupPresetId */
-    private $popupPresetId;
+    private PopupPresetId $popupPresetId;
 
     public function __construct(PopupPresetId $popupPresetId)
     {

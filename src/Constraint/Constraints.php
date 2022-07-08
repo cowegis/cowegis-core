@@ -9,7 +9,7 @@ use Generator;
 final class Constraints
 {
     /** @var Constraint[] */
-    private $constraints;
+    private array $constraints;
 
     /**
      * @param Constraint[] $constraints

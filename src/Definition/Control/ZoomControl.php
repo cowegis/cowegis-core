@@ -9,8 +9,7 @@ use Cowegis\Core\Constraint\StringConstraint;
 
 final class ZoomControl extends Control
 {
-    /** @var bool */
-    private $replaceDefault = false;
+    private bool $replaceDefault = false;
 
     public function replaceDefault(): void
     {

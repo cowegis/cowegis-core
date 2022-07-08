@@ -37,17 +37,13 @@ final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPo
     use PopupPlugin;
     use TooltipPlugin;
 
-    /** @var MarkerId */
-    private $markerId;
+    private MarkerId $markerId;
 
-    /** @var LatLng */
-    private $coordinates;
+    private LatLng $coordinates;
 
-    /** @var Properties */
-    private $properties;
+    private Properties $properties;
 
-    /** @var Icon|null */
-    private $icon;
+    private ?Icon $icon = null;
 
     public function __construct(MarkerId $markerId, string $name, LatLng $coordinates)
     {

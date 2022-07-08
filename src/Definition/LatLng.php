@@ -21,24 +21,18 @@ final class LatLng implements JsonSerializable
 {
     /**
      * Latitude value.
-     *
-     * @var float
      */
-    private $latitude;
+    private float $latitude;
 
     /**
      * Longitude value.
-     *
-     * @var float
      */
-    private $longitude;
+    private float $longitude;
 
     /**
      * Optional altitude value.
-     *
-     * @var float|null
      */
-    private $altitude;
+    private ?float $altitude = null;
 
     /**
      * Construct.

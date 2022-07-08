@@ -7,7 +7,7 @@ namespace Cowegis\Core\Definition\GeoJson;
 final class Properties
 {
     /** @var array<string, mixed> */
-    private $properties = [];
+    private array $properties = [];
 
     /** @param array<string, mixed> $data */
     public function merge(array $data): void

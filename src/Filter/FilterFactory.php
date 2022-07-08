@@ -16,7 +16,7 @@ use function parse_str;
 final class FilterFactory
 {
     /** @var RuleFactory[] */
-    private $ruleFactories;
+    private array $ruleFactories;
 
     /**
      * @param RuleFactory[] $ruleFactories

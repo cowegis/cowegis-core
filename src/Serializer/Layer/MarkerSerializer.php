@@ -15,8 +15,7 @@ use function assert;
 
 final class MarkerSerializer implements Serializer
 {
-    /** @var Serializer */
-    private $serializer;
+    private Serializer $serializer;
 
     public function __construct(Serializer $serializer)
     {

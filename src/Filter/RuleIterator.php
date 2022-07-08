@@ -11,10 +11,9 @@ use function array_values;
 final class RuleIterator implements Iterator
 {
     /** @var Rule[] */
-    private $rules;
+    private array $rules;
 
-    /** @var int */
-    private $index = 0;
+    private int $index = 0;
 
     /**
      * @param Rule[] $rules

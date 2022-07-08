@@ -27,19 +27,19 @@ final class ComponentsBuilder
      * @psalm-var array<array-key, SchemaContract>
      * @var SchemaContract[]
      */
-    private $schemas = [];
+    private array $schemas = [];
 
     /**
      * @psalm-var array<array-key, Response>
      * @var Response[]
      */
-    private $responses = [];
+    private array $responses = [];
 
     /**
      * @psalm-var array<array-key, Parameter>
      * @var Parameter[]
      */
-    private $parameters = [];
+    private array $parameters = [];
 
     /**
      * @psalm-var array<array-key, Example>
@@ -51,31 +51,31 @@ final class ComponentsBuilder
      * @psalm-var array<array-key, RequestBody>
      * @var RequestBody[]
      */
-    private $requestBodies = [];
+    private array $requestBodies = [];
 
     /**
      * @psalm-var array<array-key, Header>
      * @var Header[]
      */
-    private $headers = [];
+    private array $headers = [];
 
     /**
      * @psalm-var array<array-key, SecurityScheme>
      * @var SecurityScheme[]
      */
-    private $securitySchemes = [];
+    private array $securitySchemes = [];
 
     /**
      * @psalm-var array<array-key, Link>
      * @var Link[]
      */
-    private $links = [];
+    private array $links = [];
 
     /**
      * @psalm-var array<array-key, PathItem>
      * @var PathItem[]
      */
-    private $callbacks = [];
+    private array $callbacks = [];
 
     public function withSchema(SchemaContract $component, ?string $reference = null): Schema
     {

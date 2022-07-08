@@ -9,8 +9,7 @@ use Cowegis\Core\Constraint\Constraints;
 
 trait OptionsPlugin
 {
-    /** @var Options|null */
-    protected $options;
+    protected ?Options $options = null;
 
     public function options(): Options
     {

@@ -17,14 +17,11 @@ final class Tooltip extends LayerObject implements HasEvents
     use EventsPlugin;
     use TooltipOptionsPlugin;
 
-    /** @var string */
-    private $content;
+    private string $content;
 
-    /** @var LatLng|null */
-    private $coordinates;
+    private ?LatLng $coordinates = null;
 
-    /** @var TooltipPresetId|null */
-    private $presetId;
+    private ?TooltipPresetId $presetId = null;
 
     public function __construct(string $content, ?LatLng $coordinates = null, ?TooltipPresetId $presetId = null)
     {

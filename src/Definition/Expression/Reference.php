@@ -13,14 +13,13 @@ use function implode;
  */
 final class Reference implements Expression, JsonSerializable
 {
-    /** @var string */
-    private $reference;
+    private string $reference;
 
     /**
      * @var array<int, string>|null
      * @psalm-var list<string>|null
      */
-    private $namespace;
+    private ?array $namespace = null;
 
     /**
      * @param array<int, string> $namespace

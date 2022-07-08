@@ -17,10 +17,10 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
 final class MapSchemaDescriber implements SchemaDescriber
 {
     /** @var LayerSchemaDescriber[] */
-    private $layerSchemas;
+    private array $layerSchemas;
 
     /** @var ControlSchemaDescriber[] */
-    private $controlSchemas;
+    private array $controlSchemas;
 
     /**
      * @param LayerSchemaDescriber[]   $layerSchemas

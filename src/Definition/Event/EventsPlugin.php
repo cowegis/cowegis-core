@@ -6,16 +6,13 @@ namespace Cowegis\Core\Definition\Event;
 
 trait EventsPlugin
 {
-    /**
-     * @var Events
-     * @psalm-suppress PropertyNotSetInConstructor - Property may not be accessed directly
-     */
-    private $events;
+    /** @psalm-suppress PropertyNotSetInConstructor - Property may not be accessed directly */
+    private Events $events;
 
     public function events(): Events
     {
-        /** @psalm-suppress DocblockTypeContradiction */
-        if ($this->events === null) {
+        /** @psalm-suppress TypeDoesNotContainType */
+        if (! isset($this->events)) {
             $this->events = new Events();
         }
 

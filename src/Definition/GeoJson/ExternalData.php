@@ -6,11 +6,9 @@ namespace Cowegis\Core\Definition\GeoJson;
 
 final class ExternalData implements GeoJsonData
 {
-    /** @var string */
-    private $uri;
+    private string $uri;
 
-    /** @var string */
-    private $format;
+    private string $format;
 
     public function __construct(string $uri, string $format)
     {

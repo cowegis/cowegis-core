@@ -6,8 +6,7 @@ namespace Cowegis\Core\Definition\Layer;
 
 class LayerGroup extends Layer
 {
-    /** @var LayerIds */
-    private $layers;
+    private LayerIds $layers;
 
     public function __construct(LayerId $layerId, string $name, bool $initialVisible)
     {

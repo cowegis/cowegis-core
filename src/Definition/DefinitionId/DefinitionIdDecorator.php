@@ -9,8 +9,7 @@ use Cowegis\Core\Exception\RuntimeException;
 
 abstract class DefinitionIdDecorator implements DefinitionId
 {
-    /** @var DefinitionId */
-    private $definitionId;
+    private DefinitionId $definitionId;
 
     final public function __construct(DefinitionId $definitionId)
     {

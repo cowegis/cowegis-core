@@ -13,11 +13,9 @@ final class Popup extends DivOverlay
 {
     use PopupOptionsPlugin;
 
-    /** @var string */
-    private $content;
+    private string $content;
 
-    /** @var PopupPresetId|null */
-    private $presetId;
+    private ?PopupPresetId $presetId = null;
 
     public function __construct(string $content, ?PopupPresetId $presetId = null)
     {

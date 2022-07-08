@@ -31,35 +31,25 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     use OptionsPlugin;
     use PopupPlugin;
 
-    /** @var MapId */
-    private $mapId;
+    private MapId $mapId;
 
-    /** @var Layers */
-    private $layers;
+    private Layers $layers;
 
-    /** @var Controls */
-    private $controls;
+    private Controls $controls;
 
-    /** @var Panes */
-    private $panes;
+    private Panes $panes;
 
-    /** @var string */
-    private $elementId;
+    private string $elementId;
 
-    /** @var bool */
-    private $locate;
+    private bool $locate;
 
-    /** @var Options */
-    private $locateOptions;
+    private Options $locateOptions;
 
-    /** @var Options */
-    private $boundsOptions;
+    private Options $boundsOptions;
 
-    /** @var View */
-    private $view;
+    private View $view;
 
-    /** @var Presets */
-    private $presets;
+    private Presets $presets;
 
     public function __construct(MapId $mapId, string $elementId)
     {

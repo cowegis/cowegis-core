@@ -11,8 +11,7 @@ final class KeywordRule implements Rule
 {
     public const QUERY_PARAM = 'keyword';
 
-    /** @var string */
-    private $keyword;
+    private string $keyword;
 
     public function __construct(string $keyword)
     {

@@ -16,29 +16,24 @@ use GoldSpecDigital\ObjectOrientedOAS\OpenApi;
 /** @psalm-suppress PropertyNotSetInConstructor */
 final class SchemaBuilder
 {
-    /** @var string */
-    private $openApiVersion;
+    private string $openApiVersion;
 
-    /** @var Info */
-    private $info;
+    private Info $info;
 
-    /** @var ExternalDocs|null */
-    private $externalDocs;
+    private ?ExternalDocs $externalDocs = null;
 
     /** @var Server[] */
-    private $servers = [];
+    private array $servers = [];
 
     /** @var PathItem[] */
-    private $paths = [];
+    private array $paths = [];
 
     /** @var Tag[] */
-    private $tags = [];
+    private array $tags = [];
 
-    /** @var ComponentsBuilder */
-    private $components;
+    private ComponentsBuilder $components;
 
-    /** @var Schema */
-    private $idSchemaRef;
+    private Schema $idSchemaRef;
 
     private function __construct()
     {

@@ -13,8 +13,7 @@ use function ucfirst;
 
 abstract class LayerSchemaDescriber
 {
-    /** @var string */
-    private $layerType;
+    private string $layerType;
 
     public function __construct(string $layerType)
     {

@@ -14,7 +14,7 @@ use function sprintf;
 final class ControlCollection implements Controls
 {
     /** @var Control[] */
-    private $controls = [];
+    private array $controls = [];
 
     public function add(Control $control): void
     {

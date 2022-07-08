@@ -6,8 +6,7 @@ namespace Cowegis\Core\Definition\Expression;
 
 final class InlineExpression implements Expression
 {
-    /** @var string */
-    private $code;
+    private string $code;
 
     public function __construct(string $code)
     {

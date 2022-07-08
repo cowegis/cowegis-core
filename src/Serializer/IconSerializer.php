@@ -17,8 +17,7 @@ use function assert;
  */
 final class IconSerializer extends DataSerializer
 {
-    /** @var string */
-    protected $type;
+    protected string $type;
 
     public function __construct(string $type, Serializer $serializer)
     {

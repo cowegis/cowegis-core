@@ -6,8 +6,7 @@ namespace Cowegis\Core\Definition\GeoJson;
 
 final class UriData implements GeoJsonData
 {
-    /** @var string */
-    private $uri;
+    private string $uri;
 
     public function __construct(string $uri)
     {

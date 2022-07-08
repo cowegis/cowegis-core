@@ -14,13 +14,11 @@ use IteratorAggregate;
 final class MarkersLayerData implements LayerData, IteratorAggregate
 {
     /** @var Marker[] */
-    private $markers;
+    private array $markers;
 
-    /** @var Callbacks */
-    private $callbacks;
+    private Callbacks $callbacks;
 
-    /** @var Assets */
-    private $assets;
+    private Assets $assets;
 
     /** @param Marker[] $markers */
     public function __construct(array $markers, Assets $assets, Callbacks $callbacks)

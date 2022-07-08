@@ -26,13 +26,11 @@ var cowegis_%2$s = {
 JAVASCRIPT;
 
     /** @var Expression[] */
-    private $callbacks = [];
+    private array $callbacks = [];
 
-    /** @var int */
-    private $prefix = 0;
+    private int $prefix = 0;
 
-    /** @var string */
-    private $identifier;
+    private string $identifier;
 
     public function __construct(string $identifier)
     {

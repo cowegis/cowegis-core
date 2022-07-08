@@ -17,17 +17,13 @@ use JsonSerializable;
  */
 final class Pane implements Definition, JsonSerializable
 {
-    /** @var string */
-    private $name;
+    private string $name;
 
-    /** @var int|null */
-    private $zIndex;
+    private ?int $zIndex;
 
-    /** @var PaneId */
-    private $definitionId;
+    private PaneId $definitionId;
 
-    /** @var string|null */
-    private $pointerEvents;
+    private ?string $pointerEvents;
 
     public function __construct(PaneId $definitionId, string $name, ?int $zIndex, ?string $pointerEvents)
     {

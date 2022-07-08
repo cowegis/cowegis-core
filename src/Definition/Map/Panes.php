@@ -13,7 +13,7 @@ use function sprintf;
 final class Panes implements IteratorAggregate
 {
     /** @var Pane[] */
-    private $panes = [];
+    private array $panes = [];
 
     public function add(Pane $pane): void
     {

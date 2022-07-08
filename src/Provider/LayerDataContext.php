@@ -12,8 +12,7 @@ use Cowegis\Core\Filter\Filter;
 
 final class LayerDataContext extends RootContext
 {
-    /** @var LayerId */
-    private $layerId;
+    private LayerId $layerId;
 
     public function __construct(
         Callbacks $callbacks,

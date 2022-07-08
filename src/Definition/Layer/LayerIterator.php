@@ -13,10 +13,9 @@ final class LayerIterator implements Iterator
      * @psalm-var list<Layer>
      * @var Layer[]
      */
-    private $layers;
+    private array $layers;
 
-    /** @var int */
-    private $index = 0;
+    private int $index = 0;
 
     /**
      * @param Layer[] $layers

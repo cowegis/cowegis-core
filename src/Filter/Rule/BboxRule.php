@@ -12,8 +12,7 @@ final class BboxRule implements Rule
 {
     public const QUERY_PARAM = 'bbox';
 
-    /** @var LatLngBounds */
-    private $boundingBox;
+    private LatLngBounds $boundingBox;
 
     public function __construct(LatLngBounds $boundingBox)
     {

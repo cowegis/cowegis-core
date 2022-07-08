@@ -7,7 +7,7 @@ namespace Cowegis\Core\Constraint;
 final class OrConstraint extends BaseConstraint
 {
     /** @var Constraint[] */
-    private $constraints;
+    private array $constraints;
 
     /**
      * @param Constraint[] $constraints

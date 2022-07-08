@@ -10,10 +10,9 @@ use Cowegis\Core\Constraint\StringConstraint;
 final class AttributionControl extends Control
 {
     /** @var string[] */
-    private $attributions = [];
+    private array $attributions = [];
 
-    /** @var bool */
-    private $replaceDefault = false;
+    private bool $replaceDefault = false;
 
     /** @return array<string, Constraint> */
     protected function optionConstraints(): array

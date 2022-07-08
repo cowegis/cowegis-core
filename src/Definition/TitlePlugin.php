@@ -10,10 +10,8 @@ trait TitlePlugin
 {
     /**
      * The title.
-     *
-     * @var string|null
      */
-    private $title;
+    private ?string $title = null;
 
     /**
      * Set the title.

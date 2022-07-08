@@ -7,7 +7,7 @@ namespace Cowegis\Core\Filter;
 final class Filter
 {
     /** @var Rule[] */
-    private $rules = [];
+    private array $rules = [];
 
     public function add(Rule $rule): void
     {

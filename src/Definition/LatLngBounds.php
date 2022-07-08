@@ -20,17 +20,13 @@ final class LatLngBounds
 {
     /**
      * South west boundary.
-     *
-     * @var LatLng
      */
-    private $southWest;
+    private LatLng $southWest;
 
     /**
      * North east boundary.
-     *
-     * @var LatLng
      */
-    private $northEast;
+    private LatLng $northEast;
 
     /**
      * Construct.

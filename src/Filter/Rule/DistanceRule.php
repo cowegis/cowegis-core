@@ -12,15 +12,12 @@ final class DistanceRule implements Rule
 {
     public const QUERY_PARAM = 'distance';
 
-    /** @var LatLng */
-    private $coordinates;
+    private LatLng $coordinates;
 
     /**
      * The radius in meter.
-     *
-     * @var int
      */
-    private $radius;
+    private int $radius;
 
     /**
      * @param LatLng $latLng The center point.

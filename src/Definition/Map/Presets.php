@@ -12,16 +12,16 @@ use Cowegis\Core\Definition\Preset\TooltipPreset;
 final class Presets
 {
     /** @var Icon[] */
-    private $icons = [];
+    private array $icons = [];
 
     /** @var PopupPreset[] */
-    private $popups = [];
+    private array $popups = [];
 
     /** @var Style[] */
-    private $styles = [];
+    private array $styles = [];
 
     /** @var TooltipPreset[] */
-    private $tooltips = [];
+    private array $tooltips = [];
 
     public function addPopup(PopupPreset $popup): void
     {

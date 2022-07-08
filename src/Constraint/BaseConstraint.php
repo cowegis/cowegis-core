@@ -6,8 +6,7 @@ namespace Cowegis\Core\Constraint;
 
 abstract class BaseConstraint implements Constraint
 {
-    /** @var bool */
-    private $required;
+    private bool $required;
 
     public function __construct(bool $required = false)
     {

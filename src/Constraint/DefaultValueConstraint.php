@@ -6,8 +6,7 @@ namespace Cowegis\Core\Constraint;
 
 final class DefaultValueConstraint implements Constraint
 {
-    /** @var Constraint */
-    private $constraint;
+    private Constraint $constraint;
 
     /** @var mixed */
     private $value;

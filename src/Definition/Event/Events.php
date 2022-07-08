@@ -21,7 +21,7 @@ final class Events implements JsonSerializable
      * @var array<int, array<string, mixed>>
      * @psalm-var list<TEvent>
      */
-    private $listeners = [];
+    private array $listeners = [];
 
     /** @SuppressWarnings(PHPMD.ShortMethodName) */
     public function on(string $eventName, Reference $reference): self

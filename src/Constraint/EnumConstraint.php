@@ -9,7 +9,7 @@ use function in_array;
 final class EnumConstraint extends BaseConstraint
 {
     /** @var array<int,mixed> */
-    private $values;
+    private array $values;
 
     /** @param array<int,mixed> $values */
     public function __construct(array $values, bool $required = false)

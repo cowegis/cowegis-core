@@ -13,8 +13,7 @@ use function sprintf;
 
 final class InstanceOfConstraint extends BaseConstraint
 {
-    /** @var string */
-    private $expectedClass;
+    private string $expectedClass;
 
     public function __construct(string $expectedClass, bool $required = false)
     {

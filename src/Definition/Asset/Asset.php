@@ -14,14 +14,11 @@ final class Asset implements JsonSerializable
 
     public const TYPE_CALLBACKS = 'callbacks';
 
-    /** @var string */
-    private $type;
+    private string $type;
 
-    /** @var string */
-    private $url;
+    private string $url;
 
-    /** @var string|null */
-    private $identifier;
+    private ?string $identifier = null;
 
     private function __construct(string $type, string $url)
     {
