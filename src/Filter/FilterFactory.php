@@ -11,7 +11,7 @@ use Traversable;
 use function parse_str;
 
 /**
- * @psalm-import-type TParams from \Cowegis\Core\Filter\Query
+ * @psalm-import-type TParams from Query
  */
 final class FilterFactory
 {
@@ -28,7 +28,6 @@ final class FilterFactory
 
     /**
      * @return Traversable|Generator|string[]
-     *
      * @psalm-return Generator<string>
      */
     public function ruleNames(): Traversable

@@ -14,8 +14,6 @@ class LayerGroupSerializer extends MapLayerSerializer
      * @param LayerGroup|mixed $layer
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($layer): array
     {

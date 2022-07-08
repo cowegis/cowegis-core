@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Control\Controls;
+use Cowegis\Core\Definition\Event\Events;
+use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\Map\Map;
+use Cowegis\Core\Definition\Map\Pane;
 use Cowegis\Core\Definition\Map\Panes;
 use Cowegis\Core\Definition\Map\View;
 
@@ -13,14 +16,14 @@ use function assert;
 use function count;
 
 /**
- * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
- * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
- * @psalm-import-type TSerializedPane from \Cowegis\Core\Definition\Map\Pane
- * @psalm-import-type TSerializedPresets from \Cowegis\Core\Serializer\PresetsSerializer
+ * @psalm-import-type TSerializedEvent from Events
+ * @psalm-import-type TSerializedLatLng from LatLng
+ * @psalm-import-type TSerializedPane from Pane
+ * @psalm-import-type TSerializedPresets from PresetsSerializer
  * @psalm-type TSerializedView = array{
- *   center: null|TSerializedLatLng,
- *   zoom: float|null,
- *   options: array<string, mixed>
+ *     center: TSerializedLatLng|null,
+ *     zoom: float|null,
+ *     options: array<string, mixed>
  * }
  * @psalm-type TSerializedMap = array{
  *   definitionId: mixed,
@@ -43,10 +46,7 @@ final class MapSerializer extends DataSerializer
      * @param Map|mixed $map
      *
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedMap
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($map): array
     {
@@ -79,7 +79,6 @@ final class MapSerializer extends DataSerializer
 
     /**
      * @return array<int, array<string, mixed>>
-     *
      * @psalm-return list<array<string, mixed>>
      */
     private function serializeLayers(Map $map): array
@@ -95,7 +94,6 @@ final class MapSerializer extends DataSerializer
 
     /**
      * @return array<int, array<string, mixed>>
-     *
      * @psalm-return list<array<string, mixed>>
      */
     private function serializeControls(Controls $controls): array
@@ -111,7 +109,6 @@ final class MapSerializer extends DataSerializer
 
     /**
      * @return array<int, array<string, mixed>>
-     *
      * @psalm-return list<TSerializedPane>
      */
     private function serializePanes(Panes $panes): array
@@ -149,7 +146,6 @@ final class MapSerializer extends DataSerializer
 
     /**
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedView
      */
     private function serializeView(View $view): array

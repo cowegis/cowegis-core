@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Serializer;
 
+use Cowegis\Core\Definition\Event\Events;
+use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\UI\Tooltip;
 
 use function assert;
 
 /**
- * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
- * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
+ * @psalm-import-type TSerializedEvent from Events
+ * @psalm-import-type TSerializedLatLng from LatLng
  * @psalm-type TSerializedTooltip = array{
  *   content: string,
- *   coordinates: null|TSerializedLatLng,
- *   options: array<string,mixed>,
+ *   coordinates: TSerializedLatLng|null,
+ *   options: array<string, mixed>,
  *   presetId: mixed,
  *   events: list<TSerializedEvent>
  * }
@@ -25,10 +27,7 @@ final class TooltipSerializer extends DataSerializer
      * @param Tooltip|mixed $tooltip
      *
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedTooltip
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($tooltip): array
     {

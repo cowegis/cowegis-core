@@ -35,6 +35,7 @@ final class DelegatingProvider implements Provider
             foreach ($this->providers as $provider) {
                 $idFormats[] = $provider->idFormat();
             }
+
             $idFormat = new DelegatingIdFormat($idFormats);
         }
 

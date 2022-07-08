@@ -49,7 +49,6 @@ final class LayerIds
 
     /**
      * @return LayerId[]
-     *
      * @psalm-return list<LayerId>
      */
     public function toArray(): array

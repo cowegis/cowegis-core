@@ -24,7 +24,6 @@ final class Query
 
     /**
      * @param array<string,mixed> $params
-     *
      * @psalm-param TParams $params
      */
     public static function fromArray(array $params): self
@@ -46,10 +45,9 @@ final class Query
 
     /**
      * @param mixed $default
+     * @psalm-param TParam $default
      *
      * @return string|array<string, mixed>
-     *
-     * @psalm-param TParam $default
      * @psalm-return TParam|null
      */
     public function get(string $name, $default = null)
@@ -59,10 +57,9 @@ final class Query
 
     /**
      * @param array<string, mixed> $default
+     * @psalm-param TArrayParam $default
      *
      * @return array<array-key,string>
-     *
-     * @psalm-param TArrayParam $default
      * @psalm-return TArrayParam
      */
     public function getArray(string $name, array $default = []): array

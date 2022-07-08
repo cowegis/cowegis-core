@@ -12,14 +12,10 @@ use JsonSerializable;
  */
 final class Point implements Compareable, JsonSerializable
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $x;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $y;
 
     public function __construct(int $x, int $y)

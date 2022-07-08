@@ -23,8 +23,6 @@ final class DistanceRule implements Rule
     private $radius;
 
     /**
-     * DistanceRule constructor.
-     *
      * @param LatLng $latLng The center point.
      * @param int    $radius The radius in meter.
      */

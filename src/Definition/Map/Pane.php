@@ -23,14 +23,10 @@ final class Pane implements Definition, JsonSerializable
     /** @var int|null */
     private $zIndex;
 
-    /**
-     * @var PaneId
-     */
+    /** @var PaneId */
     private $definitionId;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $pointerEvents;
 
     public function __construct(PaneId $definitionId, string $name, ?int $zIndex, ?string $pointerEvents)
@@ -63,7 +59,6 @@ final class Pane implements Definition, JsonSerializable
 
     /**
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedPane
      */
     public function jsonSerialize(): array

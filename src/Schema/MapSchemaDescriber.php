@@ -159,7 +159,10 @@ final class MapSchemaDescriber implements SchemaDescriber
                             ->description('Indicates if bounds should be calculated dynamically after map is loaded'),
                         Schema::boolean('adjustAfterDeferred')
                             ->default(false)
-                            ->description('Indicates if bounds should be calculated dynamically after all deferred map data is loaded'),
+                            ->description(
+                                'Indicates if bounds should be calculated dynamically after all deferred map '
+                                . 'data is loaded'
+                            ),
                         Schema::array('paddingTopLeft')
                             ->description('Recognize top left padding when calculating bounds')
                             ->minItems(2)

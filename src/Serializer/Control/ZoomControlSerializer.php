@@ -15,8 +15,6 @@ final class ZoomControlSerializer extends DataSerializer
      * @param ZoomControl|mixed $data
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

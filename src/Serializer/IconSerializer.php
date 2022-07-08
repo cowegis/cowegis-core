@@ -31,10 +31,7 @@ final class IconSerializer extends DataSerializer
      * @param Icon|mixed $data
      *
      * @return array<string,mixed>
-     *
      * @psalm-return TSerializedIcon
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

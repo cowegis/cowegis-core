@@ -20,7 +20,6 @@ final class LayerIterator implements Iterator
 
     /**
      * @param Layer[] $layers
-     *
      * @psalm-param list<Layer> $layers
      */
     public function __construct(array $layers)
@@ -30,7 +29,6 @@ final class LayerIterator implements Iterator
 
     /**
      * @param Layer[] $layers
-     *
      * @psalm-param list<Layer> $layers
      */
     public static function fromArray(array $layers): self

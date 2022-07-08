@@ -15,8 +15,6 @@ final class FullscreenControlSerializer extends DataSerializer
      * @param FullscreenControl|mixed $data
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

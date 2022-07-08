@@ -15,8 +15,6 @@ final class AttributionControlSerializer extends DataSerializer
      * @param AttributionControl|mixed $data
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

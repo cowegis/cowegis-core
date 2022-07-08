@@ -15,8 +15,6 @@ final class LoadingControlSerializer extends DataSerializer
      * @param LoadingControl|mixed $data
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

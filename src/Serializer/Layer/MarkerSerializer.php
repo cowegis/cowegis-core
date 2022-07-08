@@ -25,8 +25,6 @@ final class MarkerSerializer implements Serializer
 
     /**
      * @param Marker|mixed $marker
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($marker): Feature
     {

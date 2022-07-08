@@ -35,7 +35,6 @@ abstract class LayerSchemaDescriber
 
     /**
      * @return Schema[]
-     *
      * @psalm-return list<Schema>
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the schema builder
@@ -47,7 +46,6 @@ abstract class LayerSchemaDescriber
 
     /**
      * @return Schema[]
-     *
      * @psalm-return list<Schema>
      */
     private function buildOptionalProperties(SchemaBuilder $builder): array

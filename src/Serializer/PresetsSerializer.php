@@ -10,14 +10,14 @@ use Cowegis\Core\Definition\Map\Presets;
 use function assert;
 
 /**
- * @psalm-import-type TSerializedIcon from \Cowegis\Core\Serializer\IconSerializer
- * @psalm-import-type TSerializedPopup from \Cowegis\Core\Serializer\PopupSerializer
- * @psalm-import-type TSerializedTooltip from \Cowegis\Core\Serializer\TooltipSerializer
+ * @psalm-import-type TSerializedIcon from IconSerializer
+ * @psalm-import-type TSerializedPopup from PopupSerializer
+ * @psalm-import-type TSerializedTooltip from TooltipSerializer
  * @psalm-type TSerializedPresets = array{
- *   icons: \ArrayObject|array<string,TSerializedIcon>,
- *   popups: \ArrayObject|array<string,TSerializedPopup>,
- *   styles: \ArrayObject|array<string,mixed>,
- *   tooltips: \ArrayObject|array<string,TSerializedTooltip>
+ *   icons: ArrayObject|array<string,TSerializedIcon>,
+ *   popups: ArrayObject|array<string,TSerializedPopup>,
+ *   styles: ArrayObject|array<string,mixed>,
+ *   tooltips: ArrayObject|array<string,TSerializedTooltip>
  * }
  */
 final class PresetsSerializer extends DataSerializer
@@ -26,10 +26,7 @@ final class PresetsSerializer extends DataSerializer
      * @param Presets|mixed $data
      *
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedPresets
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): array
     {

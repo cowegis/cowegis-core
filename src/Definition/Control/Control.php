@@ -16,14 +16,10 @@ abstract class Control implements ControlContract
     use OptionsPlugin;
     use TitlePlugin;
 
-    /**
-     * @var ControlId
-     */
+    /** @var ControlId */
     private $controlId;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
 
     public function __construct(ControlId $controlId, string $name)

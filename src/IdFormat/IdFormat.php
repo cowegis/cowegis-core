@@ -10,7 +10,6 @@ interface IdFormat
 {
     /**
      * @param mixed $value
-     *
      * @psalm-param class-string<DefinitionId> $definitionClass
      */
     public function createDefinitionId(string $definitionClass, $value): DefinitionId;

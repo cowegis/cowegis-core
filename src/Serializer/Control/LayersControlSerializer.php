@@ -15,8 +15,6 @@ final class LayersControlSerializer extends DataSerializer
      * @param LayersControl|mixed $control
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($control): array
     {

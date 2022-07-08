@@ -20,10 +20,7 @@ final class TooltipPresetSerializer extends DataSerializer
      * @param TooltipPreset|mixed $tooltipPreset
      *
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedTooltipPreset
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($tooltipPreset): array
     {

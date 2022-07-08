@@ -206,8 +206,9 @@ final class ComponentsBuilder
     }
 
     /**
-     * @psalm-template TCollectionType
      * @psalm-param array<array-key, TCollectionType> $collection
+     *
+     * @psalm-template TCollectionType
      */
     private function addWithUniqueReference(
         BaseObject $object,

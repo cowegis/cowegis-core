@@ -19,9 +19,10 @@ final class ArrayConstraint extends ConstraintWithDefault
     /**
      * {@inheritDoc}
      *
+     * @psalm-param array<array-key, mixed>|ArrayObject $value
+     *
      * @return array<array-key, mixed>
      *
-     * @psalm-param array<array-key, mixed>|ArrayObject $value
      * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function filter($value): array

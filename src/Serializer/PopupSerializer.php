@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Serializer;
 
+use Cowegis\Core\Definition\Event\Events;
 use Cowegis\Core\Definition\UI\Popup;
 
 use function assert;
 
 /**
- * @psalm-import-type TSerializedEvent from \Cowegis\Core\Definition\Event\Events
+ * @psalm-import-type TSerializedEvent from Events
  * @psalm-type TSerializedPopup = array{
  *   content: string,
  *   presetId: mixed,
@@ -23,10 +24,7 @@ final class PopupSerializer extends DataSerializer
      * @param Popup|mixed $popup
      *
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedPopup
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($popup): array
     {

@@ -20,10 +20,7 @@ final class PopupPresetSerializer extends DataSerializer
      * @param PopupPreset|mixed $popup
      *
      * @return array<string, mixed>
-     *
      * @psalm-return TSerializedPopupPreset
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($popup): array
     {

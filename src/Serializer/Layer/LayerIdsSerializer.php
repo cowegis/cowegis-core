@@ -17,10 +17,7 @@ final class LayerIdsSerializer implements Serializer
      * @param LayerIds|mixed $layerIds
      *
      * @return array<int,mixed>
-     *
      * @psalm-return list<mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($layerIds): array
     {

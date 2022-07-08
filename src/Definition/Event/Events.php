@@ -11,7 +11,7 @@ use JsonSerializable;
 use function array_map;
 
 /**
- * @psalm-import-type TSerializedReference from \Cowegis\Core\Definition\Expression\Reference
+ * @psalm-import-type TSerializedReference from Reference
  * @psalm-type TSerializedEvent = array{eventName: string, reference: TSerializedReference }
  * @psalm-type TEvent = array{eventName: string, reference: Reference }
 */
@@ -38,7 +38,6 @@ final class Events implements JsonSerializable
      * Get all listeners grouped by event name.
      *
      * @return Expression[][]
-     *
      * @psalm-return list<TEvent>
      */
     public function listeners(): array
@@ -48,7 +47,6 @@ final class Events implements JsonSerializable
 
     /**
      * @return array<int, array<string,mixed>>
-     *
      * @psalm-return list<TSerializedEvent>
      */
     public function jsonSerialize(): array
@@ -56,8 +54,8 @@ final class Events implements JsonSerializable
         return array_map(
             /**
              * @param array<int, array<string, mixed>> $listener
-             *
              * @psalm-param TEvent $listener
+             *
              * @psalm-return TSerializedEvent
              */
             static function (array $listener): array {

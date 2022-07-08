@@ -14,8 +14,6 @@ final class DataLayerSerializer extends MapLayerSerializer
      * @param DataLayer|mixed $layer
      *
      * @return array<string,mixed>
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($layer): array
     {

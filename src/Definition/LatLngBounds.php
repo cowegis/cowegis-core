@@ -13,7 +13,7 @@ use function explode;
 use function sprintf;
 
 /**
- * @psalm-import-type TSerializedLatLng from \Cowegis\Core\Definition\LatLng
+ * @psalm-import-type TSerializedLatLng from LatLng
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 final class LatLngBounds
@@ -48,10 +48,9 @@ final class LatLngBounds
      * Create from native array format.
      *
      * @param array<int, array<int, float>> $native The native boundary
+     * @psalm-param array{0: TSerializedLatLng, 1: TSerializedLatLng} $native
      *
      * @throws InvalidArgumentException If the array format is not supported.
-     *
-     * @psalm-param array{0: TSerializedLatLng, 1: TSerializedLatLng} $native
      */
     public static function fromArray(array $native): self
     {

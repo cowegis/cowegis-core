@@ -24,8 +24,6 @@ final class MarkersLayerDataSerializer implements Serializer
 
     /**
      * @param MarkersLayerData|mixed $data
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($data): FeatureCollection
     {

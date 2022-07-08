@@ -63,14 +63,13 @@ final class LatLng implements JsonSerializable
      * Create LatLng from array.
      *
      * @param array $native Native array.
+     * @psalm-param array{0:float,1:float,2:float|null}
+     *   |array{lat:float,lng:float,alt:float|null}
+     *   |array{latitude:float,longitude:float,altitude:float|null} $native
      *
      * @return LatLng
      *
      * @throws \InvalidArgumentException If format is not supported.
-     *
-     * @psalm-param array{0:float,1:float,2:float|null}
-     *   |array{lat:float,lng:float,alt:float|null}
-     *   |array{latitude:float,longitude:float,altitude:float|null} $native
      */
     public static function fromArray(array $native): self
     {

@@ -15,8 +15,6 @@ final class OptionsSerializer extends DataSerializer
 {
     /**
      * @param Options|mixed $options
-     *
-     * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     public function serialize($options): ArrayObject
     {
