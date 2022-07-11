@@ -17,10 +17,10 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
 final class MapSchemaDescriber implements SchemaDescriber
 {
     /** @var LayerSchemaDescriber[] */
-    private array $layerSchemas;
+    private array $layerSchemas = [];
 
     /** @var ControlSchemaDescriber[] */
-    private array $controlSchemas;
+    private array $controlSchemas = [];
 
     /**
      * @param LayerSchemaDescriber[]   $layerSchemas
@@ -28,8 +28,13 @@ final class MapSchemaDescriber implements SchemaDescriber
      */
     public function __construct(iterable $layerSchemas, iterable $controlSchemas)
     {
-        $this->layerSchemas   = $layerSchemas;
-        $this->controlSchemas = $controlSchemas;
+        foreach ($layerSchemas as $layerSchema) {
+            $this->layerSchemas[] = $layerSchema;
+        }
+
+        foreach ($controlSchemas as $controlSchema) {
+            $this->controlSchemas[] = $controlSchema;
+        }
     }
 
     public function describe(SchemaBuilder $builder): void
