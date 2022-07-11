@@ -16,14 +16,16 @@ use function parse_str;
 final class FilterFactory
 {
     /** @var RuleFactory[] */
-    private array $ruleFactories;
+    private array $ruleFactories = [];
 
     /**
      * @param RuleFactory[] $ruleFactories
      */
     public function __construct(iterable $ruleFactories)
     {
-        $this->ruleFactories = $ruleFactories;
+        foreach ($ruleFactories as $ruleFactory) {
+            $this->ruleFactories[] = $ruleFactory;
+        }
     }
 
     /**
