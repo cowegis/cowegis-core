@@ -13,6 +13,7 @@ use function get_class;
 use function gettype;
 use function is_object;
 
+/** @implements Serializer<mixed> */
 final class DelegatingSerializer implements Serializer
 {
     private ContainerInterface $serializers;

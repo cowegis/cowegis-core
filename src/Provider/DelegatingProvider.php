@@ -15,14 +15,16 @@ use Cowegis\Core\IdFormat\IdFormat;
 final class DelegatingProvider implements Provider
 {
     /** @var Provider[] */
-    private array $providers;
+    private array $providers = [];
 
     /**
      * @param Provider[] $providers
      */
     public function __construct(iterable $providers)
     {
-        $this->providers = $providers;
+        foreach ($providers as $provider) {
+            $this->providers[] = $provider;
+        }
     }
 
     public function idFormat(): IdFormat

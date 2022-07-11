@@ -7,20 +7,22 @@ namespace Cowegis\Core\Schema;
 final class DelegatingSchemaDescriber implements SchemaDescriber
 {
     /** @var SchemaDescriber[] */
-    private array $builders;
+    private array $describers = [];
 
     /**
-     * @param SchemaDescriber[] $builders
+     * @param SchemaDescriber[] $describers
      */
-    public function __construct(iterable $builders)
+    public function __construct(iterable $describers)
     {
-        $this->builders = $builders;
+        foreach ($describers as $describer) {
+            $this->describers[] = $describer;
+        }
     }
 
     public function describe(SchemaBuilder $builder): void
     {
-        foreach ($this->builders as $schemaBuilder) {
-            $schemaBuilder->describe($builder);
+        foreach ($this->describers as $describer) {
+            $describer->describe($builder);
         }
     }
 }

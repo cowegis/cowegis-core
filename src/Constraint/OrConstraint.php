@@ -7,7 +7,7 @@ namespace Cowegis\Core\Constraint;
 final class OrConstraint extends BaseConstraint
 {
     /** @var Constraint[] */
-    private array $constraints;
+    private array $constraints = [];
 
     /**
      * @param Constraint[] $constraints
@@ -16,7 +16,9 @@ final class OrConstraint extends BaseConstraint
     {
         parent::__construct($required);
 
-        $this->constraints = $constraints;
+        foreach ($constraints as $constraint) {
+            $this->constraints[] = $constraint;
+        }
     }
 
     /** @param mixed $defaultValue */

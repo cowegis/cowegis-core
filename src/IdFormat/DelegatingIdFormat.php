@@ -10,12 +10,14 @@ use Cowegis\Core\Exception\InvalidArgument;
 final class DelegatingIdFormat implements IdFormat
 {
     /** @var IdFormat[] */
-    private array $idFormats;
+    private array $idFormats = [];
 
     /** @param IdFormat[] $idFormats */
     public function __construct(iterable $idFormats)
     {
-        $this->idFormats = $idFormats;
+        foreach ($idFormats as $idFormat) {
+            $this->idFormats[] = $idFormat;
+        }
     }
 
     /** {@inheritDoc} */
