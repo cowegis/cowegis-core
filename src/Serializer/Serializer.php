@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Serializer;
 
+/**
+ * @template T
+ */
 interface Serializer
 {
     /**
-     * @param mixed $data
+     * @param T $data
      *
      * @return mixed
      */

@@ -39,6 +39,7 @@ use function count;
  *   presets: TSerializedPresets,
  *   events: list<TSerializedEvent>
  * }
+ * @extends DataSerializer<Map>
  */
 final class MapSerializer extends DataSerializer
 {

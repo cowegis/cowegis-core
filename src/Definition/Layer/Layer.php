@@ -23,7 +23,7 @@ abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
 
     private bool $initialVisible;
 
-    public function __construct(LayerId $layerId, string $name, bool $initialVisible)
+    public function __construct(LayerId $layerId, string $name, bool $initialVisible = true)
     {
         $this->layerId        = $layerId;
         $this->name           = $name;

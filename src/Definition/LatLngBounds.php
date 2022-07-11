@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition;
 
+use Assert\Assertion;
+use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\GeoJson\Position\Coordinates;
 use InvalidArgumentException;
 
 use function array_map;
+use function array_shift;
 use function count;
 use function explode;
 use function sprintf;
@@ -84,6 +87,41 @@ final class LatLngBounds
             new LatLng($values[0], $values[1]),
             new LatLng($values[2], $values[3])
         );
+    }
+
+    /** @param list<LatLng> $latLngs */
+    public static function fromCoordinates(array $latLngs): self
+    {
+        Assertion::allIsInstanceOf($latLngs, LatLng::class);
+
+        if ($latLngs === []) {
+            throw new RuntimeException('Cannot determine bounds from empty list of coordinates');
+        }
+
+        $first     = array_shift($latLngs);
+        $southWest = $first;
+        $northEast = $first;
+
+        foreach ($latLngs as $latLng) {
+            if ($latLng->longitude() < $southWest->longitude()) {
+                $southWest = new LatLng($southWest->latitude(), $latLng->longitude());
+            }
+
+            if ($latLng->latitude() > $northEast->latitude()) {
+                $southWest = new LatLng($latLng->latitude(), $southWest->longitude());
+            }
+
+            if ($latLng->longitude() > $northEast->longitude()) {
+                $northEast = new LatLng($northEast->latitude(), $latLng->longitude());
+            }
+
+            // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
+            if ($latLng->latitude() < $northEast->latitude()) {
+                $northEast = new LatLng($latLng->latitude(), $northEast->longitude());
+            }
+        }
+
+        return new self($southWest, $northEast);
     }
 
     /**

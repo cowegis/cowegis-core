@@ -77,15 +77,9 @@ tasks:
   phpcpd:
     plugin: phpcpd
     config:
-    #  exclude:
-    #  names:
-    #  names_exclude:
-    #  regexps_exclude:
-    #  log:
-    #  min_lines:
-    #  min_tokens:
-    #  fuzzy: true
-    #  custom_flags:
+      exclude:
+       - spec/Definition/Vector/MultiPolylineSpec.php
+       - spec/Definition/Vector/PolylineSpec.php
 
   phpmd:
     plugin: phpmd

@@ -10,6 +10,7 @@ use function assert;
 use function is_array;
 use function is_object;
 
+/** @extends DataSerializer<array|ArrayObject> */
 final class ArraySerializer extends DataSerializer
 {
     /**

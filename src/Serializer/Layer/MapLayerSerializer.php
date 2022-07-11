@@ -8,6 +8,10 @@ use Cowegis\Core\Definition\Layer\Layer;
 use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\DataSerializer;
 
+/**
+ * @template T
+ * @extends DataSerializer<T>
+ */
 abstract class MapLayerSerializer extends DataSerializer
 {
     /**
