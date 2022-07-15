@@ -9,27 +9,27 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\Expression\Reference;
-use Cowegis\Core\Definition\GeoJson\ExternalData;
-use Cowegis\Core\Definition\GeoJson\GeoJsonData;
+use Cowegis\Core\Definition\GeoData\ExternalData;
+use Cowegis\Core\Definition\GeoData\GeoData;
 use Cowegis\Core\Definition\Map\PaneId;
 
 final class DataLayer extends Layer
 {
     use EventsPlugin;
 
-    private ?GeoJsonData $data = null;
+    private ?GeoData $data = null;
 
     public function dataFromUri(ExternalData $dataUri): void
     {
         $this->data = $dataUri;
     }
 
-    public function withData(GeoJsonData $data): void
+    public function withData(GeoData $data): void
     {
         $this->data = $data;
     }
 
-    public function data(): ?GeoJsonData
+    public function data(): ?GeoData
     {
         return $this->data;
     }

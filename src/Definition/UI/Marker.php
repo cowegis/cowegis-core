@@ -12,7 +12,7 @@ use Cowegis\Core\Constraint\IntegerConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Definition;
 use Cowegis\Core\Definition\Event\EventsPlugin;
-use Cowegis\Core\Definition\GeoJson\Properties;
+use Cowegis\Core\Definition\GeoData\Properties;
 use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\HasOptions;
 use Cowegis\Core\Definition\HasPopup;

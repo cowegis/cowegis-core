@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cowegis\Core\Definition\GeoJson;
+namespace Cowegis\Core\Definition\GeoData;
 
-final class ExternalData implements GeoJsonData
+final class ExternalData implements GeoData
 {
     private string $uri;
 

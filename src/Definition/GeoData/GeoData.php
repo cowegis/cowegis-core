@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Cowegis\Core\Definition\GeoData;
+
+use JsonSerializable;
+
+/**
+ * This interface describes
+ */
+interface GeoData extends JsonSerializable
+{
+}

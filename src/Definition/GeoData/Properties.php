@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cowegis\Core\Definition\GeoJson;
+namespace Cowegis\Core\Definition\GeoData;
 
 final class Properties
 {

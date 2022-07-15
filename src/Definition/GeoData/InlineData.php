@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cowegis\Core\Definition\GeoJson;
+namespace Cowegis\Core\Definition\GeoData;
 
 use Cowegis\GeoJson\GeoJsonObject;
 
-final class InlineData implements GeoJsonData
+final class InlineData implements GeoData
 {
     private GeoJsonObject $geoJsonObject;
 
