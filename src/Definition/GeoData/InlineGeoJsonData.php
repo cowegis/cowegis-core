@@ -23,7 +23,7 @@ final class InlineGeoJsonData implements GeoData
     {
         return [
             'type'   => 'inline',
-            'format' => 'geojson',
+            'format' => GeoData::FORMAT_GEOJSON,
             'data'   => $this->geoJsonObject,
         ];
     }

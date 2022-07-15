@@ -11,4 +11,9 @@ use JsonSerializable;
  */
 interface GeoData extends JsonSerializable
 {
+    public const FORMAT_GEOJSON  = 'geojson';
+    public const FORMAT_TOPOJSON = 'topojson';
+    public const FORMAT_GPX      = 'gpx';
+    public const FORMAT_WKT      = 'wkt';
+    public const FORMAT_KML      = 'kml';
 }
