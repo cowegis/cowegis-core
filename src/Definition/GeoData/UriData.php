@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\GeoData;
 
+/**
+ * The Uri data refers to a data source provided from an uri, where the target will also provide a data layer object.
+ */
 final class UriData implements GeoData
 {
     private string $uri;

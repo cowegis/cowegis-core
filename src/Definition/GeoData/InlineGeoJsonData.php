@@ -6,7 +6,10 @@ namespace Cowegis\Core\Definition\GeoData;
 
 use Cowegis\GeoJson\GeoJsonObject;
 
-final class InlineData implements GeoData
+/**
+ * This object contains GeoJSON data which
+ */
+final class InlineGeoJsonData implements GeoData
 {
     private GeoJsonObject $geoJsonObject;
 

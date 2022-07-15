@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\GeoData;
 
+/**
+ * This data object refers to external data where the external data contains only raw data in the defined format.
+ */
 final class ExternalData implements GeoData
 {
     private string $uri;
