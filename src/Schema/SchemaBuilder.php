@@ -109,6 +109,7 @@ final class SchemaBuilder
             ->info($this->info)
             ->tags(...$this->tags)
             ->paths(...$this->paths)
+            ->servers(...$this->servers)
             ->components($this->components->build());
     }
 }
