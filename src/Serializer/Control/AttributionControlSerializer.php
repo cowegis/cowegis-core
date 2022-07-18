@@ -22,6 +22,7 @@ final class AttributionControlSerializer extends DataSerializer
 
         return [
             'controlId'       => $data->controlId()->value(),
+            'name'            => $data->name(),
             'type'            => 'attribution',
             'options'         => $this->serializer->serialize($data->options()),
             'attributions'    => $data->attributions(),

@@ -12,20 +12,21 @@ use function assert;
 final class LayersControlSerializer extends DataSerializer
 {
     /**
-     * @param LayersControl|mixed $control
+     * @param LayersControl|mixed $data
      *
      * @return array<string,mixed>
      */
-    public function serialize($control): array
+    public function serialize($data): array
     {
-        assert($control instanceof LayersControl);
+        assert($data instanceof LayersControl);
 
         return [
-            'controlId'  => $control->controlId()->value(),
+            'controlId'  => $data->controlId()->value(),
+            'name'       => $data->name(),
             'type'       => 'layers',
-            'baseLayers' => $this->serializer->serialize($control->baseLayers()),
-            'overlays'   => $this->serializer->serialize($control->overlays()),
-            'options'    => $this->serializer->serialize($control->options()),
+            'baseLayers' => $this->serializer->serialize($data->baseLayers()),
+            'overlays'   => $this->serializer->serialize($data->overlays()),
+            'options'    => $this->serializer->serialize($data->options()),
         ];
     }
 }

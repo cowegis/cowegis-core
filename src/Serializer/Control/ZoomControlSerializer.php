@@ -22,6 +22,7 @@ final class ZoomControlSerializer extends DataSerializer
 
         return [
             'controlId'       => $data->controlId()->value(),
+            'name'            => $data->name(),
             'type'            => 'zoom',
             'options'         => $this->serializer->serialize($data->options()),
             'replacesDefault' => $data->replacesDefault(),

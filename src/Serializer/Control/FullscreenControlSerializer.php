@@ -22,6 +22,7 @@ final class FullscreenControlSerializer extends DataSerializer
 
         return [
             'controlId' => $data->controlId()->value(),
+            'name'      => $data->name(),
             'type'      => 'fullscreen',
             'options'   => $this->serializer->serialize($data->options()),
         ];

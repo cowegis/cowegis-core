@@ -22,6 +22,7 @@ final class LoadingControlSerializer extends DataSerializer
 
         return [
             'controlId' => $data->controlId()->value(),
+            'name'      => $data->name(),
             'type'      => 'loading',
             'options'   => $this->serializer->serialize($data->options()),
         ];

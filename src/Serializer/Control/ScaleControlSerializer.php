@@ -22,6 +22,7 @@ final class ScaleControlSerializer extends DataSerializer
 
         return [
             'controlId' => $data->controlId()->value(),
+            'name'      => $data->name(),
             'type'      => 'scale',
             'options'   => $this->serializer->serialize($data->options()),
         ];
