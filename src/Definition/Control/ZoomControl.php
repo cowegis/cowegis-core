@@ -35,6 +35,6 @@ final class ZoomControl extends Control
 
     protected function defaultPosition(): ?string
     {
-        return 'topleft';
+        return Control::POSITION_TOP_LEFT;
     }
 }

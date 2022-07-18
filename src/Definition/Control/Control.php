@@ -13,6 +13,11 @@ use Cowegis\Core\Definition\TitlePlugin;
 
 abstract class Control implements ControlContract
 {
+    public const POSITION_TOP_LEFT = 'topleft';
+    public const POSITION_TOP_RIGHT = 'topright';
+    public const POSITION_BOTTOM_LEFT = 'bottomleft';
+    public const POSITION_BOTTOM_RIGHT = 'bottomright';
+
     use OptionsPlugin;
     use TitlePlugin;
 
@@ -46,7 +51,12 @@ abstract class Control implements ControlContract
     {
         return [
             'position' => EnumConstraint::withDefaultValue(
-                ['topleft', 'topright', 'bottomleft', 'bottomright'],
+                [
+                    self::POSITION_BOTTOM_LEFT,
+                    self::POSITION_BOTTOM_RIGHT,
+                    self::POSITION_TOP_LEFT,
+                    self::POSITION_TOP_RIGHT,
+                ],
                 $this->defaultPosition()
             ),
         ];

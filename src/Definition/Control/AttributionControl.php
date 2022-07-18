@@ -25,7 +25,7 @@ final class AttributionControl extends Control
 
     protected function defaultPosition(): ?string
     {
-        return 'bottomright';
+        return Control::POSITION_BOTTOM_RIGHT;
     }
 
     /** @return string[] */

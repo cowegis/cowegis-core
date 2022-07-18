@@ -25,6 +25,6 @@ final class ScaleControl extends Control
 
     protected function defaultPosition(): ?string
     {
-        return 'bottomleft';
+        return Control::POSITION_BOTTOM_LEFT;
     }
 }

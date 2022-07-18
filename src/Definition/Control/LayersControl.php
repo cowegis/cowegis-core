@@ -40,7 +40,7 @@ final class LayersControl extends Control
 
     protected function defaultPosition(): string
     {
-        return 'topright';
+        return Control::POSITION_TOP_RIGHT;
     }
 
     /** @return array<string, Constraint> */
