@@ -7,7 +7,6 @@ namespace Cowegis\Core\Definition\Control;
 use Cowegis\Core\Constraint\BooleanConstraint;
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\StringConstraint;
-use GoldSpecDigital\ObjectOrientedOAS\Objects\Contact;
 
 final class FullscreenControl extends Control
 {

@@ -13,13 +13,13 @@ use Cowegis\Core\Definition\TitlePlugin;
 
 abstract class Control implements ControlContract
 {
-    public const POSITION_TOP_LEFT = 'topleft';
-    public const POSITION_TOP_RIGHT = 'topright';
-    public const POSITION_BOTTOM_LEFT = 'bottomleft';
-    public const POSITION_BOTTOM_RIGHT = 'bottomright';
-
     use OptionsPlugin;
     use TitlePlugin;
+
+    public const POSITION_TOP_LEFT     = 'topleft';
+    public const POSITION_TOP_RIGHT    = 'topright';
+    public const POSITION_BOTTOM_LEFT  = 'bottomleft';
+    public const POSITION_BOTTOM_RIGHT = 'bottomright';
 
     private ControlId $controlId;
 
