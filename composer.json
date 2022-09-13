@@ -29,6 +29,7 @@
   },
   "require-dev": {
     "doctrine/coding-standard": "^9.0",
+    "friends-of-phpspec/phpspec-expect": "^4.0",
     "phpcq/runner-bootstrap": "^1.0@dev",
     "phpspec/phpspec": "^6.1"
   },
@@ -51,7 +52,8 @@
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
-    }
+    },
+    "sort-packages": true
   },
   "extra": {
     "branch-alias": {

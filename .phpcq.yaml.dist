@@ -80,6 +80,8 @@ tasks:
       exclude:
        - spec/Definition/Vector/MultiPolylineSpec.php
        - spec/Definition/Vector/PolylineSpec.php
+       - src/Schema/GeoData/UriDataSchema.php
+       - src/Schema/GeoData/ExternalDataSchema.php
 
   phpmd:
     plugin: phpmd
