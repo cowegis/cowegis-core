@@ -27,6 +27,11 @@ final class FeatureSchema extends Schema
         $this->properties   = [
             Schema::string('type')
                 ->enum('Feature'),
+            OneOf::create('id')
+                ->schemas(
+                    Schema::string(),
+                    Schema::integer()
+                ),
             HashMap::create('properties'),
             OneOf::create('geometry')
                 ->schemas(
