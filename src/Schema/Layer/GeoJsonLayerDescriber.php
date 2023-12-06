@@ -19,9 +19,9 @@ class GeoJsonLayerDescriber extends LayerSchemaDescriber
             OneOf::create('data')
                 ->schemas(
                     Schema::string()->format('url'),
-                    Schema::ref(FeatureCollectionSchema::FULL_REF)
+                    Schema::ref(FeatureCollectionSchema::FULL_REF),
                 ),
-            'GeoJsonLayerData'
+            'GeoJsonLayerData',
         );
 
         return [$reference->objectId('data')];

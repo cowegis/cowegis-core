@@ -19,7 +19,6 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\SecurityScheme;
 
 use function array_values;
-use function get_class;
 
 final class ComponentsBuilder
 {
@@ -45,7 +44,7 @@ final class ComponentsBuilder
      * @psalm-var array<array-key, Example>
      * @var Example[]|
      */
-    private $examples = [];
+    private array $examples = [];
 
     /**
      * @psalm-var array<array-key, RequestBody>
@@ -77,12 +76,12 @@ final class ComponentsBuilder
      */
     private array $callbacks = [];
 
-    public function withSchema(SchemaContract $component, ?string $reference = null): Schema
+    public function withSchema(SchemaContract $component, string|null $reference = null): Schema
     {
         if (! $component instanceof BaseObject) {
             if ($reference === null) {
                 throw new RuntimeException(
-                    'Reference required for schema components of class ' . get_class($component)
+                    'Reference required for schema components of class ' . $component::class,
                 );
             }
 
@@ -92,46 +91,52 @@ final class ComponentsBuilder
         }
 
         return Schema::ref(
-            $this->addWithUniqueReference($component, $this->schemas, 'schemas/', 'schema', $reference)
+            $this->addWithUniqueReference($component, $this->schemas, 'schemas/', 'schema', $reference),
         );
     }
 
-    public function withResponse(Response $component, ?string $reference = null): Response
+    public function withResponse(Response $component, string|null $reference = null): Response
     {
         return Response::ref(
-            $this->addWithUniqueReference($component, $this->responses, 'responses/', 'response', $reference)
+            $this->addWithUniqueReference($component, $this->responses, 'responses/', 'response', $reference),
         );
     }
 
-    public function withParameter(Parameter $component, ?string $reference = null): Parameter
+    public function withParameter(Parameter $component, string|null $reference = null): Parameter
     {
         return Parameter::ref(
-            $this->addWithUniqueReference($component, $this->parameters, 'parameters/', 'parameter', $reference)
+            $this->addWithUniqueReference($component, $this->parameters, 'parameters/', 'parameter', $reference),
         );
     }
 
-    public function withExample(Example $component, ?string $reference = null): Example
+    public function withExample(Example $component, string|null $reference = null): Example
     {
         return Example::ref(
-            $this->addWithUniqueReference($component, $this->examples, 'examples/', 'example', $reference)
+            $this->addWithUniqueReference($component, $this->examples, 'examples/', 'example', $reference),
         );
     }
 
-    public function withRequestBody(RequestBody $component, ?string $reference = null): RequestBody
+    public function withRequestBody(RequestBody $component, string|null $reference = null): RequestBody
     {
         return RequestBody::ref(
-            $this->addWithUniqueReference($component, $this->requestBodies, 'requestBodies/', 'requestBody', $reference)
+            $this->addWithUniqueReference(
+                $component,
+                $this->requestBodies,
+                'requestBodies/',
+                'requestBody',
+                $reference,
+            ),
         );
     }
 
-    public function withHeader(Header $component, ?string $reference = null): Header
+    public function withHeader(Header $component, string|null $reference = null): Header
     {
         return Header::ref(
-            $this->addWithUniqueReference($component, $this->headers, 'headers/', 'header', $reference)
+            $this->addWithUniqueReference($component, $this->headers, 'headers/', 'header', $reference),
         );
     }
 
-    public function withSecurityScheme(SecurityScheme $component, ?string $reference = null): SecurityScheme
+    public function withSecurityScheme(SecurityScheme $component, string|null $reference = null): SecurityScheme
     {
         return SecurityScheme::ref(
             $this->addWithUniqueReference(
@@ -139,22 +144,22 @@ final class ComponentsBuilder
                 $this->securitySchemes,
                 'securitySchemes/',
                 'securityScheme',
-                $reference
-            )
+                $reference,
+            ),
         );
     }
 
-    public function withLink(Link $component, ?string $reference = null): Link
+    public function withLink(Link $component, string|null $reference = null): Link
     {
         return Link::ref(
-            $this->addWithUniqueReference($component, $this->links, 'links/', 'link', $reference)
+            $this->addWithUniqueReference($component, $this->links, 'links/', 'link', $reference),
         );
     }
 
-    public function withCallback(PathItem $component, ?string $reference = null): PathItem
+    public function withCallback(PathItem $component, string|null $reference = null): PathItem
     {
         return PathItem::ref(
-            $this->addWithUniqueReference($component, $this->callbacks, 'callbacks/', 'callback', $reference)
+            $this->addWithUniqueReference($component, $this->callbacks, 'callbacks/', 'callback', $reference),
         );
     }
 
@@ -215,7 +220,7 @@ final class ComponentsBuilder
         array &$collection,
         string $prefix,
         string $defaultReference,
-        ?string $customReference
+        string|null $customReference,
     ): string {
         $prefix = '#/components/' . $prefix;
 

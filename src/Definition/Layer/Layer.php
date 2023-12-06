@@ -19,15 +19,12 @@ abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
     use NamePlugin;
     use TitlePlugin;
 
-    private LayerId $layerId;
-
-    private bool $initialVisible;
-
-    public function __construct(LayerId $layerId, string $name, bool $initialVisible = true)
-    {
-        $this->layerId        = $layerId;
-        $this->name           = $name;
-        $this->initialVisible = $initialVisible;
+    public function __construct(
+        private readonly LayerId $layerId,
+        string $name,
+        private readonly bool $initialVisible = true,
+    ) {
+        $this->name = $name;
     }
 
     public function addTo(Map $map): void

@@ -12,13 +12,9 @@ use function is_array;
 
 final class ListConstraint extends BaseConstraint
 {
-    private Constraint $constraint;
-
-    public function __construct(Constraint $constraint, bool $required = false)
+    public function __construct(private readonly Constraint $constraint, bool $required = false)
     {
         parent::__construct($required);
-
-        $this->constraint = $constraint;
     }
 
     /** @return array<int, mixed> */
@@ -27,8 +23,7 @@ final class ListConstraint extends BaseConstraint
         return [];
     }
 
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         if (! is_array($value)) {
             return false;
@@ -52,8 +47,8 @@ final class ListConstraint extends BaseConstraint
         return true;
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    /** @return array<array-key, mixed> */
+    public function filter(mixed $value): array
     {
         if (! is_array($value)) {
             throw new RuntimeException('Values has to be an array, given ' . gettype($value));

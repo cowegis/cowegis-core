@@ -55,7 +55,7 @@ final class GeocoderControlSpec extends ObjectBehavior
                 'suggestMinLength'   => 30,
                 'suggestTimeout'     => 2500,
                 'defaultMarkGeocode' => false,
-            ]
+            ],
         );
     }
 

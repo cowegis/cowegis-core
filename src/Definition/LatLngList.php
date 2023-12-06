@@ -12,28 +12,25 @@ use JsonSerializable;
 use Traversable;
 
 use function array_merge;
+use function array_values;
 use function count;
 
 /**
  * @psalm-import-type TSerializedLatLng from LatLng
  * @psalm-type TSerializedLatLngList = list<TSerializedLatLng>
+ * @implements IteratorAggregate<int, LatLng>
  */
 final class LatLngList implements IteratorAggregate, Countable, JsonSerializable
 {
-    /** @var list<LatLng> */
-    private array $latLngs;
-
     /** @param list<LatLng> $latLngs */
-    public function __construct(array $latLngs)
+    public function __construct(private readonly array $latLngs)
     {
-        Assertion::allIsInstanceOf($latLngs, LatLng::class);
-
-        $this->latLngs = $latLngs;
+        Assertion::allIsInstanceOf($this->latLngs, LatLng::class);
     }
 
     public function add(LatLng ...$latLngs): self
     {
-        return new self(array_merge($this->latLngs, $latLngs));
+        return new self(array_values(array_merge($this->latLngs, $latLngs)));
     }
 
     public function count(): int
@@ -47,7 +44,7 @@ final class LatLngList implements IteratorAggregate, Countable, JsonSerializable
         return $this->latLngs;
     }
 
-    /** @return Traversable<LatLng> */
+    /** @return Traversable<int, LatLng> */
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->latLngs);

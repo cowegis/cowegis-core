@@ -10,6 +10,7 @@ use IteratorAggregate;
 use function array_values;
 use function sprintf;
 
+/** @implements IteratorAggregate<int, Layer> */
 final class Layers implements IteratorAggregate
 {
     /** @var array<string, Layer>|Layer[] */

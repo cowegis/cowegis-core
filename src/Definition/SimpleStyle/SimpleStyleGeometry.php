@@ -18,7 +18,7 @@ interface SimpleStyleGeometry
      *
      * value must follow COLOR RULES
      */
-    public function stroke(): ?string;
+    public function stroke(): string|null;
 
     /**
      * OPTIONAL: default 1.0
@@ -28,7 +28,7 @@ interface SimpleStyleGeometry
      * value must be a floating point number greater than or equal to
      * zero and less or equal to than one
      */
-    public function strokeOpacity(): ?float;
+    public function strokeOpacity(): float|null;
 
     /**
      *  OPTIONAL: default 2
@@ -37,7 +37,7 @@ interface SimpleStyleGeometry
      *
      * value must be a floating point number greater than or equal to 0
      */
-    public function strokeWidth(): ?int;
+    public function strokeWidth(): int|null;
 
     /**
      * OPTIONAL: default "555555"
@@ -45,7 +45,7 @@ interface SimpleStyleGeometry
      *
      * value must follow COLOR RULES
      */
-    public function fill(): ?string;
+    public function fill(): string|null;
 
     /**
      * OPTIONAL: default 0.6
@@ -55,5 +55,5 @@ interface SimpleStyleGeometry
      * value must be a floating point number greater than or equal to
      * zero and less or equal to than one
      */
-    public function fillOpacity(): ?float;
+    public function fillOpacity(): float|null;
 }

@@ -8,6 +8,7 @@ use Iterator;
 
 use function array_values;
 
+/** @implements Iterator<Rule> */
 final class RuleIterator implements Iterator
 {
     /** @var Rule[] */
@@ -15,9 +16,7 @@ final class RuleIterator implements Iterator
 
     private int $index = 0;
 
-    /**
-     * @param Rule[] $rules
-     */
+    /** @param Rule[] $rules */
     public function __construct(array $rules)
     {
         $this->rules = array_values($rules);

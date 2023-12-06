@@ -36,7 +36,7 @@ final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
                 Parameter::path()
                     ->name('layerId')
                     ->schema($builder->idSchemaRef())
-                    ->required()
+                    ->required(),
             )
             ->tags(Tag::create()->name('Layer data'))
             ->responses($response);
@@ -44,7 +44,7 @@ final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
         $builder->withPathItem(
             (new PathItem())
                 ->route('/map/{definitionId}/markers/{layerId}')
-                ->operations($layerDetails)
+                ->operations($layerDetails),
         );
     }
 }

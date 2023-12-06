@@ -8,7 +8,7 @@ use Cowegis\Core\Definition\UI\Popup;
 
 interface HasPopup
 {
-    public function popup(): ?Popup;
+    public function popup(): Popup|null;
 
     public function openPopup(Popup $popup): void;
 }

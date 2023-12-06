@@ -9,13 +9,13 @@ use function in_array;
 final class BooleanConstraint extends ConstraintWithDefault
 {
     /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         return in_array($value, ['1', '0', '', 1, 0, false, true, null], true);
     }
 
     /** {@inheritDoc} */
-    public function filter($value): bool
+    public function filter(mixed $value): bool
     {
         return (bool) $value;
     }

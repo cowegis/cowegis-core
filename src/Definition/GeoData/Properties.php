@@ -18,18 +18,12 @@ final class Properties
         }
     }
 
-    /** @param mixed $value */
-    public function set(string $name, $value): void
+    public function set(string $name, mixed $value): void
     {
         $this->properties[$name] = $value;
     }
 
-    /**
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    public function get(string $name, $default = null)
+    public function get(string $name, mixed $default = null): mixed
     {
         return $this->properties[$name] ?? $default;
     }

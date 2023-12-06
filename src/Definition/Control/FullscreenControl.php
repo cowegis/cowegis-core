@@ -10,7 +10,7 @@ use Cowegis\Core\Constraint\StringConstraint;
 
 final class FullscreenControl extends Control
 {
-    protected function defaultPosition(): ?string
+    protected function defaultPosition(): string|null
     {
         return Control::POSITION_TOP_LEFT;
     }

@@ -6,25 +6,18 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\LayerGroup;
 
-use function assert;
-
+/** @extends MapLayerSerializer<LayerGroup> */
 class LayerGroupSerializer extends MapLayerSerializer
 {
-    /**
-     * @param LayerGroup|mixed $layer
-     *
-     * @return array<string,mixed>
-     */
-    public function serialize($layer): array
+    /** {@inheritDoc}*/
+    public function serialize(mixed $data): array
     {
-        assert($layer instanceof LayerGroup);
-
-        $data         = parent::serialize($layer);
-        $data['type'] = $this->type();
+        $serialized         = parent::serialize($data);
+        $serialized['type'] = $this->type();
         /** @psalm-var list<array<string, mixed>> */
-        $data['layers'] = $this->serializer->serialize($layer->layers());
+        $serialized['layers'] = $this->serializer->serialize($data->layers());
 
-        return $data;
+        return $serialized;
     }
 
     protected function type(): string

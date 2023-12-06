@@ -12,21 +12,12 @@ final class DistanceRule implements Rule
 {
     public const QUERY_PARAM = 'distance';
 
-    private LatLng $coordinates;
-
     /**
-     * The radius in meter.
+     * @param LatLng $coordinates The center point.
+     * @param int    $radius      The radius in meter.
      */
-    private int $radius;
-
-    /**
-     * @param LatLng $latLng The center point.
-     * @param int    $radius The radius in meter.
-     */
-    public function __construct(LatLng $latLng, int $radius)
+    public function __construct(private readonly LatLng $coordinates, private readonly int $radius)
     {
-        $this->coordinates = $latLng;
-        $this->radius      = $radius;
     }
 
     public function name(): string
@@ -39,9 +30,7 @@ final class DistanceRule implements Rule
         return $this->coordinates;
     }
 
-    /**
-     * Get the radius in meter.
-     */
+    /** Get the radius in meter. */
     public function radius(): int
     {
         return $this->radius;
@@ -54,7 +43,7 @@ final class DistanceRule implements Rule
             [
                 'coordinates' => $this->coordinates()->toString(),
                 'radius'      => (string) $this->radius(),
-            ]
+            ],
         );
     }
 }

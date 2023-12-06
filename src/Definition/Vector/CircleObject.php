@@ -10,13 +10,13 @@ use Cowegis\Core\Definition\Layer\LayerId;
 
 abstract class CircleObject extends Path
 {
-    private LatLng $center;
-
-    public function __construct(LayerId $layerId, string $name, LatLng $center, bool $initialVisible = true)
-    {
+    public function __construct(
+        LayerId $layerId,
+        string $name,
+        private readonly LatLng $center,
+        bool $initialVisible = true,
+    ) {
         parent::__construct($layerId, $name, $initialVisible);
-
-        $this->center = $center;
     }
 
     /** {@inheritDoc} */

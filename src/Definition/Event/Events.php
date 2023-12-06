@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\Event;
 
-use Cowegis\Core\Definition\Expression\Expression;
 use Cowegis\Core\Definition\Expression\Reference;
 use JsonSerializable;
 
@@ -17,10 +16,7 @@ use function array_map;
 */
 final class Events implements JsonSerializable
 {
-    /**
-     * @var array<int, array<string, mixed>>
-     * @psalm-var list<TEvent>
-     */
+    /** @var list<TEvent> */
     private array $listeners = [];
 
     /** @SuppressWarnings(PHPMD.ShortMethodName) */
@@ -37,18 +33,14 @@ final class Events implements JsonSerializable
     /**
      * Get all listeners grouped by event name.
      *
-     * @return Expression[][]
-     * @psalm-return list<TEvent>
+     * @return list<TEvent>
      */
     public function listeners(): array
     {
         return $this->listeners;
     }
 
-    /**
-     * @return array<int, array<string,mixed>>
-     * @psalm-return list<TSerializedEvent>
-     */
+    /** @return list<TSerializedEvent> */
     public function jsonSerialize(): array
     {
         return array_map(
@@ -63,7 +55,7 @@ final class Events implements JsonSerializable
 
                 return $listener;
             },
-            $this->listeners
+            $this->listeners,
         );
     }
 }

@@ -10,6 +10,7 @@ use Cowegis\Core\Definition\UI\Popup;
 use function assert;
 
 /**
+ * @extends DataSerializer<Popup>
  * @psalm-import-type TSerializedEvent from Events
  * @psalm-type TSerializedPopup = array{
  *   content: string,
@@ -21,23 +22,21 @@ use function assert;
 final class PopupSerializer extends DataSerializer
 {
     /**
-     * @param Popup|mixed $popup
-     *
      * @return array<string, mixed>
      * @psalm-return TSerializedPopup
      */
-    public function serialize($popup): array
+    public function serialize(mixed $data): array
     {
-        assert($popup instanceof Popup);
+        assert($data instanceof Popup);
 
-        $presetId = $popup->presetId();
+        $presetId = $data->presetId();
         /** @psalm-var array<string,mixed> $options */
-        $options = $this->serializer->serialize($popup->options());
+        $options = $this->serializer->serialize($data->options());
         /** @psalm-var list<TSerializedEvent> $events */
-        $events = $this->serializer->serialize($popup->events());
+        $events = $this->serializer->serialize($data->events());
 
         return [
-            'content'  => $popup->content(),
+            'content'  => $data->content(),
             'presetId' => $presetId ? $presetId->value() : null,
             'options'  => $options,
             'events'   => $events,

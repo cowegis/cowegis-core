@@ -57,7 +57,7 @@ final class LatLngSpec extends ObjectBehavior
                 self::LATITUDE,
                 self::LONGITUDE,
                 self::ALTITUDE,
-            ]
+            ],
         );
     }
 }

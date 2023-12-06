@@ -20,7 +20,7 @@ final class SchemaBuilder
 
     private Info $info;
 
-    private ?ExternalDocs $externalDocs = null;
+    private ExternalDocs|null $externalDocs = null;
 
     /** @var Server[] */
     private array $servers = [];
@@ -42,7 +42,7 @@ final class SchemaBuilder
     public static function create(
         Info $info,
         SchemaContract $idSchema,
-        string $openApiVersion = OpenApi::OPENAPI_3_0_2
+        string $openApiVersion = OpenApi::OPENAPI_3_0_2,
     ): self {
         $instance                 = new self();
         $instance->info           = $info;
@@ -53,13 +53,13 @@ final class SchemaBuilder
         $instance->components()->withSchema(
             Schema::create('NullValue')
                 ->type('object')
-                ->nullable()
+                ->nullable(),
         );
 
         return $instance;
     }
 
-    public function idSchemaRef(?string $objectId = null): Schema
+    public function idSchemaRef(string|null $objectId = null): Schema
     {
         return $objectId ? $this->idSchemaRef->objectId($objectId) : $this->idSchemaRef;
     }

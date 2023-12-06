@@ -16,6 +16,7 @@ use function assert;
 use function count;
 
 /**
+ * @extends DataSerializer<Map>
  * @psalm-import-type TSerializedEvent from Events
  * @psalm-import-type TSerializedLatLng from LatLng
  * @psalm-import-type TSerializedPane from Pane
@@ -44,34 +45,32 @@ use function count;
 final class MapSerializer extends DataSerializer
 {
     /**
-     * @param Map|mixed $map
-     *
      * @return array<string, mixed>
      * @psalm-return TSerializedMap
      */
-    public function serialize($map): array
+    public function serialize(mixed $data): array
     {
-        assert($map instanceof Map);
+        assert($data instanceof Map);
 
         /** @psalm-var array<string, mixed> */
-        $options = $this->serializer->serialize($map->options());
+        $options = $this->serializer->serialize($data->options());
         /** @psalm-var array<string, mixed> */
-        $bounds = $this->serializer->serialize($map->boundsOptions());
+        $bounds = $this->serializer->serialize($data->boundsOptions());
         /** @psalm-var TSerializedPresets */
-        $presets = $this->serializer->serialize($map->presets());
+        $presets = $this->serializer->serialize($data->presets());
         /** @psalm-var list<TSerializedEvent> */
-        $events = $this->serializer->serialize($map->events());
+        $events = $this->serializer->serialize($data->events());
 
         return [
-            'definitionId' => $map->mapId()->value(),
-            'elementId'    => $map->elementId(),
-            'title'        => $map->title(),
+            'definitionId' => $data->mapId()->value(),
+            'elementId'    => $data->elementId(),
+            'title'        => $data->title(),
             'options'      => $options,
-            'layers'       => $this->serializeLayers($map),
-            'controls'     => $this->serializeControls($map->controls()),
-            'panes'        => $this->serializePanes($map->panes()),
-            'view'         => $this->serializeView($map->view()),
-            'locate'       => $this->serializeLocate($map),
+            'layers'       => $this->serializeLayers($data),
+            'controls'     => $this->serializeControls($data->controls()),
+            'panes'        => $this->serializePanes($data->panes()),
+            'view'         => $this->serializeView($data->view()),
+            'locate'       => $this->serializeLocate($data),
             'bounds'       => $bounds,
             'presets'      => $presets,
             'events'       => $events,
@@ -125,10 +124,8 @@ final class MapSerializer extends DataSerializer
         return $data;
     }
 
-    /**
-     * @return bool|array<string, mixed>
-     */
-    private function serializeLocate(Map $map)
+    /** @return bool|array<string, mixed> */
+    private function serializeLocate(Map $map): bool|array
     {
         if ($map->locate() === false) {
             return false;

@@ -6,13 +6,9 @@ namespace Cowegis\Core\Definition\Asset;
 
 final class Assets
 {
-    /** @var Asset[] */
-    private array $assets;
-
     /** @param Asset[] $assets */
-    public function __construct(array $assets = [])
+    public function __construct(private array $assets = [])
     {
-        $this->assets = $assets;
     }
 
     public function add(Asset $asset): void

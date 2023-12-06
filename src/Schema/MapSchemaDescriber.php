@@ -55,7 +55,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                 Parameter::path()
                     ->name('definitionId')
                     ->schema($builder->idSchemaRef())
-                    ->required()
+                    ->required(),
             )
             ->tags($tag)
             ->responses($response);
@@ -95,7 +95,7 @@ final class MapSchemaDescriber implements SchemaDescriber
     {
         $mapLocateReference = $builder->components()->withSchema(
             OneOf::create()->schemas(Schema::boolean()->example('true'), new HashMap()),
-            'MapLocate'
+            'MapLocate',
         );
 
         return Schema::object('MapSchema')
@@ -124,8 +124,8 @@ final class MapSchemaDescriber implements SchemaDescriber
                         ->properties(
                             Schema::string('type')->enum('reference'),
                             Schema::array('namespace')->items(Schema::string())->nullable()->minItems(1),
-                            Schema::string('reference')
-                        )
+                            Schema::string('reference'),
+                        ),
                 ),
                 Schema::array('assets')->items(
                     Schema::object()
@@ -136,8 +136,8 @@ final class MapSchemaDescriber implements SchemaDescriber
                                 ->example(Asset::TYPE_JAVASCRIPT),
                             Schema::string('url')
                                 ->format('url')
-                                ->example('/cowegis/js/callbacks/123.js')
-                        )
+                                ->example('/cowegis/js/callbacks/123.js'),
+                        ),
                 ),
                 Schema::object('view')
                     ->required('center', 'zoom', 'options')
@@ -150,7 +150,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                         Schema::number('zoom')
                             ->nullable()
                             ->minimum(0),
-                        HashMap::create('options')
+                        HashMap::create('options'),
                     ),
                 $mapLocateReference->objectId('locate'),
                 HashMap::create('bounds')
@@ -166,7 +166,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                             ->default(false)
                             ->description(
                                 'Indicates if bounds should be calculated dynamically after all deferred map '
-                                . 'data is loaded'
+                                . 'data is loaded',
                             ),
                         Schema::array('paddingTopLeft')
                             ->description('Recognize top left padding when calculating bounds')
@@ -177,8 +177,8 @@ final class MapSchemaDescriber implements SchemaDescriber
                             ->description('Recognize top left padding when calculating bounds')
                             ->minItems(2)
                             ->maxItems(2)
-                            ->items(Schema::create()->type('number'))
-                    )
+                            ->items(Schema::create()->type('number')),
+                    ),
             );
     }
 
@@ -195,7 +195,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                 Schema::string('pointerEvents')
                     ->description('CSS setting for pointer events')
                     ->example('auto')
-                    ->enum('auto', 'none')
+                    ->enum('auto', 'none'),
             )
             ->required('paneId', 'name', 'zIndex');
     }

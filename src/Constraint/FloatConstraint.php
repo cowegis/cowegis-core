@@ -9,13 +9,13 @@ use function is_numeric;
 final class FloatConstraint extends ConstraintWithDefault
 {
     /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         return is_numeric($value);
     }
 
     /** {@inheritDoc} */
-    public function filter($value): float
+    public function filter(mixed $value): float
     {
         return (float) $value;
     }

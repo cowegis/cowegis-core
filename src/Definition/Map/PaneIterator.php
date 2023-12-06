@@ -6,29 +6,19 @@ namespace Cowegis\Core\Definition\Map;
 
 use Iterator;
 
+use function array_values;
+
+/** @implements Iterator<int,Pane> */
 final class PaneIterator implements Iterator
 {
-    /**
-     * @psalm-var list<Pane>
-     * @var Pane[]
-     */
-    private array $panes;
-
     private int $index = 0;
 
-    /**
-     * @param Pane[] $panes
-     * @psalm-param list<Pane> $panes
-     */
-    public function __construct(array $panes)
+    /** @param list<Pane> $panes */
+    public function __construct(private readonly array $panes)
     {
-        $this->panes = $panes;
     }
 
-    /**
-     * @param Pane[] $panes
-     * @psalm-param list<Pane> $panes
-     */
+    /** @param list<Pane> $panes */
     public static function fromArray(array $panes): self
     {
         return new self($panes);
@@ -36,7 +26,7 @@ final class PaneIterator implements Iterator
 
     public static function fromList(Pane ...$panes): self
     {
-        return new self($panes);
+        return new self(array_values($panes));
     }
 
     public function current(): Pane

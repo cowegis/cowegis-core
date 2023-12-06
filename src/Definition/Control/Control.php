@@ -21,14 +21,8 @@ abstract class Control implements ControlContract
     public const POSITION_BOTTOM_LEFT  = 'bottomleft';
     public const POSITION_BOTTOM_RIGHT = 'bottomright';
 
-    private ControlId $controlId;
-
-    private string $name;
-
-    public function __construct(ControlId $controlId, string $name)
+    public function __construct(private readonly ControlId $controlId, private readonly string $name)
     {
-        $this->controlId = $controlId;
-        $this->name      = $name;
     }
 
     public function controlId(): ControlId
@@ -57,10 +51,10 @@ abstract class Control implements ControlContract
                     self::POSITION_TOP_LEFT,
                     self::POSITION_TOP_RIGHT,
                 ],
-                $this->defaultPosition()
+                $this->defaultPosition(),
             ),
         ];
     }
 
-    abstract protected function defaultPosition(): ?string;
+    abstract protected function defaultPosition(): string|null;
 }

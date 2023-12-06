@@ -19,9 +19,9 @@ final class DataLayerSchemaDescriber extends LayerSchemaDescriber
             OneOf::create('data')
                 ->schemas(
                     Schema::ref(GeoDataSchema::FULL_REF),
-                    Schema::create()->type('null')
+                    Schema::create()->type('null'),
                 ),
-            'DataLayerData'
+            'DataLayerData',
         );
 
         return [$reference->objectId('data')];

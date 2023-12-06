@@ -13,11 +13,8 @@ use function ucfirst;
 
 abstract class LayerSchemaDescriber
 {
-    private string $layerType;
-
-    public function __construct(string $layerType)
+    public function __construct(private readonly string $layerType)
     {
-        $this->layerType = $layerType;
     }
 
     /**
@@ -54,9 +51,7 @@ abstract class LayerSchemaDescriber
         return array_merge($properties, $this->optionalProperties($builder));
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the parameters
-     */
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) - Implementations might need the parameters */
     protected function registerRequirements(SchemaBuilder $builder, Schema $schema): void
     {
     }
@@ -76,9 +71,6 @@ abstract class LayerSchemaDescriber
         $this->registerRequirements($builder, $schema);
 
         return AllOf::create('LayerType' . ucfirst($this->layerType))
-            ->schemas(
-                Schema::ref(LayerSchema::FULL_REF),
-                $schema
-            );
+            ->schemas(Schema::ref(LayerSchema::FULL_REF), $schema);
     }
 }

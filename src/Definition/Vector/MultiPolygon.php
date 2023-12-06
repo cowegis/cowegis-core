@@ -12,15 +12,10 @@ use Cowegis\GeoJson\Position\LinearRing;
 
 final class MultiPolygon extends Path
 {
-    /** @var list<list<LatLngList>> */
-    private array $latLngs;
-
     /** @param list<list<LatLngList>> $latLngs */
-    public function __construct(LayerId $layerId, string $name, array $latLngs, bool $initialVisible = true)
+    public function __construct(LayerId $layerId, string $name, private array $latLngs, bool $initialVisible = true)
     {
         parent::__construct($layerId, $name, $initialVisible);
-
-        $this->latLngs = $latLngs;
     }
 
     /** @param list<list<LatLngList>> $latLngs */

@@ -7,29 +7,19 @@ namespace Cowegis\Core\Definition\Control;
 use Cowegis\Core\Definition\Control;
 use Iterator;
 
+use function array_values;
+
+/** @implements Iterator<int, Control> */
 final class ControlIterator implements Iterator
 {
-    /**
-     * @psalm-var list<Control>
-     * @var Control[]
-     */
-    private array $controls;
-
     private int $index = 0;
 
-    /**
-     * @param Control[] $controls
-     * @psalm-param list<Control> $controls
-     */
-    public function __construct(array $controls)
+    /** @param list<Control> $controls */
+    public function __construct(private readonly array $controls)
     {
-        $this->controls = $controls;
     }
 
-    /**
-     * @param Control[] $controls
-     * @psalm-param list<Control> $controls
-     */
+    /** @param list<Control> $controls */
     public static function fromArray(array $controls): self
     {
         return new self($controls);
@@ -37,7 +27,7 @@ final class ControlIterator implements Iterator
 
     public static function fromList(Control ...$controls): self
     {
-        return new self($controls);
+        return new self(array_values($controls));
     }
 
     public function current(): Control

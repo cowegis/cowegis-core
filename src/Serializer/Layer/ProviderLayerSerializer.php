@@ -8,22 +8,19 @@ use Cowegis\Core\Definition\Layer\ProviderLayer;
 
 use function assert;
 
+/** @extends MapLayerSerializer<ProviderLayer> */
 final class ProviderLayerSerializer extends MapLayerSerializer
 {
-    /**
-     * @param ProviderLayer|mixed $layer
-     *
-     * @return array<string,mixed>
-     */
-    public function serialize($layer): array
+    /** @return array<string,mixed> */
+    public function serialize(mixed $data): array
     {
-        assert($layer instanceof ProviderLayer);
+        assert($data instanceof ProviderLayer);
 
-        $data             = parent::serialize($layer);
-        $data['type']     = 'provider';
-        $data['provider'] = $layer->provider();
-        $data['variant']  = $layer->variant();
+        $serialized             = parent::serialize($data);
+        $serialized['type']     = 'provider';
+        $serialized['provider'] = $data->provider();
+        $serialized['variant']  = $data->variant();
 
-        return $data;
+        return $serialized;
     }
 }

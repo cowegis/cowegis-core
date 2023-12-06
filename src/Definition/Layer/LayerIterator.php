@@ -7,29 +7,19 @@ namespace Cowegis\Core\Definition\Layer;
 use Cowegis\Core\Definition\Layer;
 use Iterator;
 
+use function array_values;
+
+/** @implements Iterator<int, Layer> */
 final class LayerIterator implements Iterator
 {
-    /**
-     * @psalm-var list<Layer>
-     * @var Layer[]
-     */
-    private array $layers;
-
     private int $index = 0;
 
-    /**
-     * @param Layer[] $layers
-     * @psalm-param list<Layer> $layers
-     */
-    public function __construct(array $layers)
+    /** @param list<Layer> $layers */
+    public function __construct(private readonly array $layers)
     {
-        $this->layers = $layers;
     }
 
-    /**
-     * @param Layer[] $layers
-     * @psalm-param list<Layer> $layers
-     */
+    /** @param list<Layer> $layers */
     public static function fromArray(array $layers): self
     {
         return new self($layers);
@@ -37,7 +27,7 @@ final class LayerIterator implements Iterator
 
     public static function fromList(Layer ...$layers): self
     {
-        return new self($layers);
+        return new self(array_values($layers));
     }
 
     public function current(): Layer

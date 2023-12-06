@@ -7,30 +7,25 @@ namespace Cowegis\Core\Serializer;
 use ArrayObject;
 use Cowegis\Core\Definition\Options;
 
-use function assert;
 use function is_array;
 use function is_object;
 
+/** @extends DataSerializer<Options> */
 final class OptionsSerializer extends DataSerializer
 {
-    /**
-     * @param Options|mixed $options
-     */
-    public function serialize($options): ArrayObject
+    public function serialize(mixed $data): ArrayObject
     {
-        assert($options instanceof Options);
+        $serialized = new ArrayObject($data->toArray());
 
-        $data = new ArrayObject($options->toArray());
-
-        foreach ($data as $key => $value) {
+        foreach ($serialized as $key => $value) {
             if (! is_object($value) && ! is_array($value)) {
                 continue;
             }
 
             /** @psalm-suppress MixedAssignment */
-            $data[$key] = $this->serializer->serialize($value);
+            $serialized[$key] = $this->serializer->serialize($value);
         }
 
-        return $data;
+        return $serialized;
     }
 }

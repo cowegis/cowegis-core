@@ -12,16 +12,14 @@ use IteratorAggregate;
 use function array_key_exists;
 use function count;
 
+/** @implements IteratorAggregate<string,mixed> */
 final class Options implements IteratorAggregate, Countable
 {
-    private Constraints $constraints;
-
     /** @var array<string, mixed> */
     private array $options = [];
 
-    public function __construct(Constraints $constraints)
+    public function __construct(private readonly Constraints $constraints)
     {
-        $this->constraints = $constraints;
     }
 
     /** @param array<string, mixed> $options */
@@ -35,8 +33,7 @@ final class Options implements IteratorAggregate, Countable
         return $this;
     }
 
-    /** @param mixed $value */
-    public function set(string $key, $value): self
+    public function set(string $key, mixed $value): self
     {
         /** @psalm-var mixed $value */
         $value = $this->constraints->filterValue($key, $value);
@@ -50,12 +47,7 @@ final class Options implements IteratorAggregate, Countable
         return $this;
     }
 
-    /**
-     * @param mixed $fallback
-     *
-     * @return mixed
-     */
-    public function get(string $key, $fallback = null)
+    public function get(string $key, mixed $fallback = null): mixed
     {
         if (array_key_exists($key, $this->options)) {
             return $this->options[$key];

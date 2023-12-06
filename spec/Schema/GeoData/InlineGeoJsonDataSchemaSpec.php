@@ -36,7 +36,7 @@ final class InlineGeoJsonDataSchemaSpec extends ObjectBehavior
                         ],
                     ],
                 ],
-            ]
+            ],
         );
     }
 }

@@ -6,21 +6,14 @@ namespace Cowegis\Core\Definition\Layer;
 
 final class ProviderLayer extends GridLayer
 {
-    private string $provider;
-
-    private ?string $variant = null;
-
     public function __construct(
         LayerId $layerId,
         string $name,
-        string $provider,
-        ?string $variant,
-        bool $initialVisible
+        private readonly string $provider,
+        private readonly string|null $variant,
+        bool $initialVisible,
     ) {
         parent::__construct($layerId, $name, $initialVisible);
-
-        $this->provider = $provider;
-        $this->variant  = $variant;
     }
 
     public function provider(): string
@@ -28,7 +21,7 @@ final class ProviderLayer extends GridLayer
         return $this->provider;
     }
 
-    public function variant(): ?string
+    public function variant(): string|null
     {
         return $this->variant;
     }

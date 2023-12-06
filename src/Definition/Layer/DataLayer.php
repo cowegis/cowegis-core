@@ -17,7 +17,7 @@ final class DataLayer extends Layer
 {
     use EventsPlugin;
 
-    private ?GeoData $data = null;
+    private GeoData|null $data = null;
 
     public function dataFromUri(ExternalData $dataUri): void
     {
@@ -29,7 +29,7 @@ final class DataLayer extends Layer
         $this->data = $data;
     }
 
-    public function data(): ?GeoData
+    public function data(): GeoData|null
     {
         return $this->data;
     }

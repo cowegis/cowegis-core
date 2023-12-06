@@ -12,22 +12,15 @@ use Cowegis\GeoJson\Feature\FeatureCollection;
 
 use function assert;
 
+/** @implements Serializer<MarkersLayerData> */
 final class MarkersLayerDataSerializer implements Serializer
 {
-    private Serializer $serializer;
-
-    public function __construct(Serializer $serializer)
+    public function __construct(private readonly Serializer $serializer)
     {
-        $this->serializer = $serializer;
     }
 
-    /**
-     * @param MarkersLayerData|mixed $data
-     */
-    public function serialize($data): FeatureCollection
+    public function serialize(mixed $data): FeatureCollection
     {
-        assert($data instanceof MarkersLayerData);
-
         $features = [];
         foreach ($data as $marker) {
             assert($marker instanceof Marker);

@@ -19,8 +19,8 @@ final class LayersControl extends Control
     public function __construct(
         ControlId $controlId,
         string $name,
-        ?LayerIds $baseLayers = null,
-        ?LayerIds $overlays = null
+        LayerIds|null $baseLayers = null,
+        LayerIds|null $overlays = null,
     ) {
         parent::__construct($controlId, $name);
 

@@ -13,7 +13,7 @@ final class UriDataSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(?string $objectId = null)
+    public function __construct(string|null $objectId = null)
     {
         parent::__construct($objectId ?: 'uridata');
 
@@ -37,7 +37,7 @@ final class UriDataSchema extends Schema
         $this->required    = ['type', 'uri', 'format'];
     }
 
-    public static function ref(string $ref = '', ?string $objectId = null): BaseObject
+    public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
         return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'uridata');
     }

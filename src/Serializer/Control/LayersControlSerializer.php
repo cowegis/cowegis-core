@@ -7,19 +7,12 @@ namespace Cowegis\Core\Serializer\Control;
 use Cowegis\Core\Definition\Control\LayersControl;
 use Cowegis\Core\Serializer\DataSerializer;
 
-use function assert;
-
+/** @extends DataSerializer<LayersControl> */
 final class LayersControlSerializer extends DataSerializer
 {
-    /**
-     * @param LayersControl|mixed $data
-     *
-     * @return array<string,mixed>
-     */
+    /** {@inheritDoc} */
     public function serialize($data): array
     {
-        assert($data instanceof LayersControl);
-
         return [
             'controlId'  => $data->controlId()->value(),
             'name'       => $data->name(),

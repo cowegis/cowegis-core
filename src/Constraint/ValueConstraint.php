@@ -8,25 +8,17 @@ use Cowegis\Core\Exception\RuntimeException;
 
 final class ValueConstraint extends BaseConstraint
 {
-    /** @var mixed */
-    private $value;
-
-    /** @param mixed $value */
-    public function __construct($value, bool $required = false)
+    public function __construct(private readonly mixed $value, bool $required = false)
     {
         parent::__construct($required);
-
-        $this->value = $value;
     }
 
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         return $this->value === $value;
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    public function filter(mixed $value): mixed
     {
         if ($this->match($value)) {
             return $value;

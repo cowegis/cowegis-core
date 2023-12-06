@@ -11,15 +11,11 @@ use function is_int;
 
 final class IntegerDefinitionId implements DefinitionId
 {
-    private int $value;
-
-    public function __construct(int $value)
+    public function __construct(private readonly int $value)
     {
-        $this->value = $value;
     }
 
-    /** @param mixed $value */
-    public static function fromValue($value): DefinitionId
+    public static function fromValue(mixed $value): DefinitionId
     {
         if (! is_int($value)) {
             throw new RuntimeException('Value has to be an int');

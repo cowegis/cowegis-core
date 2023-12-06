@@ -13,7 +13,7 @@ final class PolygonSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(?string $objectId = null)
+    public function __construct(string|null $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -28,7 +28,7 @@ final class PolygonSchema extends Schema
                 ->items(
                     Schema::array()
                         ->minItems(2)
-                        ->items(Schema::create()->type('number'))
+                        ->items(Schema::create()->type('number')),
                 ),
             BboxSchema::ref(),
         ];

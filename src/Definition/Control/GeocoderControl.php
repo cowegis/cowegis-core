@@ -19,7 +19,7 @@ use Cowegis\Core\Constraint\StringConstraint;
 final class GeocoderControl extends Control
 {
     /** @var TCustomGeocoder|null */
-    private ?array $geocoder = null;
+    private array|null $geocoder = null;
 
     /** @return array<string, Constraint> */
     protected function optionConstraints(): array
@@ -42,7 +42,7 @@ final class GeocoderControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): ?string
+    protected function defaultPosition(): string|null
     {
         return Control::POSITION_TOP_RIGHT;
     }
@@ -54,7 +54,7 @@ final class GeocoderControl extends Control
     }
 
     /** @return TCustomGeocoder|null */
-    public function geocoder(): ?array
+    public function geocoder(): array|null
     {
         return $this->geocoder;
     }

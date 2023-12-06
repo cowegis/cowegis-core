@@ -8,9 +8,9 @@ use Cowegis\Core\Definition\UI\Popup;
 
 trait PopupPlugin
 {
-    private ?Popup $popup = null;
+    private Popup|null $popup = null;
 
-    public function popup(): ?Popup
+    public function popup(): Popup|null
     {
         return $this->popup;
     }

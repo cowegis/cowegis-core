@@ -7,23 +7,16 @@ namespace Cowegis\Core\Serializer;
 use Cowegis\Core\Event\SerializeEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
+/** @extends DataSerializer<mixed> */
 final class EventDispatchingSerializer extends DataSerializer
 {
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(Serializer $serializer, EventDispatcherInterface $eventDispatcher)
+    public function __construct(Serializer $serializer, private readonly EventDispatcherInterface $eventDispatcher)
     {
         parent::__construct($serializer);
-
-        $this->eventDispatcher = $eventDispatcher;
     }
 
-    /**
-     * @param mixed $data
-     *
-     * @return mixed
-     */
-    public function serialize($data)
+    /** {@inheritDoc} */
+    public function serialize(mixed $data): mixed
     {
         /** @psalm-var mixed */
         $serialized = $this->serializer->serialize($data);

@@ -25,7 +25,7 @@ final class MarkerClusterGroup extends FeatureGroup
         $constraints['removeOutsideVisibleBounds'] = BooleanConstraint::withDefaultValue(true);
         $constraints['animate']                    = BooleanConstraint::withDefaultValue(true);
         $constraints['spiderLegPolylineOptions']   = ArrayConstraint::withDefaultValue(
-            ['weight' => 1.5, 'color' => '#222', 'opacity' => 0.5]
+            ['weight' => 1.5, 'color' => '#222', 'opacity' => 0.5],
         );
         $constraints['iconCreateFunction']         = new InstanceOfConstraint(Reference::class);
         $constraints['spiderfyShapePositions']     = new InstanceOfConstraint(Reference::class);

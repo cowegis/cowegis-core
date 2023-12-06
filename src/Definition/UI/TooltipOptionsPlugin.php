@@ -30,13 +30,13 @@ trait TooltipOptionsPlugin
                 'offset'      => InstanceOfConstraint::withDefaultValue(Point::class, new Point(0, 0)),
                 'direction'   => EnumConstraint::withDefaultValue(
                     ['auto', 'right', 'left', 'top', 'bottom', 'center'],
-                    'auto'
+                    'auto',
                 ),
                 'permanent'   => BooleanConstraint::withDefaultValue(false),
                 'sticky'      => BooleanConstraint::withDefaultValue(false),
                 'interactive' => BooleanConstraint::withDefaultValue(false),
                 'opacity'     => FloatConstraint::withDefaultValue(0.9),
-            ]
+            ],
         );
     }
 }

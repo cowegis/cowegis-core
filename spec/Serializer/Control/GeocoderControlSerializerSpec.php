@@ -45,7 +45,7 @@ final class GeocoderControlSerializerSpec extends ObjectBehavior
                     'type'    => 'bing',
                     'options' => [],
                 ],
-            ]
+            ],
         );
     }
 }

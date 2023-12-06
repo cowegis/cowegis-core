@@ -11,8 +11,7 @@ abstract class ConstraintWithDefault extends BaseConstraint
         parent::__construct($required);
     }
 
-    /** @param mixed $value */
-    public static function withDefaultValue($value): Constraint
+    public static function withDefaultValue(mixed $value): Constraint
     {
         return new DefaultValueConstraint(new static(), $value);
     }

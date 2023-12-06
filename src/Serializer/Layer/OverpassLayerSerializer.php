@@ -6,22 +6,15 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\OverpassLayer;
 
-use function assert;
-
+/** @extends MapLayerSerializer<OverpassLayer> */
 final class OverpassLayerSerializer extends MapLayerSerializer
 {
-    /**
-     * @param OverpassLayer|mixed $layer
-     *
-     * @return array<string,mixed>
-     */
-    public function serialize($layer): array
+    /** {@inheritDoc} */
+    public function serialize(mixed $data): array
     {
-        assert($layer instanceof OverpassLayer);
+        $serialized         = parent::serialize($data);
+        $serialized['type'] = 'overpass';
 
-        $data         = parent::serialize($layer);
-        $data['type'] = 'overpass';
-
-        return $data;
+        return $serialized;
     }
 }

@@ -8,15 +8,9 @@ use Generator;
 
 final class Constraints
 {
-    /** @var Constraint[] */
-    private array $constraints;
-
-    /**
-     * @param Constraint[] $constraints
-     */
-    public function __construct(array $constraints)
+    /** @param Constraint[] $constraints */
+    public function __construct(private readonly array $constraints)
     {
-        $this->constraints = $constraints;
     }
 
     public function requiredKeys(): Generator
@@ -30,8 +24,7 @@ final class Constraints
         }
     }
 
-    /** @param mixed $value */
-    public function isDefaultValueOf(string $key, $value): ?bool
+    public function isDefaultValueOf(string $key, mixed $value): bool|null
     {
         if (! isset($this->constraints[$key])) {
             return null;
@@ -44,12 +37,7 @@ final class Constraints
         return $this->constraints[$key]->defaultValue() === $value;
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return mixed
-     */
-    public function filterValue(string $key, $value)
+    public function filterValue(string $key, mixed $value): mixed
     {
         if (! isset($this->constraints[$key])) {
             return $value;
@@ -58,12 +46,7 @@ final class Constraints
         return $this->constraints[$key]->filter($value);
     }
 
-    /**
-     * @param mixed $fallback
-     *
-     * @return mixed
-     */
-    public function defaultValueOf(string $key, $fallback = null)
+    public function defaultValueOf(string $key, mixed $fallback = null): mixed
     {
         if (! isset($this->constraints[$key])) {
             return $fallback;

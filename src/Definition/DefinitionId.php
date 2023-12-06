@@ -8,8 +8,7 @@ use JsonSerializable;
 
 interface DefinitionId extends JsonSerializable
 {
-    /** @param mixed $value */
-    public static function fromValue($value): self;
+    public static function fromValue(mixed $value): self;
 
     public function value(): string;
 }

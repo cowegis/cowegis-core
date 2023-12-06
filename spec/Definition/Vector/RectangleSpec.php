@@ -18,7 +18,7 @@ final class RectangleSpec extends ObjectBehavior
         $this->beConstructedWith(
             new LayerId($definitionId->getWrappedObject()),
             'rectangle',
-            new LatLngBounds(new LatLng(0, 0), new LatLng(1, 0))
+            new LatLngBounds(new LatLng(0, 0), new LatLng(1, 0)),
         );
     }
 

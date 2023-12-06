@@ -11,8 +11,7 @@ use function method_exists;
 
 final class StringConstraint extends ConstraintWithDefault
 {
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         if (is_object($value) && method_exists($value, '__toString')) {
             return true;
@@ -21,8 +20,7 @@ final class StringConstraint extends ConstraintWithDefault
         return in_array(gettype($value), ['string', 'float', 'int'], true);
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    public function filter(mixed $value): string
     {
         return (string) $value;
     }

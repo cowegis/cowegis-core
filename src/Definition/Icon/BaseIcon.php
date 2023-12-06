@@ -14,11 +14,8 @@ abstract class BaseIcon implements Icon
 {
     use OptionsPlugin;
 
-    private IconId $iconId;
-
-    public function __construct(IconId $iconId)
+    public function __construct(private readonly IconId $iconId)
     {
-        $this->iconId = $iconId;
     }
 
     public function iconId(): IconId

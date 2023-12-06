@@ -10,34 +10,34 @@ use Cowegis\Core\Exception\InvalidArgument;
 use function is_array;
 use function is_string;
 
+/** @psalm-import-type TRawLatLng from LatLng */
 final class LatLngConstraint extends ConstraintWithDefault
 {
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         try {
             $this->createFromValue($value);
-        } catch (InvalidArgument $exception) {
+        } catch (InvalidArgument) {
             return false;
         }
 
         return true;
     }
 
-    /** {@inheritDoc} */
-    public function filter($value): LatLng
+    public function filter(mixed $value): LatLng
     {
         return $this->createFromValue($value);
     }
 
-    /** @param mixed $value */
-    private function createFromValue($value): LatLng
+    /** @param LatLng|TRawLatLng|string|mixed $value */
+    private function createFromValue(LatLng|array|string $value): LatLng
     {
         if ($value instanceof LatLng) {
             return $value;
         }
 
         if (is_array($value)) {
+            /** @psalm-suppress MixedArgumentTypeCoercion */
             return LatLng::fromArray($value);
         }
 

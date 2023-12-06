@@ -7,19 +7,12 @@ namespace Cowegis\Core\Serializer\Control;
 use Cowegis\Core\Definition\Control\GeocoderControl;
 use Cowegis\Core\Serializer\DataSerializer;
 
-use function assert;
-
+/** @extends DataSerializer<GeocoderControl> */
 final class GeocoderControlSerializer extends DataSerializer
 {
-    /**
-     * @param GeocoderControl|mixed $data
-     *
-     * @return array<string,mixed>
-     */
+    /** {@inheritDoc} */
     public function serialize($data): array
     {
-        assert($data instanceof GeocoderControl);
-
         return [
             'controlId' => $data->controlId()->value(),
             'name'      => $data->name(),

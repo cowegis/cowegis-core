@@ -8,7 +8,7 @@ use Cowegis\Core\Schema\IdSchema;
 
 final class IntegerIdSchema extends IdSchema
 {
-    public function __construct(?string $objectId = null)
+    public function __construct(string|null $objectId = null)
     {
         parent::__construct($objectId ?: 'id');
 

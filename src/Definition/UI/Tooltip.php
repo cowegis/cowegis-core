@@ -17,17 +17,11 @@ final class Tooltip extends LayerObject implements HasEvents
     use EventsPlugin;
     use TooltipOptionsPlugin;
 
-    private string $content;
-
-    private ?LatLng $coordinates = null;
-
-    private ?TooltipPresetId $presetId = null;
-
-    public function __construct(string $content, ?LatLng $coordinates = null, ?TooltipPresetId $presetId = null)
-    {
-        $this->content     = $content;
-        $this->coordinates = $coordinates;
-        $this->presetId    = $presetId;
+    public function __construct(
+        private readonly string $content,
+        private readonly LatLng|null $coordinates = null,
+        private readonly TooltipPresetId|null $presetId = null,
+    ) {
     }
 
     public function addTo(Map $map): void
@@ -40,12 +34,12 @@ final class Tooltip extends LayerObject implements HasEvents
         return $this->content;
     }
 
-    public function coordinates(): ?LatLng
+    public function coordinates(): LatLng|null
     {
         return $this->coordinates;
     }
 
-    public function presetId(): ?TooltipPresetId
+    public function presetId(): TooltipPresetId|null
     {
         return $this->presetId;
     }

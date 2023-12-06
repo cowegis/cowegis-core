@@ -12,11 +12,8 @@ final class BboxRule implements Rule
 {
     public const QUERY_PARAM = 'bbox';
 
-    private LatLngBounds $boundingBox;
-
-    public function __construct(LatLngBounds $boundingBox)
+    public function __construct(private readonly LatLngBounds $boundingBox)
     {
-        $this->boundingBox = $boundingBox;
     }
 
     public function name(): string
@@ -36,7 +33,7 @@ final class BboxRule implements Rule
             [
                 'from' => $this->boundingBox->southWest()->toString(),
                 'to'   => $this->boundingBox->northEast()->toString(),
-            ]
+            ],
         );
     }
 }

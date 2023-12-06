@@ -8,9 +8,9 @@ use Cowegis\Core\Definition\UI\Tooltip;
 
 trait TooltipPlugin
 {
-    private ?Tooltip $tooltip = null;
+    private Tooltip|null $tooltip = null;
 
-    public function tooltip(): ?Tooltip
+    public function tooltip(): Tooltip|null
     {
         return $this->tooltip;
     }

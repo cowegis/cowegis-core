@@ -13,7 +13,7 @@ use function is_string;
 
 final class FontAwesomeIcon extends BaseSvgIcon
 {
-    public function markerSymbol(): ?string
+    public function markerSymbol(): string|null
     {
         $value = $this->options()->get('icon');
         assert($value === null || is_string($value));

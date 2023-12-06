@@ -18,7 +18,7 @@ final class OverpassLayer extends Layer
         $constraints = parent::optionConstraints();
 
         $constraints['query']         = StringConstraint::withDefaultValue(
-            '(node(BBOX)[organic];node(BBOX)[second_hand];);out qt;'
+            '(node(BBOX)[organic];node(BBOX)[second_hand];);out qt;',
         );
         $constraints['endpoint']      = StringConstraint::withDefaultValue('https://overpass-api.de/api/');
         $constraints['minZoom']       = IntegerConstraint::withDefaultValue(15);

@@ -10,17 +10,13 @@ use Traversable;
 
 use function parse_str;
 
-/**
- * @psalm-import-type TParams from Query
- */
+/** @psalm-import-type TParams from Query */
 final class FilterFactory
 {
     /** @var RuleFactory[] */
     private array $ruleFactories = [];
 
-    /**
-     * @param RuleFactory[] $ruleFactories
-     */
+    /** @param RuleFactory[] $ruleFactories */
     public function __construct(iterable $ruleFactories)
     {
         foreach ($ruleFactories as $ruleFactory) {
@@ -29,7 +25,7 @@ final class FilterFactory
     }
 
     /**
-     * @return Traversable|Generator|string[]
+     * @return Traversable<string>
      * @psalm-return Generator<string>
      */
     public function ruleNames(): Traversable

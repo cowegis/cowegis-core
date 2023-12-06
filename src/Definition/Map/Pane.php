@@ -11,26 +11,18 @@ use JsonSerializable;
  * @psalm-type TSerializedPane = array{
  *   paneId: mixed,
  *   name: string,
- *   zIndex: ?int,
+ *   zIndex: int|null,
  *   pointerEvents: string|null
  * }
  */
 final class Pane implements Definition, JsonSerializable
 {
-    private string $name;
-
-    private ?int $zIndex;
-
-    private PaneId $definitionId;
-
-    private ?string $pointerEvents;
-
-    public function __construct(PaneId $definitionId, string $name, ?int $zIndex, ?string $pointerEvents)
-    {
-        $this->name          = $name;
-        $this->zIndex        = $zIndex;
-        $this->definitionId  = $definitionId;
-        $this->pointerEvents = $pointerEvents;
+    public function __construct(
+        private readonly PaneId $definitionId,
+        private readonly string $name,
+        private readonly int|null $zIndex,
+        private readonly string|null $pointerEvents,
+    ) {
     }
 
     public function paneId(): PaneId
@@ -43,12 +35,12 @@ final class Pane implements Definition, JsonSerializable
         return $this->name;
     }
 
-    public function zIndex(): ?int
+    public function zIndex(): int|null
     {
         return $this->zIndex;
     }
 
-    public function pointerEvents(): ?string
+    public function pointerEvents(): string|null
     {
         return $this->pointerEvents;
     }

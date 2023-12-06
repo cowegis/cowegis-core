@@ -11,7 +11,7 @@ trait TitlePlugin
     /**
      * The title.
      */
-    private ?string $title = null;
+    private string|null $title = null;
 
     /**
      * Set the title.
@@ -26,13 +26,14 @@ trait TitlePlugin
     /**
      * Get elements title.
      */
-    public function title(): ?string
+    public function title(): string|null
     {
         if ($this->title !== null) {
             return $this->title;
         }
 
         if (method_exists($this, 'name')) {
+            /** @psalm-suppress RedundantCast */
             return (string) $this->name();
         }
 

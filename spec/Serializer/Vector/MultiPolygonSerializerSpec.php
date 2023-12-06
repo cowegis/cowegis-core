@@ -40,7 +40,7 @@ final class MultiPolygonSerializerSpec extends ObjectBehavior
                     new LatLngList([new LatLng(4.0, 2.0)]),
                 ],
             ],
-            true
+            true,
         );
 
         $definitionId->value()->willReturn('example_1');
@@ -73,7 +73,7 @@ final class MultiPolygonSerializerSpec extends ObjectBehavior
                         ],
                     ],
                 ],
-            ]
+            ],
         );
     }
 }

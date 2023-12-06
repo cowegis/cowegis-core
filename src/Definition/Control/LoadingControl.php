@@ -26,7 +26,7 @@ final class LoadingControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): ?string
+    protected function defaultPosition(): string|null
     {
         return 'topleft';
     }

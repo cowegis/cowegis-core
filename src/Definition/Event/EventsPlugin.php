@@ -11,7 +11,7 @@ trait EventsPlugin
 
     public function events(): Events
     {
-        /** @psalm-suppress TypeDoesNotContainType */
+        /** @psalm-suppress RedundantPropertyInitializationCheck */
         if (! isset($this->events)) {
             $this->events = new Events();
         }

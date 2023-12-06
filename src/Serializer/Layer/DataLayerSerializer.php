@@ -6,23 +6,16 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\DataLayer;
 
-use function assert;
-
+/** @extends MapLayerSerializer<DataLayer> */
 final class DataLayerSerializer extends MapLayerSerializer
 {
-    /**
-     * @param DataLayer|mixed $layer
-     *
-     * @return array<string,mixed>
-     */
-    public function serialize($layer): array
+    /** {@inheritDoc}*/
+    public function serialize(mixed $data): array
     {
-        assert($layer instanceof DataLayer);
+        $serialized         = parent::serialize($data);
+        $serialized['type'] = 'data';
+        $serialized['data'] = $data->data();
 
-        $data         = parent::serialize($layer);
-        $data['type'] = 'data';
-        $data['data'] = $layer->data();
-
-        return $data;
+        return $serialized;
     }
 }

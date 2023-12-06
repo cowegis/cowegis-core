@@ -17,9 +17,7 @@ final class DelegatingProvider implements Provider
     /** @var Provider[] */
     private array $providers = [];
 
-    /**
-     * @param Provider[] $providers
-     */
+    /** @param Provider[] $providers */
     public function __construct(iterable $providers)
     {
         foreach ($providers as $provider) {
@@ -49,7 +47,7 @@ final class DelegatingProvider implements Provider
         foreach ($this->providers as $provider) {
             try {
                 return $provider->findMap($mapId, $context);
-            } catch (MapNotFound $exception) {
+            } catch (MapNotFound) {
                 // Do nothing try next provider
             }
         }
@@ -62,7 +60,7 @@ final class DelegatingProvider implements Provider
         foreach ($this->providers as $provider) {
             try {
                 return $provider->findLayerData($mapId, $layerId, $context);
-            } catch (DataNotFound $exception) {
+            } catch (DataNotFound) {
                 // Try next provider
             }
         }

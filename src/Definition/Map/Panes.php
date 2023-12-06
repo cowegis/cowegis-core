@@ -10,6 +10,7 @@ use IteratorAggregate;
 use function array_values;
 use function sprintf;
 
+/** @implements IteratorAggregate<Pane> */
 final class Panes implements IteratorAggregate
 {
     /** @var Pane[] */

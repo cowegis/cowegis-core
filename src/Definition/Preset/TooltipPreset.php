@@ -18,11 +18,8 @@ final class TooltipPreset implements Definition, HasOptions
     use OptionsPlugin;
     use TooltipOptionsPlugin;
 
-    private TooltipPresetId $tooltipPresetId;
-
-    public function __construct(TooltipPresetId $tooltipPresetId)
+    public function __construct(private readonly TooltipPresetId $tooltipPresetId)
     {
-        $this->tooltipPresetId = $tooltipPresetId;
     }
 
     public function tooltipPresetId(): TooltipPresetId

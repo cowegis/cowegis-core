@@ -11,15 +11,15 @@ use function sprintf;
 
 final class DataNotFound extends RuntimeException
 {
-    public static function forLayer(LayerId $layerId, ?MapId $mapId): self
+    public static function forLayer(LayerId $layerId, MapId|null $mapId): self
     {
         if ($mapId) {
             return new self(
                 sprintf(
                     'Layer data (ID %s) for map (ID %s) not found',
                     $layerId->value(),
-                    $mapId->value()
-                )
+                    $mapId->value(),
+                ),
             );
         }
 

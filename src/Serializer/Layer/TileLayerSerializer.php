@@ -7,29 +7,20 @@ namespace Cowegis\Core\Serializer\Layer;
 use Cowegis\Core\Definition\Layer\TileLayer;
 use Cowegis\Core\Exception\RuntimeException;
 
+/** @extends MapLayerSerializer<TileLayer> */
 final class TileLayerSerializer extends MapLayerSerializer
 {
-    /** @param mixed $object */
-    public function supports($object): bool
+    /** @return array<string,mixed> */
+    public function serialize(mixed $data): array
     {
-        return $object instanceof TileLayer;
-    }
-
-    /**
-     * @param TileLayer|mixed $layer
-     *
-     * @return array<string,mixed>
-     */
-    public function serialize($layer): array
-    {
-        if (! $layer instanceof TileLayer) {
+        if (! $data instanceof TileLayer) {
             throw new RuntimeException('Unsupported layer type');
         }
 
-        $data                = parent::serialize($layer);
-        $data['type']        = 'tileLayer';
-        $data['urlTemplate'] = $layer->urlTemplate();
+        $serialized                = parent::serialize($data);
+        $serialized['type']        = 'tileLayer';
+        $serialized['urlTemplate'] = $data->urlTemplate();
 
-        return $data;
+        return $serialized;
     }
 }

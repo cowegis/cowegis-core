@@ -13,14 +13,8 @@ final class Popup extends DivOverlay
 {
     use PopupOptionsPlugin;
 
-    private string $content;
-
-    private ?PopupPresetId $presetId = null;
-
-    public function __construct(string $content, ?PopupPresetId $presetId = null)
+    public function __construct(private readonly string $content, private readonly PopupPresetId|null $presetId = null)
     {
-        $this->content  = $content;
-        $this->presetId = $presetId;
     }
 
     public function openOn(HasPopup $target): void
@@ -38,7 +32,7 @@ final class Popup extends DivOverlay
         return $this->content;
     }
 
-    public function presetId(): ?PopupPresetId
+    public function presetId(): PopupPresetId|null
     {
         return $this->presetId;
     }

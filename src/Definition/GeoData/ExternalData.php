@@ -9,14 +9,8 @@ namespace Cowegis\Core\Definition\GeoData;
  */
 final class ExternalData implements GeoData
 {
-    private string $uri;
-
-    private string $format;
-
-    public function __construct(string $uri, string $format)
+    public function __construct(private readonly string $uri, private readonly string $format)
     {
-        $this->uri    = $uri;
-        $this->format = $format;
     }
 
     public function uri(): string

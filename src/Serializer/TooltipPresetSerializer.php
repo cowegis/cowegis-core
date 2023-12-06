@@ -9,6 +9,7 @@ use Cowegis\Core\Definition\Preset\TooltipPreset;
 use function assert;
 
 /**
+ * @extends DataSerializer<TooltipPreset>
  * @psalm-type TSerializedTooltipPreset = array{
  *   presetId: mixed,
  *   options: array<string,mixed>
@@ -17,20 +18,18 @@ use function assert;
 final class TooltipPresetSerializer extends DataSerializer
 {
     /**
-     * @param TooltipPreset|mixed $tooltipPreset
-     *
      * @return array<string, mixed>
      * @psalm-return TSerializedTooltipPreset
      */
-    public function serialize($tooltipPreset): array
+    public function serialize(mixed $data): array
     {
-        assert($tooltipPreset instanceof TooltipPreset);
+        assert($data instanceof TooltipPreset);
 
         /** @psalm-var array<string,mixed> $options */
-        $options = $this->serializer->serialize($tooltipPreset->options());
+        $options = $this->serializer->serialize($data->options());
 
         return [
-            'presetId' => $tooltipPreset->tooltipPresetId()->value(),
+            'presetId' => $data->tooltipPresetId()->value(),
             'options'  => $options,
         ];
     }

@@ -11,21 +11,15 @@ use Cowegis\Core\Definition\UI\Marker;
 use Cowegis\Core\Provider\LayerData;
 use IteratorAggregate;
 
+/** @implements IteratorAggregate<Marker> */
 final class MarkersLayerData implements LayerData, IteratorAggregate
 {
-    /** @var Marker[] */
-    private array $markers;
-
-    private Callbacks $callbacks;
-
-    private Assets $assets;
-
     /** @param Marker[] $markers */
-    public function __construct(array $markers, Assets $assets, Callbacks $callbacks)
-    {
-        $this->markers   = $markers;
-        $this->callbacks = $callbacks;
-        $this->assets    = $assets;
+    public function __construct(
+        private readonly array $markers,
+        private readonly Assets $assets,
+        private readonly Callbacks $callbacks,
+    ) {
     }
 
     public function assets(): Assets

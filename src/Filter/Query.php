@@ -35,7 +35,7 @@ final class Query
     }
 
     /** @param string|array<string,string> $value */
-    public function with(string $name, $value): self
+    public function with(string $name, string|array $value): self
     {
         $instance                = clone $this;
         $instance->params[$name] = $value;
@@ -44,13 +44,13 @@ final class Query
     }
 
     /**
-     * @param mixed $default
+     * @param string|array<string,string> $default
      * @psalm-param TParam $default
      *
-     * @return string|array<string, mixed>
+     * @return string|array<string, mixed>|null
      * @psalm-return TParam|null
      */
-    public function get(string $name, $default = null)
+    public function get(string $name, string|array|null $default = null): string|array|null
     {
         return $this->params[$name] ?? $default;
     }

@@ -41,7 +41,7 @@ final class UriDataSchemaSpec extends ObjectBehavior
                     'uri'    => 'https://example.org/geodata.json',
                     'format' => 'geojson',
                 ],
-            ]
+            ],
         );
     }
 }

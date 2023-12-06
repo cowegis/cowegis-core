@@ -25,7 +25,7 @@ final class DistanceRuleFactory implements RuleFactory
 
         try {
             $data = $query->getArray($this->name());
-        } catch (AssertionError $exception) {
+        } catch (AssertionError) {
             return false;
         }
 

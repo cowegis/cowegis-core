@@ -26,7 +26,7 @@ abstract class GridLayer extends Layer
         $constraints['tileSize']          = OrConstraint::withDefaultValue(
             256,
             new IntegerConstraint(),
-            new InstanceOfConstraint(Point::class)
+            new InstanceOfConstraint(Point::class),
         );
         $constraints['opacity']           = FloatConstraint::withDefaultValue(1.0);
         $constraints['updateWhenIdle']    = BooleanConstraint::withDefaultValue(null);

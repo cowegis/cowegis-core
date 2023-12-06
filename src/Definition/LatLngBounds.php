@@ -22,25 +22,13 @@ use function sprintf;
 final class LatLngBounds
 {
     /**
-     * South west boundary.
-     */
-    private LatLng $southWest;
-
-    /**
-     * North east boundary.
-     */
-    private LatLng $northEast;
-
-    /**
      * Construct.
      *
-     * @param LatLng $southWest South west corner of the bounds.
-     * @param LatLng $northEast North east corner of the bounds.
+     * @param LatLng $southWest South-west corner of the bounds.
+     * @param LatLng $northEast North-east corner of the bounds.
      */
-    public function __construct(LatLng $southWest, LatLng $northEast)
+    public function __construct(private readonly LatLng $southWest, private readonly LatLng $northEast)
     {
-        $this->southWest = $southWest;
-        $this->northEast = $northEast;
     }
 
     /**
@@ -57,17 +45,17 @@ final class LatLngBounds
             throw new InvalidArgumentException('LatLngBounds array format not supported.');
         }
 
-        return new static(
+        return new self(
             LatLng::fromArray($native[0]),
-            LatLng::fromArray($native[1])
+            LatLng::fromArray($native[1]),
         );
     }
 
     /**
      * Create from a string format.
      *
-     * @param string $native    Bounds string representation.
-     * @param string $separator Separator string of each value.
+     * @param string           $native    Bounds string representation.
+     * @param non-empty-string $separator Separator string of each value.
      *
      * @throws InvalidArgumentException If an invalid value is given.
      */
@@ -77,7 +65,7 @@ final class LatLngBounds
 
         if (count($values) !== 4) {
             throw new InvalidArgumentException(
-                sprintf('LatLngBounds can not be created from string "%s"', $native)
+                sprintf('LatLngBounds can not be created from string "%s"', $native),
             );
         }
 
@@ -85,7 +73,7 @@ final class LatLngBounds
 
         return new LatLngBounds(
             new LatLng($values[0], $values[1]),
-            new LatLng($values[2], $values[3])
+            new LatLng($values[2], $values[3]),
         );
     }
 
@@ -125,7 +113,7 @@ final class LatLngBounds
     }
 
     /**
-     * Get south west corner.
+     * Get south-west corner.
      */
     public function southWest(): LatLng
     {
@@ -133,7 +121,7 @@ final class LatLngBounds
     }
 
     /**
-     * Get south east corner.
+     * Get south-east corner.
      */
     public function southEast(): LatLng
     {
@@ -141,7 +129,7 @@ final class LatLngBounds
     }
 
     /**
-     * Get north east corner.
+     * Get north-east corner.
      */
     public function northEast(): LatLng
     {
@@ -149,7 +137,7 @@ final class LatLngBounds
     }
 
     /**
-     * Get south east corner.
+     * Get south-east corner.
      */
     public function northWest(): LatLng
     {
@@ -195,7 +183,7 @@ final class LatLngBounds
     {
         return new LatLng(
             $this->north() - $this->south(),
-            $this->west() - $this->east()
+            $this->west() - $this->east(),
         );
     }
 
@@ -289,7 +277,7 @@ final class LatLngBounds
         return sprintf(
             '%s,%s',
             $this->southWest()->toString($ignoreAltitude),
-            $this->northEast()->toString($ignoreAltitude)
+            $this->northEast()->toString($ignoreAltitude),
         );
     }
 

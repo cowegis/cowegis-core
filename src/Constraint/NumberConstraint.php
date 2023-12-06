@@ -5,20 +5,18 @@ declare(strict_types=1);
 namespace Cowegis\Core\Constraint;
 
 use function is_numeric;
-use function strpos;
+use function str_contains;
 
 final class NumberConstraint extends ConstraintWithDefault
 {
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         return is_numeric($value);
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    public function filter(mixed $value): int|float
     {
-        if (strpos((string) $value, '.') !== false) {
+        if (str_contains((string) $value, '.')) {
             return (float) $value;
         }
 

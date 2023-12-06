@@ -9,29 +9,29 @@ use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\DataSerializer;
 
 /**
- * @template T
+ * @template T of Layer
  * @extends DataSerializer<T>
  */
 abstract class MapLayerSerializer extends DataSerializer
 {
     /**
-     * @param Layer|mixed $layer
+     * @param T $data
      *
      * @return array<string,mixed>
      */
-    public function serialize($layer): array
+    public function serialize(mixed $data): array
     {
-        if (! $layer instanceof Layer) {
+        if (! $data instanceof Layer) {
             throw new RuntimeException('Layer is not an instance of ' . Layer::class);
         }
 
         return [
-            'layerId'        => $layer->layerId()->value(),
-            'name'           => $layer->name(),
-            'title'          => $layer->title(),
-            'initialVisible' => $layer->initialVisible(),
-            'options'        => $this->serializer->serialize($layer->options()),
-            'events'         => $this->serializer->serialize($layer->events()),
+            'layerId'        => $data->layerId()->value(),
+            'name'           => $data->name(),
+            'title'          => $data->title(),
+            'initialVisible' => $data->initialVisible(),
+            'options'        => $this->serializer->serialize($data->options()),
+            'events'         => $this->serializer->serialize($data->events()),
         ];
     }
 }

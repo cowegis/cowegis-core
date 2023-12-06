@@ -6,36 +6,21 @@ namespace Cowegis\Core\Event;
 
 final class SerializeEvent
 {
-    /** @var mixed */
-    private $data;
-
-    /** @var mixed */
-    private $serialized;
-
-    /**
-     * @param mixed $data
-     * @param mixed $serialized
-     */
-    public function __construct($data, $serialized)
+    public function __construct(private readonly mixed $data, private mixed $serialized)
     {
-        $this->data       = $data;
-        $this->serialized = $serialized;
     }
 
-    /** @return mixed */
-    public function data()
+    public function data(): mixed
     {
         return $this->data;
     }
 
-    /** @return mixed */
-    public function serialized()
+    public function serialized(): mixed
     {
         return $this->serialized;
     }
 
-    /** @param mixed $serialized */
-    public function changeSerialized($serialized): void
+    public function changeSerialized(mixed $serialized): void
     {
         $this->serialized = $serialized;
     }

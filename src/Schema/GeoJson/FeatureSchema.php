@@ -15,7 +15,7 @@ final class FeatureSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(?string $objectId = null)
+    public function __construct(string|null $objectId = null)
     {
         parent::__construct($objectId);
 
@@ -30,13 +30,13 @@ final class FeatureSchema extends Schema
             OneOf::create('id')
                 ->schemas(
                     Schema::string(),
-                    Schema::integer()
+                    Schema::integer(),
                 ),
             HashMap::create('properties'),
             OneOf::create('geometry')
                 ->schemas(
                     Schema::ref('#/components/schemas/NullValue'),
-                    Schema::ref(GeometrySchema::FULL_REF)
+                    Schema::ref(GeometrySchema::FULL_REF),
                 ),
             BboxSchema::ref(),
         ];

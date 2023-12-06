@@ -6,16 +6,8 @@ namespace Cowegis\Core\Constraint;
 
 final class DefaultValueConstraint implements Constraint
 {
-    private Constraint $constraint;
-
-    /** @var mixed */
-    private $value;
-
-    /** @param mixed $value */
-    public function __construct(Constraint $constraint, $value)
+    public function __construct(private readonly Constraint $constraint, private readonly mixed $value)
     {
-        $this->value      = $value;
-        $this->constraint = $constraint;
     }
 
     public function required(): bool
@@ -23,20 +15,17 @@ final class DefaultValueConstraint implements Constraint
         return false;
     }
 
-    /** @return mixed */
-    public function defaultValue()
+    public function defaultValue(): mixed
     {
         return $this->value;
     }
 
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         return $this->constraint->match($value);
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    public function filter(mixed $value): mixed
     {
         return $this->constraint->filter($value);
     }

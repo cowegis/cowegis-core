@@ -34,7 +34,7 @@ final class BboxRuleFactory implements RuleFactory
         $bbox        = $query->getArray('bbox');
         $boundingBox = new LatLngBounds(
             LatLng::fromString($bbox['from']),
-            LatLng::fromString($bbox['to'])
+            LatLng::fromString($bbox['to']),
         );
 
         return new BboxRule($boundingBox);

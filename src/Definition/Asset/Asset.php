@@ -14,37 +14,25 @@ final class Asset implements JsonSerializable
 
     public const TYPE_CALLBACKS = 'callbacks';
 
-    private string $type;
+    private string|null $identifier = null;
 
-    private string $url;
-
-    private ?string $identifier = null;
-
-    private function __construct(string $type, string $url)
+    private function __construct(private readonly string $type, private readonly string $url)
     {
-        $this->type = $type;
-        $this->url  = $url;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
-     */
+    /** @SuppressWarnings(PHPMD.CamelCaseMethodName) */
     public static function JAVASCRIPT(string $url): self
     {
         return new self(self::TYPE_JAVASCRIPT, $url);
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
-     */
+    /** @SuppressWarnings(PHPMD.CamelCaseMethodName) */
     public static function STYLESHEET(string $url): self
     {
         return new self(self::TYPE_STYLESHEET, $url);
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CamelCaseMethodName)
-     */
+    /** @SuppressWarnings(PHPMD.CamelCaseMethodName) */
     public static function CALLBACKS(string $identifier, string $url): self
     {
         $instance             = new self(self::TYPE_CALLBACKS, $url);
@@ -63,7 +51,7 @@ final class Asset implements JsonSerializable
         return $this->url;
     }
 
-    public function identifier(): ?string
+    public function identifier(): string|null
     {
         return $this->identifier;
     }

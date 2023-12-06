@@ -17,7 +17,7 @@ final class Polyline extends PolylineObject
 {
     private LatLngList $latLngs;
 
-    private ?LatLngBounds $bounds = null;
+    private LatLngBounds|null $bounds = null;
 
     public function __construct(LayerId $layerId, string $name, LatLngList $latLngs, bool $initialVisible = true)
     {

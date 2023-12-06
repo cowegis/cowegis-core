@@ -23,7 +23,7 @@ final class AttributionControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): ?string
+    protected function defaultPosition(): string|null
     {
         return Control::POSITION_BOTTOM_RIGHT;
     }

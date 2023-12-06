@@ -11,7 +11,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 final class TileLayerSchemaDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
-    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
+    protected function requiredProperties(SchemaBuilder $builder): array
     {
         return [
             Schema::string('urlTemplate')

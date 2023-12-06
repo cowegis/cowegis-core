@@ -9,19 +9,11 @@ use Cowegis\Core\Exception\RuntimeException;
 
 abstract class DefinitionIdDecorator implements DefinitionId
 {
-    private DefinitionId $definitionId;
-
-    final public function __construct(DefinitionId $definitionId)
+    final public function __construct(private readonly DefinitionId $definitionId)
     {
-        $this->definitionId = $definitionId;
     }
 
-    /**
-     * @param mixed $value
-     *
-     * @return static
-     */
-    public static function fromValue($value): DefinitionId
+    public static function fromValue(mixed $value): DefinitionId
     {
         if (! $value instanceof DefinitionId) {
             throw new RuntimeException('Given value must be an instance of ' . DefinitionId::class);
@@ -40,8 +32,7 @@ abstract class DefinitionIdDecorator implements DefinitionId
         return $this->definitionId->value();
     }
 
-    /** @return mixed */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->definitionId->jsonSerialize();
     }

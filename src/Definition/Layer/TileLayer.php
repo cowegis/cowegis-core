@@ -12,13 +12,13 @@ use Cowegis\Core\Constraint\StringConstraint;
 
 final class TileLayer extends GridLayer
 {
-    private string $urlTemplate;
-
-    public function __construct(LayerId $layerId, string $name, string $urlTemplate, bool $initialVisible)
-    {
+    public function __construct(
+        LayerId $layerId,
+        string $name,
+        private readonly string $urlTemplate,
+        bool $initialVisible,
+    ) {
         parent::__construct($layerId, $name, $initialVisible);
-
-        $this->urlTemplate = $urlTemplate;
     }
 
     public function urlTemplate(): string
@@ -41,7 +41,7 @@ final class TileLayer extends GridLayer
         $constraints['crossOrigin']  = OrConstraint::withDefaultValue(
             false,
             new BooleanConstraint(),
-            new StringConstraint()
+            new StringConstraint(),
         );
 
         return $constraints;

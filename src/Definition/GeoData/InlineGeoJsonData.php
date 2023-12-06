@@ -11,11 +11,8 @@ use Cowegis\GeoJson\GeoJsonObject;
  */
 final class InlineGeoJsonData implements GeoData
 {
-    private GeoJsonObject $geoJsonObject;
-
-    public function __construct(GeoJsonObject $geoJsonObject)
+    public function __construct(private readonly GeoJsonObject $geoJsonObject)
     {
-        $this->geoJsonObject = $geoJsonObject;
     }
 
     /** @return array<string, mixed> */

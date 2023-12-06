@@ -21,9 +21,7 @@ use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\PopupPlugin;
 use Cowegis\Core\Definition\TitlePlugin;
 
-/**
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- */
+/** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
 {
     use EventsPlugin;
@@ -31,15 +29,11 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     use OptionsPlugin;
     use PopupPlugin;
 
-    private MapId $mapId;
-
     private Layers $layers;
 
     private Controls $controls;
 
     private Panes $panes;
-
-    private string $elementId;
 
     private bool $locate;
 
@@ -51,10 +45,8 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
 
     private Presets $presets;
 
-    public function __construct(MapId $mapId, string $elementId)
+    public function __construct(private readonly MapId $mapId, private readonly string $elementId)
     {
-        $this->mapId         = $mapId;
-        $this->elementId     = $elementId;
         $this->panes         = new Panes();
         $this->layers        = new Layers();
         $this->controls      = new ControlCollection();
@@ -137,7 +129,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
             'doubleClickZoom'        => Constraint\OrConstraint::withDefaultValue(
                 true,
                 new Constraint\ValueConstraint('center'),
-                new Constraint\BooleanConstraint()
+                new Constraint\BooleanConstraint(),
             ),
             'dragging'               => Constraint\BooleanConstraint::withDefaultValue(true),
             'crs'                    => Constraint\StringConstraint::withDefaultValue('L.CRS.EPSG3857'),
@@ -146,7 +138,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
             'minZoom'                => new Constraint\NumberConstraint(),
             'maxZoom'                => new Constraint\NumberConstraint(),
             'layers'                 => new Constraint\ListConstraint(
-                new Constraint\InstanceOfConstraint(Layer::class)
+                new Constraint\InstanceOfConstraint(Layer::class),
             ),
             'maxBounds'              => new Constraint\LatLngConstraint(),
             'zoomAnimation'          => Constraint\BooleanConstraint::withDefaultValue(true),
@@ -164,7 +156,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
             'scrollWheelZoom'        => Constraint\OrConstraint::withDefaultValue(
                 true,
                 new Constraint\ValueConstraint('center'),
-                new Constraint\BooleanConstraint()
+                new Constraint\BooleanConstraint(),
             ),
             'wheelDebounceTime'      => Constraint\IntegerConstraint::withDefaultValue(40),
             'wheelPxPerZoomLevel'    => Constraint\IntegerConstraint::withDefaultValue(60),
@@ -173,7 +165,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
             'touchZoom'              => Constraint\OrConstraint::withDefaultValue(
                 null,
                 new Constraint\ValueConstraint('center'),
-                new Constraint\BooleanConstraint()
+                new Constraint\BooleanConstraint(),
             ),
             'bounceAtZoomLimits'     => Constraint\BooleanConstraint::withDefaultValue(true),
             'gestureHandling'        => Constraint\BooleanConstraint::withDefaultValue(false),

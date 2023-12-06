@@ -10,10 +10,7 @@ namespace Cowegis\Core\Serializer;
  */
 abstract class DataSerializer implements Serializer
 {
-    protected Serializer $serializer;
-
-    public function __construct(Serializer $serializer)
+    public function __construct(protected readonly Serializer $serializer)
     {
-        $this->serializer = $serializer;
     }
 }

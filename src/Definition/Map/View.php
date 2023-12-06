@@ -16,22 +16,22 @@ final class View implements HasOptions
 {
     use OptionsPlugin;
 
-    private ?LatLng $center = null;
+    private LatLng|null $center = null;
 
-    private ?float $zoom = null;
+    private float|null $zoom = null;
 
-    public function changeView(?LatLng $center, ?float $zoom): void
+    public function changeView(LatLng|null $center, float|null $zoom): void
     {
         $this->center = $center;
         $this->zoom   = $zoom;
     }
 
-    public function center(): ?LatLng
+    public function center(): LatLng|null
     {
         return $this->center;
     }
 
-    public function zoom(): ?float
+    public function zoom(): float|null
     {
         return $this->zoom;
     }

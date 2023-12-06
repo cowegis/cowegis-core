@@ -11,28 +11,13 @@ use Cowegis\Core\Filter\Filter;
 
 abstract class RootContext implements Context
 {
-    private Callbacks $callbacks;
-
-    private Filter $filter;
-
-    private Assets $assets;
-
-    private MapId $mapId;
-
-    private string $locale;
-
     public function __construct(
-        Callbacks $callbacks,
-        Assets $assets,
-        Filter $filter,
-        MapId $mapId,
-        string $locale
+        private Callbacks $callbacks,
+        private Assets $assets,
+        private Filter $filter,
+        private MapId $mapId,
+        private string $locale,
     ) {
-        $this->callbacks = $callbacks;
-        $this->filter    = $filter;
-        $this->assets    = $assets;
-        $this->mapId     = $mapId;
-        $this->locale    = $locale;
     }
 
     public function mapId(): MapId

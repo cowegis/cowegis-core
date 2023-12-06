@@ -12,18 +12,18 @@ use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
 abstract class CircleObjectSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc} */
-    public function serialize($layer): array
+    public function serialize($data): array
     {
-        if (! $layer instanceof CircleObject) {
+        if (! $data instanceof CircleObject) {
             throw new RuntimeException('Layer is not an instance of ' . CircleObject::class);
         }
 
-        $data = parent::serialize($layer);
+        $serialized = parent::serialize($data);
 
-        $data['type']   = $this->serializedType();
-        $data['center'] = $layer->center()->jsonSerialize();
+        $serialized['type']   = $this->serializedType();
+        $serialized['center'] = $data->center()->jsonSerialize();
 
-        return $data;
+        return $serialized;
     }
 
     abstract protected function serializedType(): string;

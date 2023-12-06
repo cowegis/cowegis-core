@@ -40,7 +40,7 @@ final class ExternalDataSchemaSpec extends ObjectBehavior
                     'uri'    => 'https://example.org/geodata.json',
                     'format' => 'geojson',
                 ],
-            ]
+            ],
         );
     }
 }

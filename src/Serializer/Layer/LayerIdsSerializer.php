@@ -11,24 +11,23 @@ use Cowegis\Core\Serializer\Serializer;
 use function array_map;
 use function assert;
 
+/** @implements Serializer<LayerIds> */
 final class LayerIdsSerializer implements Serializer
 {
     /**
-     * @param LayerIds|mixed $layerIds
-     *
      * @return array<int,mixed>
      * @psalm-return list<mixed>
      */
-    public function serialize($layerIds): array
+    public function serialize(mixed $data): array
     {
-        assert($layerIds instanceof LayerIds);
+        assert($data instanceof LayerIds);
 
         return array_map(
             /** @psalm-return mixed */
             static function (LayerId $layerId) {
                 return $layerId->value();
             },
-            $layerIds->toArray()
+            $data->toArray(),
         );
     }
 }

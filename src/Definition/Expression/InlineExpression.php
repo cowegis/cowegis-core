@@ -6,11 +6,8 @@ namespace Cowegis\Core\Definition\Expression;
 
 final class InlineExpression implements Expression
 {
-    private string $code;
-
-    public function __construct(string $code)
+    public function __construct(private readonly string $code)
     {
-        $this->code = $code;
     }
 
     public function toString(): string

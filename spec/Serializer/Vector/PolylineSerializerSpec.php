@@ -31,7 +31,7 @@ final class PolylineSerializerSpec extends ObjectBehavior
             new LayerId($definitionId->getWrappedObject()),
             'example',
             new LatLngList([new LatLng(0.0, 0.0), new LatLng(1.0, 1.0)]),
-            true
+            true,
         );
 
         $definitionId->value()->willReturn('example_1');
@@ -49,7 +49,7 @@ final class PolylineSerializerSpec extends ObjectBehavior
                     [0.0, 0.0],
                     [1.0, 1.0],
                 ],
-            ]
+            ],
         );
     }
 }

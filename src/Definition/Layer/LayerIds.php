@@ -9,10 +9,7 @@ use function array_values;
 
 final class LayerIds
 {
-    /**
-     * @var LayerId[]
-     * @psalm-var list<LayerId>
-     */
+    /** @var list<LayerId> */
     private array $layers = [];
 
     public function addLayer(LayerId $layerId): void
@@ -42,15 +39,12 @@ final class LayerIds
                 $this->layers,
                 static function (LayerId $assignedLayerId) use ($layerId): bool {
                     return $assignedLayerId->value() !== $layerId->value();
-                }
-            )
+                },
+            ),
         );
     }
 
-    /**
-     * @return LayerId[]
-     * @psalm-return list<LayerId>
-     */
+    /** @return list<LayerId> */
     public function toArray(): array
     {
         return $this->layers;

@@ -13,7 +13,7 @@ final class FeatureCollectionSchema extends Schema
 
     public const FULL_REF = '#/components/schemas/' . self::SHORT_REF;
 
-    public function __construct(?string $objectId = null)
+    public function __construct(string|null $objectId = null)
     {
         parent::__construct($objectId);
 

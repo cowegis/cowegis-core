@@ -11,35 +11,26 @@ use Cowegis\Core\Serializer\Serializer;
 use Cowegis\GeoJson\Feature\Feature;
 use Cowegis\GeoJson\Geometry\Point;
 
-use function assert;
-
+/** @implements Serializer<Marker> */
 final class MarkerSerializer implements Serializer
 {
-    private Serializer $serializer;
-
-    public function __construct(Serializer $serializer)
+    public function __construct(private readonly Serializer $serializer)
     {
-        $this->serializer = $serializer;
     }
 
-    /**
-     * @param Marker|mixed $marker
-     */
-    public function serialize($marker): Feature
+    public function serialize(mixed $data): Feature
     {
-        assert($marker instanceof Marker);
-
         $properties = [
-            'markerId'   => $marker->markerId()->value(),
-            'title'      => $marker->title(),
-            'name'       => $marker->name(),
-            'properties' => $this->serializer->serialize(new ArrayObject($marker->properties()->toArray())),
-            'options'    => $this->serializer->serialize($marker->options()),
-            'popup'      => $marker->popup() ? $this->serializer->serialize($marker->popup()) : null,
-            'tooltip'    => $marker->tooltip() ? $this->serializer->serialize($marker->tooltip()) : null,
+            'markerId'   => $data->markerId()->value(),
+            'title'      => $data->title(),
+            'name'       => $data->name(),
+            'properties' => $this->serializer->serialize(new ArrayObject($data->properties()->toArray())),
+            'options'    => $this->serializer->serialize($data->options()),
+            'popup'      => $data->popup() ? $this->serializer->serialize($data->popup()) : null,
+            'tooltip'    => $data->tooltip() ? $this->serializer->serialize($data->tooltip()) : null,
         ];
 
-        $icon = $marker->icon();
+        $icon = $data->icon();
         if ($icon !== null) {
             /** @psalm-var mixed */
             $properties['icon'] = $this->serializer->serialize($icon->iconId()->value());
@@ -53,6 +44,6 @@ final class MarkerSerializer implements Serializer
             $properties['symbol-color']  = $icon->symbolColor();
         }
 
-        return new Feature(new Point($marker->coordinates()->toGeoJson()), $properties);
+        return new Feature(new Point($data->coordinates()->toGeoJson()), $properties);
     }
 }

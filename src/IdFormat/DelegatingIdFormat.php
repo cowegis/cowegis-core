@@ -7,6 +7,10 @@ namespace Cowegis\Core\IdFormat;
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Exception\InvalidArgument;
 
+/**
+ * @template T of DefinitionId
+ * @implements IdFormat<T>
+ */
 final class DelegatingIdFormat implements IdFormat
 {
     /** @var IdFormat[] */
@@ -20,8 +24,13 @@ final class DelegatingIdFormat implements IdFormat
         }
     }
 
-    /** {@inheritDoc} */
-    public function createDefinitionId(string $definitionClass, $value): DefinitionId
+    /**
+     * {@inheritDoc}
+     *
+     * @psalm-suppress InvalidReturnType
+     * @psalm-suppress InvalidReturnStatement
+     */
+    public function createDefinitionId(string $definitionClass, mixed $value): DefinitionId
     {
         foreach ($this->idFormats as $idFormat) {
             if ($idFormat->supports($value)) {
@@ -32,8 +41,7 @@ final class DelegatingIdFormat implements IdFormat
         throw new InvalidArgument((string) $value);
     }
 
-    /** {@inheritDoc} */
-    public function supports($value): bool
+    public function supports(mixed $value): bool
     {
         foreach ($this->idFormats as $idFormat) {
             if ($idFormat->supports($value)) {

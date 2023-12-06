@@ -9,25 +9,23 @@ use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
 
 /**
- * @template T from Path
+ * @template T of Path
  * @extends MapLayerSerializer<T>
  */
 abstract class CoordinatesBasedVectorSerializer extends MapLayerSerializer
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function serialize($layer): array
+    /** {@inheritDoc}*/
+    public function serialize($data): array
     {
-        if (! $layer instanceof Path) {
+        if (! $data instanceof Path) {
             throw new RuntimeException('Unsupported layer type');
         }
 
-        $data            = parent::serialize($layer);
-        $data['type']    = $this->serializedType();
-        $data['latlngs'] = $this->serializeCoordinates($layer);
+        $serialized            = parent::serialize($data);
+        $serialized['type']    = $this->serializedType();
+        $serialized['latlngs'] = $this->serializeCoordinates($data);
 
-        return $data;
+        return $serialized;
     }
 
     abstract protected function serializedType(): string;

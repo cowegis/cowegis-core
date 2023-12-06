@@ -7,19 +7,12 @@ namespace Cowegis\Core\Serializer\Control;
 use Cowegis\Core\Definition\Control\AttributionControl;
 use Cowegis\Core\Serializer\DataSerializer;
 
-use function assert;
-
+/** @extends DataSerializer<AttributionControl> */
 final class AttributionControlSerializer extends DataSerializer
 {
-    /**
-     * @param AttributionControl|mixed $data
-     *
-     * @return array<string,mixed>
-     */
+    /** {@inheritDoc} */
     public function serialize($data): array
     {
-        assert($data instanceof AttributionControl);
-
         return [
             'controlId'       => $data->controlId()->value(),
             'name'            => $data->name(),

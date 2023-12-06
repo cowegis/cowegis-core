@@ -9,9 +9,7 @@ final class OrConstraint extends BaseConstraint
     /** @var Constraint[] */
     private array $constraints = [];
 
-    /**
-     * @param Constraint[] $constraints
-     */
+    /** @param Constraint[] $constraints */
     public function __construct(iterable $constraints, bool $required = false)
     {
         parent::__construct($required);
@@ -21,8 +19,7 @@ final class OrConstraint extends BaseConstraint
         }
     }
 
-    /** @param mixed $defaultValue */
-    public static function withDefaultValue($defaultValue, Constraint ...$constraints): Constraint
+    public static function withDefaultValue(mixed $defaultValue, Constraint ...$constraints): Constraint
     {
         return new DefaultValueConstraint(new self($constraints), $defaultValue);
     }
@@ -32,17 +29,12 @@ final class OrConstraint extends BaseConstraint
         return new self($constraints, true);
     }
 
-    /**
-     * @param mixed $defaultValue
-     * @param mixed $value
-     */
-    public static function valueOr($defaultValue, $value, Constraint ...$constraints): Constraint
+    public static function valueOr(mixed $defaultValue, mixed $value, Constraint ...$constraints): Constraint
     {
         return self::withDefaultValue($defaultValue, new EnumConstraint([$value]), ...$constraints);
     }
 
-    /** {@inheritDoc} */
-    public function match($value): bool
+    public function match(mixed $value): bool
     {
         foreach ($this->constraints as $constraint) {
             if ($constraint->match($value)) {
@@ -53,8 +45,7 @@ final class OrConstraint extends BaseConstraint
         return false;
     }
 
-    /** {@inheritDoc} */
-    public function filter($value)
+    public function filter(mixed $value): mixed
     {
         foreach ($this->constraints as $constraint) {
             if ($constraint->match($value)) {

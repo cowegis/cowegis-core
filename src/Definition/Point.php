@@ -12,14 +12,8 @@ use JsonSerializable;
  */
 final class Point implements Compareable, JsonSerializable
 {
-    private int $x;
-
-    private int $y;
-
-    public function __construct(int $x, int $y)
+    public function __construct(private readonly int $x, private readonly int $y)
     {
-        $this->x = $x;
-        $this->y = $y;
     }
 
     /** @param int[] $point */

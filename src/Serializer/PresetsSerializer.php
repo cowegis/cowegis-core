@@ -10,6 +10,7 @@ use Cowegis\Core\Definition\Map\Presets;
 use function assert;
 
 /**
+ * @extends DataSerializer<Presets>
  * @psalm-import-type TSerializedIcon from IconSerializer
  * @psalm-import-type TSerializedPopup from PopupSerializer
  * @psalm-import-type TSerializedTooltip from TooltipSerializer
@@ -23,12 +24,10 @@ use function assert;
 final class PresetsSerializer extends DataSerializer
 {
     /**
-     * @param Presets|mixed $data
-     *
      * @return array<string, mixed>
      * @psalm-return TSerializedPresets
      */
-    public function serialize($data): array
+    public function serialize(mixed $data): array
     {
         assert($data instanceof Presets);
 

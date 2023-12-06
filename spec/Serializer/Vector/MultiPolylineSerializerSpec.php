@@ -34,7 +34,7 @@ final class MultiPolylineSerializerSpec extends ObjectBehavior
                 new LatLngList([new LatLng(0.0, 0.0), new LatLng(1.0, 1.0)]),
                 new LatLngList([new LatLng(2.0, 2.0)]),
             ],
-            true
+            true,
         );
 
         $definitionId->value()->willReturn('example_1');
@@ -57,7 +57,7 @@ final class MultiPolylineSerializerSpec extends ObjectBehavior
                         [2.0, 2.0],
                     ],
                 ],
-            ]
+            ],
         );
     }
 }

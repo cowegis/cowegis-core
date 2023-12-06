@@ -33,7 +33,7 @@ final class ZoomControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): ?string
+    protected function defaultPosition(): string|null
     {
         return Control::POSITION_TOP_LEFT;
     }

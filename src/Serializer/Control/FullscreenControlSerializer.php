@@ -7,19 +7,12 @@ namespace Cowegis\Core\Serializer\Control;
 use Cowegis\Core\Definition\Control\FullscreenControl;
 use Cowegis\Core\Serializer\DataSerializer;
 
-use function assert;
-
+/** @extends DataSerializer<FullscreenControl> */
 final class FullscreenControlSerializer extends DataSerializer
 {
-    /**
-     * @param FullscreenControl|mixed $data
-     *
-     * @return array<string,mixed>
-     */
+    /** {@inheritDoc} */
     public function serialize($data): array
     {
-        assert($data instanceof FullscreenControl);
-
         return [
             'controlId' => $data->controlId()->value(),
             'name'      => $data->name(),

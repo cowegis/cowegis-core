@@ -20,7 +20,7 @@ interface SimpleStyleMarker
      * "small"
      * "medium"
      * "large"*/
-    public function markerSize(): ?string;
+    public function markerSize(): string|null;
 
     /**
      * OPTIONAL: default ""
@@ -31,17 +31,16 @@ interface SimpleStyleMarker
      * - Icon ID
      * - An integer 0 through 9
      * - A lowercase character "a" through "z"
-     *
-     * @return mixed
      */
-    public function markerSymbol();
+    public function markerSymbol(): mixed;
 
     /**
      * OPTIONAL: default "7e7e7e"
      * the marker's color
      *
-     * value must follow COLOR RULES*/
-    public function markerColor(): ?string;
+     * value must follow COLOR RULES
+     */
+    public function markerColor(): string|null;
 
     /**
      * OPTIONAL: default "ffffff"
@@ -49,5 +48,5 @@ interface SimpleStyleMarker
      *
      * value must follow COLOR RULES
      */
-    public function symbolColor(): ?string;
+    public function symbolColor(): string|null;
 }

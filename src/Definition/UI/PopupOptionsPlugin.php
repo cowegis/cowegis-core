@@ -27,7 +27,7 @@ trait PopupOptionsPlugin
         $constraints['autoPanPaddingBottomRight'] = new InstanceOfConstraint(Point::class);
         $constraints['autoPanPadding']            = InstanceOfConstraint::withDefaultValue(
             Point::class,
-            new Point(5, 5)
+            new Point(5, 5),
         );
         $constraints['keepInView']                = BooleanConstraint::withDefaultValue(false);
         $constraints['closeButton']               = BooleanConstraint::withDefaultValue(false);

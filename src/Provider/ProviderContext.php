@@ -18,12 +18,12 @@ final class ProviderContext extends RootContext
             new Assets(),
             $filter,
             $mapId,
-            $locale
+            $locale,
         );
     }
 
     private static function createIdentifier(MapId $mapId): string
     {
-        return 'map_' . (string) $mapId->value();
+        return 'map_' . $mapId->value();
     }
 }

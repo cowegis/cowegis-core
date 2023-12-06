@@ -30,7 +30,7 @@ final class CircleSerializerSpec extends ObjectBehavior
             new LayerId($definitionId->getWrappedObject()),
             'example',
             new LatLng(0.0, 0.0),
-            true
+            true,
         );
 
         $definitionId->value()->willReturn('example_1');
@@ -45,7 +45,7 @@ final class CircleSerializerSpec extends ObjectBehavior
                 'events'         => null,
                 'type'           => 'circle',
                 'center'         => [0.0, 0.0],
-            ]
+            ],
         );
     }
 }

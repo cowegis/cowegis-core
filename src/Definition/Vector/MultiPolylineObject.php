@@ -22,7 +22,7 @@ abstract class MultiPolylineObject extends PolylineObject
     /** @var list<LatLngList> */
     private array $latLngs;
 
-    protected ?LatLngBounds $bounds = null;
+    protected LatLngBounds|null $bounds = null;
 
     /** @param list<LatLngList> $latLngs */
     public function __construct(LayerId $layerId, string $name, array $latLngs, bool $initialVisible = true)

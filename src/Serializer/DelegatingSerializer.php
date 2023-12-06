@@ -9,30 +9,22 @@ use JsonSerializable;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-use function get_class;
 use function gettype;
 use function is_object;
 
 /** @implements Serializer<mixed> */
 final class DelegatingSerializer implements Serializer
 {
-    private ContainerInterface $serializers;
-
-    public function __construct(ContainerInterface $serializers)
+    public function __construct(private readonly ContainerInterface $serializers)
     {
-        $this->serializers = $serializers;
     }
 
-    /**
-     * @param mixed $data
-     *
-     * @return mixed
-     */
-    public function serialize($data)
+    /** {@@inheritDoc} */
+    public function serialize(mixed $data): mixed
     {
         try {
             return $this->determineSerializer($data)->serialize($data);
-        } catch (NotFoundExceptionInterface $exception) {
+        } catch (NotFoundExceptionInterface) {
         }
 
         if (! is_object($data)) {
@@ -46,16 +38,12 @@ final class DelegatingSerializer implements Serializer
         throw new RuntimeException('Serializing data failed');
     }
 
-    /**
-     * @param mixed $data
-     *
-     * @psalm-suppress MixedInferredReturnType
-     */
-    private function determineSerializer($data): Serializer
+    /** @psalm-suppress MixedInferredReturnType */
+    private function determineSerializer(mixed $data): Serializer
     {
-        if (is_object($data) && $this->serializers->has(get_class($data))) {
+        if (is_object($data) && $this->serializers->has($data::class)) {
             /** @psalm-suppress MixedReturnStatement: */
-            return $this->serializers->get(get_class($data));
+            return $this->serializers->get($data::class);
         }
 
         /** @psalm-suppress MixedReturnStatement: */

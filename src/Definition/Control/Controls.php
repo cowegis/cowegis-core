@@ -8,6 +8,7 @@ use Cowegis\Core\Definition\Control;
 use Cowegis\Core\Definition\DefinitionId;
 use IteratorAggregate;
 
+/** @extends IteratorAggregate<int, Control> */
 interface Controls extends IteratorAggregate
 {
     public function add(Control $control): void;

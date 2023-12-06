@@ -8,27 +8,12 @@ use JsonSerializable;
 
 use function implode;
 
-/**
- * @psalm-type TSerializedReference array{type: 'reference', namespace: (list<string>|null), reference: string}
- */
+/** @psalm-type TSerializedReference array{type: 'reference', namespace: (list<string>|null), reference: string} */
 final class Reference implements Expression, JsonSerializable
 {
-    private string $reference;
-
-    /**
-     * @var array<int, string>|null
-     * @psalm-var list<string>|null
-     */
-    private ?array $namespace = null;
-
-    /**
-     * @param array<int, string> $namespace
-     * @psalm-param list<string>|null $namespace
-     */
-    public function __construct(string $reference, ?array $namespace = null)
+    /** @param list<string>|null $namespace */
+    public function __construct(private readonly string $reference, private readonly array|null $namespace = null)
     {
-        $this->reference = $reference;
-        $this->namespace = $namespace;
     }
 
     public function toString(): string
@@ -40,10 +25,7 @@ final class Reference implements Expression, JsonSerializable
         return implode('.', $this->namespace) . '.' . $this->reference;
     }
 
-    /**
-     * @return array<string, mixed>
-     * @psalm-return TSerializedReference
-     */
+    /** @return TSerializedReference */
     public function jsonSerialize(): array
     {
         return [

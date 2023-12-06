@@ -8,7 +8,7 @@ use Cowegis\Core\Definition\UI\Tooltip;
 
 interface HasTooltip
 {
-    public function tooltip(): ?Tooltip;
+    public function tooltip(): Tooltip|null;
 
-    public function showTooltip(Tooltip $popup): void;
+    public function showTooltip(Tooltip $tooltip): void;
 }

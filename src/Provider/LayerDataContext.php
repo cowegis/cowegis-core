@@ -12,30 +12,26 @@ use Cowegis\Core\Filter\Filter;
 
 final class LayerDataContext extends RootContext
 {
-    private LayerId $layerId;
-
     public function __construct(
         Callbacks $callbacks,
         Assets $assets,
         Filter $filter,
         MapId $mapId,
-        LayerId $layerId,
-        string $locale
+        private readonly LayerId $layerId,
+        string $locale,
     ) {
         parent::__construct($callbacks, $assets, $filter, $mapId, $locale);
-
-        $this->layerId = $layerId;
     }
 
     public static function create(Filter $filter, MapId $mapId, LayerId $layerId, string $locale): self
     {
         return new self(
-            new Callbacks(static::createIdentifier($layerId)),
+            new Callbacks(self::createIdentifier($layerId)),
             new Assets(),
             $filter,
             $mapId,
             $layerId,
-            $locale
+            $locale,
         );
     }
 

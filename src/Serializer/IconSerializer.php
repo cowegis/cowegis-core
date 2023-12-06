@@ -6,9 +6,8 @@ namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Icon\Icon;
 
-use function assert;
-
 /**
+ * @extends DataSerializer<Icon>
  * @psalm-type TSerializedIcon = array{
  *   iconId: mixed,
  *   type: string,
@@ -17,25 +16,19 @@ use function assert;
  */
 final class IconSerializer extends DataSerializer
 {
-    protected string $type;
-
-    public function __construct(string $type, Serializer $serializer)
+    public function __construct(protected readonly string $type, Serializer $serializer)
     {
         parent::__construct($serializer);
-
-        $this->type = $type;
     }
 
     /**
-     * @param Icon|mixed $data
+     * @param Icon $data
      *
      * @return array<string,mixed>
      * @psalm-return TSerializedIcon
      */
-    public function serialize($data): array
+    public function serialize(mixed $data): array
     {
-        assert($data instanceof Icon);
-
         /** @psalm-var array<string,mixed> $options */
         $options = $this->serializer->serialize($data->options());
 

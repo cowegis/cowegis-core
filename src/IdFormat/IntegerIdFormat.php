@@ -12,10 +12,20 @@ use function is_numeric;
 use function is_string;
 use function strpos;
 
+/**
+ * @template T of DefinitionId
+ * @implements IdFormat<T>
+ */
 final class IntegerIdFormat implements IdFormat
 {
-    /** {@inheritDoc} */
-    public function createDefinitionId(string $definitionClass, $value): DefinitionId
+    /**
+     * {@inheritDoc}
+     *
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedMethodCall
+     * @psalm-suppress MixedReturnStatement
+     */
+    public function createDefinitionId(string $definitionClass, mixed $value): DefinitionId
     {
         if ($this->supports($value)) {
             $value = (int) $value;
@@ -24,8 +34,7 @@ final class IntegerIdFormat implements IdFormat
         return $definitionClass::fromValue(IntegerDefinitionId::fromValue($value));
     }
 
-    /** {@inheritDoc} */
-    public function supports($value): bool
+    public function supports(mixed $value): bool
     {
         if (is_int($value)) {
             return true;

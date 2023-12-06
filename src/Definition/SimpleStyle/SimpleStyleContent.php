@@ -16,12 +16,12 @@ interface SimpleStyleContent
      * A title to show when this item is clicked or
      * hovered over
      */
-    public function title(): ?string;
+    public function title(): string|null;
 
     /**
      * OPTIONAL: default ""
      * A description to show when this item is clicked or
      * hovered over
      */
-    public function description(): ?string;
+    public function description(): string|null;
 }

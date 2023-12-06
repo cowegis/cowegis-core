@@ -9,14 +9,8 @@ namespace Cowegis\Core\Definition\GeoData;
  */
 final class UriData implements GeoData
 {
-    private string $uri;
-
-    private string $format;
-
-    public function __construct(string $uri, string $format)
+    public function __construct(private string $uri, private string $format)
     {
-        $this->uri    = $uri;
-        $this->format = $format;
     }
 
     /** @return array<string, string> */

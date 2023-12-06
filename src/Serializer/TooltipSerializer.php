@@ -8,9 +8,8 @@ use Cowegis\Core\Definition\Event\Events;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\UI\Tooltip;
 
-use function assert;
-
 /**
+ * @extends DataSerializer<Tooltip>
  * @psalm-import-type TSerializedEvent from Events
  * @psalm-import-type TSerializedLatLng from LatLng
  * @psalm-type TSerializedTooltip = array{
@@ -24,26 +23,24 @@ use function assert;
 final class TooltipSerializer extends DataSerializer
 {
     /**
-     * @param Tooltip|mixed $tooltip
+     * @param Tooltip $data
      *
      * @return array<string,mixed>
      * @psalm-return TSerializedTooltip
      */
-    public function serialize($tooltip): array
+    public function serialize(mixed $data): array
     {
-        assert($tooltip instanceof Tooltip);
-
         /** @psalm-var array<string,mixed> $options */
-        $options     = $this->serializer->serialize($tooltip->options());
-        $presetId    = $tooltip->presetId();
-        $coordinates = $tooltip->coordinates();
+        $options     = $this->serializer->serialize($data->options());
+        $presetId    = $data->presetId();
+        $coordinates = $data->coordinates();
 
         return [
-            'content'        => $tooltip->content(),
+            'content'        => $data->content(),
             'coordinates'    => $coordinates ? $coordinates->jsonSerialize() : null,
             'options'        => $options,
             'presetId'       => $presetId ? $presetId->value() : null,
-            'events'         => $tooltip->events()->jsonSerialize(),
+            'events'         => $data->events()->jsonSerialize(),
         ];
     }
 }

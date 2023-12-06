@@ -11,14 +11,14 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 class LayerGroupLayerSchemaDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
-    protected function requiredProperties(SchemaBuilder $specificationBuilder): array
+    protected function requiredProperties(SchemaBuilder $builder): array
     {
         return [
             Schema::array('layers')
                 ->title('Layers')
                 ->example([1, 2])
                 ->description('List of integrated layers')
-                ->items($specificationBuilder->idSchemaRef()),
+                ->items($builder->idSchemaRef()),
         ];
     }
 }
