@@ -13,7 +13,7 @@ abstract class DefinitionIdDecorator implements DefinitionId
     {
     }
 
-    public static function fromValue(mixed $value): DefinitionId
+    public static function fromValue(mixed $value): static
     {
         if (! $value instanceof DefinitionId) {
             throw new RuntimeException('Given value must be an instance of ' . DefinitionId::class);
