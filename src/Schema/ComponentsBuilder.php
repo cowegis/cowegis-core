@@ -171,39 +171,39 @@ final class ComponentsBuilder
     {
         $components = Components::create();
 
-        if ($this->schemas) {
+        if ($this->schemas !== []) {
             $components = $components->schemas(...array_values($this->schemas));
         }
 
-        if ($this->responses) {
+        if ($this->responses !== []) {
             $components = $components->responses(...array_values($this->responses));
         }
 
-        if ($this->parameters) {
+        if ($this->parameters !== []) {
             $components = $components->parameters(...array_values($this->parameters));
         }
 
-        if ($this->examples) {
+        if ($this->examples !== []) {
             $components = $components->examples(...array_values($this->examples));
         }
 
-        if ($this->requestBodies) {
+        if ($this->requestBodies !== []) {
             $components = $components->requestBodies(...array_values($this->requestBodies));
         }
 
-        if ($this->headers) {
+        if ($this->headers !== []) {
             $components = $components->headers(...array_values($this->headers));
         }
 
-        if ($this->securitySchemes) {
+        if ($this->securitySchemes !== []) {
             $components = $components->securitySchemes(...array_values($this->securitySchemes));
         }
 
-        if ($this->links) {
+        if ($this->links !== []) {
             $components = $components->links(...array_values($this->links));
         }
 
-        if ($this->callbacks) {
+        if ($this->callbacks !== []) {
             $components = $components->callbacks(...array_values($this->callbacks));
         }
 

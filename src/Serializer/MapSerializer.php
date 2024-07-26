@@ -154,7 +154,7 @@ final class MapSerializer extends DataSerializer
         $options = $this->serializer->serialize($view->options());
 
         return [
-            'center'  => $center ? $center->jsonSerialize() : null,
+            'center'  => $center instanceof LatLng ? $center->jsonSerialize() : null,
             'zoom'    => $view->zoom(),
             'options' => $options,
         ];

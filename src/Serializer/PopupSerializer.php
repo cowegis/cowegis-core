@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Event\Events;
+use Cowegis\Core\Definition\Preset\PopupPresetId;
 use Cowegis\Core\Definition\UI\Popup;
 
 use function assert;
@@ -37,7 +38,7 @@ final class PopupSerializer extends DataSerializer
 
         return [
             'content'  => $data->content(),
-            'presetId' => $presetId ? $presetId->value() : null,
+            'presetId' => $presetId instanceof PopupPresetId ? $presetId->value() : null,
             'options'  => $options,
             'events'   => $events,
         ];

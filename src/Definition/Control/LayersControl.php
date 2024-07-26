@@ -24,8 +24,8 @@ final class LayersControl extends Control
     ) {
         parent::__construct($controlId, $name);
 
-        $this->baseLayers = $baseLayers ?: new LayerIds();
-        $this->overlays   = $overlays ?: new LayerIds();
+        $this->baseLayers = $baseLayers instanceof LayerIds ? $baseLayers : new LayerIds();
+        $this->overlays   = $overlays instanceof LayerIds ? $overlays : new LayerIds();
     }
 
     public function baseLayers(): LayerIds

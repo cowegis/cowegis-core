@@ -13,7 +13,7 @@ final class LayerNotFound extends RuntimeException
 {
     public static function withLayerId(LayerId $layerId, MapId|null $mapId): self
     {
-        if ($mapId) {
+        if ($mapId instanceof MapId) {
             return new self(
                 sprintf(
                     'Layer (ID %s) for map (ID %s) not found',

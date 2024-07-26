@@ -38,7 +38,7 @@ final class Options implements IteratorAggregate, Countable
         /** @psalm-var mixed $value */
         $value = $this->constraints->filterValue($key, $value);
 
-        if ($this->constraints->isDefaultValueOf($key, $value)) {
+        if ($this->constraints->isDefaultValueOf($key, $value) === true) {
             unset($this->options[$key]);
         } else {
             $this->options[$key] = $value;
