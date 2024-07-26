@@ -12,7 +12,7 @@ use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
 abstract class CircleObjectSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc} */
-    public function serialize($data): array
+    public function serialize(mixed $data): array
     {
         if (! $data instanceof CircleObject) {
             throw new RuntimeException('Layer is not an instance of ' . CircleObject::class);

@@ -24,7 +24,7 @@ final class LayerIdsSerializer implements Serializer
 
         return array_map(
             /** @psalm-return mixed */
-            static function (LayerId $layerId) {
+            static function (LayerId $layerId): string {
                 return $layerId->value();
             },
             $data->toArray(),

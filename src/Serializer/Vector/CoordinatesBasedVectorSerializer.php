@@ -15,7 +15,7 @@ use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
 abstract class CoordinatesBasedVectorSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc}*/
-    public function serialize($data): array
+    public function serialize(mixed $data): array
     {
         if (! $data instanceof Path) {
             throw new RuntimeException('Unsupported layer type');
