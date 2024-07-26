@@ -173,7 +173,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     }
 
     /** @return array<string, Constraint\Constraint> */
-    protected function locateOptionConstraints(): array
+    private function locateOptionConstraints(): array
     {
         return [
             'watch'              => Constraint\BooleanConstraint::withDefaultValue(false),

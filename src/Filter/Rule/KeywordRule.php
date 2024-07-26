@@ -27,6 +27,6 @@ final class KeywordRule implements Rule
 
     public function toQuery(Query $query): Query
     {
-        return $query->with($this->name(), $this->keyword());
+        return $query->with($this->name(), $this->keyword);
     }
 }

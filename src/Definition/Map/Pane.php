@@ -52,10 +52,10 @@ final class Pane implements Definition, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'paneId'        => $this->paneId()->value(),
-            'name'          => $this->name(),
-            'zIndex'        => $this->zIndex(),
-            'pointerEvents' => $this->pointerEvents(),
+            'paneId'        => $this->definitionId->value(),
+            'name'          => $this->name,
+            'zIndex'        => $this->zIndex,
+            'pointerEvents' => $this->pointerEvents,
         ];
     }
 }

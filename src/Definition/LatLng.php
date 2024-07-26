@@ -117,11 +117,11 @@ final class LatLng implements JsonSerializable
     {
         if ($maxMargin !== null) {
             $margin = max(
-                abs($this->latitude() - $other->latitude()),
-                abs($this->longitude() - $other->longitude()),
+                abs($this->latitude - $other->latitude()),
+                abs($this->longitude - $other->longitude()),
             );
 
-            $altitude = $this->altitude();
+            $altitude = $this->altitude;
             if (! $ignoreAltitude && $altitude !== null) {
                 $margin = max(
                     $margin,
@@ -132,15 +132,15 @@ final class LatLng implements JsonSerializable
             return $margin <= $maxMargin;
         }
 
-        if ($this->latitude() !== $other->latitude()) {
+        if ($this->latitude !== $other->latitude()) {
             return false;
         }
 
-        if ($this->longitude() !== $other->longitude()) {
+        if ($this->longitude !== $other->longitude()) {
             return false;
         }
 
-        return $ignoreAltitude || $this->altitude() === $other->altitude();
+        return $ignoreAltitude || $this->altitude === $other->altitude();
     }
 
     /**
@@ -148,7 +148,7 @@ final class LatLng implements JsonSerializable
      */
     public function toGeoJson(): Coordinates
     {
-        return new Coordinates($this->longitude(), $this->latitude(), $this->altitude());
+        return new Coordinates($this->longitude, $this->latitude, $this->altitude);
     }
 
     /**
@@ -159,13 +159,13 @@ final class LatLng implements JsonSerializable
     public function jsonSerialize(): array
     {
         $raw = [
-            $this->latitude(),
-            $this->longitude(),
+            $this->latitude,
+            $this->longitude,
         ];
 
         if ($this->hasAltitude()) {
             /** @psalm-var float */
-            $raw[] = $this->altitude();
+            $raw[] = $this->altitude;
         }
 
         return $raw;
@@ -178,8 +178,8 @@ final class LatLng implements JsonSerializable
      */
     public function toString(bool $ignoreAltitude = false): string
     {
-        $buffer   = $this->latitude() . ',' . $this->longitude();
-        $altitude = $this->altitude();
+        $buffer   = $this->latitude . ',' . $this->longitude;
+        $altitude = $this->altitude;
 
         if (! $ignoreAltitude && $altitude !== null) {
             $buffer .= ',' . $altitude;

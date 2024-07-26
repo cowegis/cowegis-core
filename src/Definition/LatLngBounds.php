@@ -194,11 +194,11 @@ final class LatLngBounds
      */
     public function equals(LatLngBounds $other): bool
     {
-        if (! $this->northEast()->equals($other->northEast())) {
+        if (! $this->northEast->equals($other->northEast())) {
             return false;
         }
 
-        return $this->southWest()->equals($other->southWest());
+        return $this->southWest->equals($other->southWest());
     }
 
     /**
@@ -249,8 +249,8 @@ final class LatLngBounds
     public function jsonSerialize(): array
     {
         return [
-            $this->southWest()->jsonSerialize(),
-            $this->northEast()->jsonSerialize(),
+            $this->southWest->jsonSerialize(),
+            $this->northEast->jsonSerialize(),
         ];
     }
 
@@ -262,8 +262,8 @@ final class LatLngBounds
     public function toGeoJson(): array
     {
         return [
-            $this->southWest()->toGeoJson(),
-            $this->northEast()->toGeoJson(),
+            $this->southWest->toGeoJson(),
+            $this->northEast->toGeoJson(),
         ];
     }
 
@@ -276,8 +276,8 @@ final class LatLngBounds
     {
         return sprintf(
             '%s,%s',
-            $this->southWest()->toString($ignoreAltitude),
-            $this->northEast()->toString($ignoreAltitude),
+            $this->southWest->toString($ignoreAltitude),
+            $this->northEast->toString($ignoreAltitude),
         );
     }
 

@@ -41,8 +41,8 @@ final class DistanceRule implements Rule
         return $query->with(
             $this->name(),
             [
-                'coordinates' => $this->coordinates()->toString(),
-                'radius'      => (string) $this->radius(),
+                'coordinates' => $this->coordinates->toString(),
+                'radius'      => (string) $this->radius,
             ],
         );
     }
