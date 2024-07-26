@@ -16,6 +16,7 @@ final class LatLngConstraint extends ConstraintWithDefault
     public function match(mixed $value): bool
     {
         try {
+            /** @psalm-suppress MixedArgument */
             $this->createFromValue($value);
         } catch (InvalidArgument) {
             return false;
@@ -26,25 +27,26 @@ final class LatLngConstraint extends ConstraintWithDefault
 
     public function filter(mixed $value): LatLng
     {
-        return $this->createFromValue($value);
-    }
-
-    /** @param LatLng|TRawLatLng|string|mixed $value */
-    private function createFromValue(LatLng|array|string $value): LatLng
-    {
         if ($value instanceof LatLng) {
             return $value;
         }
 
+        if (is_string($value) || is_array($value)) {
+            /** @psalm-suppress MixedArgumentTypeCoercion */
+            return $this->createFromValue($value);
+        }
+
+        throw new InvalidArgument('Could not create instance');
+    }
+
+    /** @param TRawLatLng|string $value */
+    private function createFromValue(array|string $value): LatLng
+    {
         if (is_array($value)) {
             /** @psalm-suppress MixedArgumentTypeCoercion */
             return LatLng::fromArray($value);
         }
 
-        if (is_string($value)) {
-            return LatLng::fromString($value);
-        }
-
-        throw new InvalidArgument('Could not create instance');
+        return LatLng::fromString($value);
     }
 }
