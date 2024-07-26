@@ -30,6 +30,6 @@ final class GeometrySchema extends OneOf
 
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
-        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'bbox');
+        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'bbox');
     }
 }

@@ -15,7 +15,7 @@ final class BboxSchema extends Schema
 
     public function __construct(string|null $objectId = null)
     {
-        parent::__construct($objectId ?: 'bbox');
+        parent::__construct($objectId ?? 'bbox');
 
         $this->title    = 'GeoJSON Bbox';
         $this->minItems = 4;
@@ -28,6 +28,6 @@ final class BboxSchema extends Schema
 
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
-        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'bbox');
+        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'bbox');
     }
 }

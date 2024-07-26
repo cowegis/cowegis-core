@@ -61,7 +61,7 @@ final class SchemaBuilder
 
     public function idSchemaRef(string|null $objectId = null): Schema
     {
-        return $objectId ? $this->idSchemaRef->objectId($objectId) : $this->idSchemaRef;
+        return $objectId !== null ? $this->idSchemaRef->objectId($objectId) : $this->idSchemaRef;
     }
 
     public function withTags(Tag ...$tags): self

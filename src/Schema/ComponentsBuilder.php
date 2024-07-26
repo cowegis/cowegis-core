@@ -236,12 +236,12 @@ final class ComponentsBuilder
             }
         }
 
-        $objectId  = $object->objectId ?: $defaultReference;
+        $objectId  = $object->objectId ?? $defaultReference;
         $reference = $prefix . $objectId;
         $suffix    = 1;
 
         while (isset($collection[$reference])) {
-            $objectId  = ($object->objectId ?: $defaultReference) . ++$suffix;
+            $objectId  = ($object->objectId ?? $defaultReference) . ++$suffix;
             $reference = $prefix . $objectId;
         }
 

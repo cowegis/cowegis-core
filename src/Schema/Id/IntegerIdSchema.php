@@ -10,7 +10,7 @@ final class IntegerIdSchema extends IdSchema
 {
     public function __construct(string|null $objectId = null)
     {
-        parent::__construct($objectId ?: 'id');
+        parent::__construct($objectId ?? 'id');
 
         $this->type    = 'integer';
         $this->format  = 'int32';

@@ -18,7 +18,7 @@ final class InlineGeoJsonDataSchema extends Schema
 
     public function __construct(string|null $objectId = null)
     {
-        parent::__construct($objectId ?: 'inlinegeojsondata');
+        parent::__construct($objectId ?? 'inlinegeojsondata');
 
         $this->title       = 'Inline GeoJSON data';
         $this->description = 'This data object refers to external data containing raw data in the defined format.';
@@ -40,6 +40,6 @@ final class InlineGeoJsonDataSchema extends Schema
 
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
-        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'uridata');
+        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'uridata');
     }
 }

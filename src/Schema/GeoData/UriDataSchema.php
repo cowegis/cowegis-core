@@ -15,7 +15,7 @@ final class UriDataSchema extends Schema
 
     public function __construct(string|null $objectId = null)
     {
-        parent::__construct($objectId ?: 'uridata');
+        parent::__construct($objectId ?? 'uridata');
 
         $this->title       = 'Uri data';
         $this->description = 'The Uri data refers to a data source, where the target also provide a data layer object.';
@@ -39,6 +39,6 @@ final class UriDataSchema extends Schema
 
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
-        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?: 'uridata');
+        return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'uridata');
     }
 }
