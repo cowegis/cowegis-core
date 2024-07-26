@@ -10,7 +10,7 @@ final class Polygon extends MultiPolylineObject
 {
     public function getBounds(): LatLngBounds
     {
-        if ($this->bounds === null) {
+        if (! $this->bounds instanceof LatLngBounds) {
             $latLngs = $this->getLatLngs();
             $latLngs = isset($latLngs[0]) ? $latLngs[0]->all() : [];
 

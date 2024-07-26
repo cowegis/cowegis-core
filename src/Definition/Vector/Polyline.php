@@ -65,7 +65,7 @@ final class Polyline extends PolylineObject
 
     public function getBounds(): LatLngBounds
     {
-        if ($this->bounds === null) {
+        if (! $this->bounds instanceof LatLngBounds) {
             $this->bounds = $this->latLngs->bounds();
         }
 

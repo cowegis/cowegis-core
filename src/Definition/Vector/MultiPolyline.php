@@ -12,7 +12,7 @@ final class MultiPolyline extends MultiPolylineObject
 {
     public function getBounds(): LatLngBounds
     {
-        if ($this->bounds === null) {
+        if (! $this->bounds instanceof LatLngBounds) {
             $coordinates = [];
 
             foreach ($this->getLatLngs() as $latLngList) {
