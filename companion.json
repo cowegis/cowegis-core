@@ -1,0 +1,19 @@
+{
+  "receipts": [
+    "projects/common",
+    "coding-standards/doctrine/12"
+  ],
+  "config": {
+    "phpConstraint": "^8.2",
+    "directories": [
+      "spec"
+    ]
+  },
+  "tools": {
+    "phpcq": {
+      "plugins": {
+        "phpunit": false
+      }
+    }
+  }
+}
