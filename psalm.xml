@@ -2,8 +2,10 @@
 <psalm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://getpsalm.org/schema/config" totallyTyped="true" errorLevel="1" resolveFromConfigFile="true" xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd" findUnusedCode="false" findUnusedBaselineEntry="false">
     <projectFiles>
         <directory name="src"/>
+        <directory name="spec"/>
         <ignoreFiles>
             <directory name="vendor"/>
+            <directory name="spec"/>
         </ignoreFiles>
     </projectFiles>
     
