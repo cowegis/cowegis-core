@@ -63,6 +63,13 @@ tasks:
     config:
       dry_run: false
     plugin: composer-normalize
+  phpcpd:
+    config:
+      exclude:
+        - spec/Definition/Vector/MultiPolylineSpec.php
+        - spec/Definition/Vector/PolylineSpec.php
+        - src/Schema/GeoData/UriDataSchema.php
+        - src/Schema/GeoData/ExternalDataSchema.php
   rector-fix:
     config:
       dry-run: false
