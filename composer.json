@@ -30,6 +30,7 @@
   "require-dev": {
     "doctrine/coding-standard": "^12.0",
     "friends-of-phpspec/phpspec-expect": "^4.0",
+    "netzmacht/phpspec-phpcq-plugin": "@dev",
     "phpcq/runner-bootstrap": "@dev",
     "phpspec/phpspec": "^7.4"
   },
