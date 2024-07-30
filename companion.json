@@ -13,12 +13,7 @@
     "phpcq": {
       "plugins": {
         "phpunit": false,
-        "phpcs": true
-      },
-      "defaults": {
-        "repositories": [
-          "vendor/netzmacht/phpspec-phpcq-plugin/repository.json"
-        ]
+        "phpspec": true
       },
       "presets": {
         "phpcpd": {
@@ -31,15 +26,6 @@
                   "src/Schema/GeoData/UriDataSchema.php",
                   "src/Schema/GeoData/ExternalDataSchema.php"
                 ]
-              }
-            }
-          }
-        },
-        "phpcs": {
-          "tasks": {
-            "phpcs": {
-              "chains": {
-                "verify": true
               }
             }
           }
