@@ -62,7 +62,6 @@
   "extra": {
     "branch-alias": {
       "dev-master": "1.0.x-dev"
-    },
-    "contao-manager-plugin": "Cowegis\\Core\\ContaoManager\\Plugin"
+    }
   }
 }
