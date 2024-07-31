@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a778989adfabdbfab38d7c66ce715954",
+    "content-hash": "d9364eeed1602a2234b68f7a05680335",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -79,16 +79,17 @@
             "dist": {
                 "type": "zip",
                 "url": "https://packages.netzmacht.de/p/J6_gTVfbxEsd27V2wItqqnLddxRn3mdDTaHG9eJxuxhooAO2GmsrPmwIQI7dcWiG",
-                "reference": "5a05b4600b0c4e853a2b867963d95c06475c4c6b",
-                "shasum": "cd9b684a260c273b455c716c6880612a50408197"
+                "reference": "f4ccc7e6fe14de2611c592aa2acb63700c9eb845",
+                "shasum": "927cd00946ea8ceebbedf56ddacbb9ce16af4718"
             },
             "require": {
                 "ext-json": "*",
-                "php": "^8.1"
+                "php": "^8.2"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^12.0.0",
-                "phpcq/runner-bootstrap": "^1.0@dev",
+                "doctrine/coding-standard": "^12.0",
+                "netzmacht/phpspec-phpcq-plugin": "@dev",
+                "phpcq/runner-bootstrap": "@dev",
                 "phpspec/phpspec": "^6.1 || ^7.0"
             },
             "default-branch": true,
@@ -127,7 +128,7 @@
                 "source": "https://git.netzmacht.de/cowegis/cowegis-geojson/-/tree/master",
                 "issues": "https://git.netzmacht.de/cowegis/cowegis-geojson/-/issues"
             },
-            "time": "2023-12-06T10:05:12+01:00"
+            "time": "2024-07-31T08:42:54+02:00"
         },
         {
             "name": "goldspecdigital/oooas",
