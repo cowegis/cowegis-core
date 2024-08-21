@@ -17,7 +17,7 @@ use function sqrt;
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
-final class Harvesine implements Algorithm
+final class Harvesine implements DistanceAlgorithm
 {
     public const EARTH_RADIUS = 6371000.0;
 

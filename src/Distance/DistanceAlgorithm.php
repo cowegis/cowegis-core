@@ -7,11 +7,13 @@ namespace Cowegis\Core\Distance;
 use Cowegis\Core\Definition\LatLng;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
-interface Algorithm
+interface DistanceAlgorithm
 {
     public const HARVESINE = 'harvesine';
 
     public const VINCENTY = 'vincenty';
+
+    public const RHUMB = 'rhumb';
 
     public function distance(LatLng $from, LatLng $to): float;
 }

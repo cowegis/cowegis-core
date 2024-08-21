@@ -11,7 +11,7 @@ use Cowegis\Core\Definition\LatLng;
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */
-final class Vincenty implements Algorithm
+final class Vincenty implements DistanceAlgorithm
 {
     public const A = 6378137.0;
 
