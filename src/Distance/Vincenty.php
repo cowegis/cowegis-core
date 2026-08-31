@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Distance;
 
 use Cowegis\Core\Definition\LatLng;
+use Override;
 
 /**
  * @see https://github.com/hofff/geo/blob/1.x/src/Calc/Vincenty.php
@@ -26,6 +27,7 @@ final class Vincenty implements DistanceAlgorithm
     ) {
     }
 
+    #[Override]
     public function distance(LatLng $from, LatLng $to): float
     {
         $iterator = VincentyIterator::run($from, $to, $this->f);
@@ -34,14 +36,14 @@ final class Vincenty implements DistanceAlgorithm
         }
 
         $uSq = $iterator->cosSqAlpha * ($this->a * $this->a - $this->b * $this->b) / ($this->b * $this->b);
-        $a   = 1 + $uSq / 16384 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
-        $b   = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
-        $c   = $iterator->cosSigma * (-1 + 2 * $iterator->cos2SigmaM * $iterator->cos2SigmaM);
-        $d   = $b / 6 * $iterator->cos2SigmaM
-            * (-3 + 4 * $iterator->sinSigma * $iterator->sinSigma)
-            * (-3 + 4 * $iterator->cos2SigmaM * $iterator->cos2SigmaM);
+        $a   = 1.0 + $uSq / 16384.0 * (4096.0 + $uSq * (-768.0 + $uSq * (320.0 - 175.0 * $uSq)));
+        $b   = $uSq / 1024.0 * (256.0 + $uSq * (-128.0 + $uSq * (74.0 - 47.0 * $uSq)));
+        $c   = $iterator->cosSigma * (-1.0 + 2.0 * $iterator->cos2SigmaM * $iterator->cos2SigmaM);
+        $d   = $b / 6.0 * $iterator->cos2SigmaM
+            * (-3.0 + 4.0 * $iterator->sinSigma * $iterator->sinSigma)
+            * (-3.0 + 4.0 * $iterator->cos2SigmaM * $iterator->cos2SigmaM);
 
-        $deltaSigma = $b * $iterator->sinSigma * ($iterator->cos2SigmaM + $b / 4 * ($c - $d));
+        $deltaSigma = $b * $iterator->sinSigma * ($iterator->cos2SigmaM + $b / 4.0 * ($c - $d));
 
         return $this->b * $a * ($iterator->sigma - $deltaSigma);
     }

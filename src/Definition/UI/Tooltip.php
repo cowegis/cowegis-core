@@ -11,6 +11,7 @@ use Cowegis\Core\Definition\LayerObject;
 use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\Preset\TooltipPresetId;
 use Cowegis\Core\Exception\RuntimeException;
+use Override;
 
 final class Tooltip extends LayerObject implements HasEvents
 {
@@ -24,6 +25,7 @@ final class Tooltip extends LayerObject implements HasEvents
     ) {
     }
 
+    #[Override]
     public function addTo(Map $map): void
     {
         throw new RuntimeException('Add to map is not supported right so far.');

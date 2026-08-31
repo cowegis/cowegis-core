@@ -9,6 +9,7 @@ use Assert\InvalidArgumentException;
 use Cowegis\Core\Exception\InvalidArgument;
 use Cowegis\GeoJson\Position\Coordinates;
 use JsonSerializable;
+use Override;
 
 use function abs;
 use function array_pad;
@@ -156,6 +157,7 @@ final class LatLng implements JsonSerializable
      *
      * @psalm-return TSerializedLatLng
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         $raw = [
@@ -178,11 +180,11 @@ final class LatLng implements JsonSerializable
      */
     public function toString(bool $ignoreAltitude = false): string
     {
-        $buffer   = $this->latitude . ',' . $this->longitude;
+        $buffer   = (string) $this->latitude . ',' . (string) $this->longitude;
         $altitude = $this->altitude;
 
         if (! $ignoreAltitude && $altitude !== null) {
-            $buffer .= ',' . $altitude;
+            $buffer .= ',' . (string) $altitude;
         }
 
         return $buffer;

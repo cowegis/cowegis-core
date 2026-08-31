@@ -10,6 +10,7 @@ use Cowegis\Core\Definition\Expression\Callbacks;
 use Cowegis\Core\Definition\UI\Marker;
 use Cowegis\Core\Provider\LayerData;
 use IteratorAggregate;
+use Override;
 
 /** @implements IteratorAggregate<Marker> */
 final class MarkersLayerData implements LayerData, IteratorAggregate
@@ -32,6 +33,7 @@ final class MarkersLayerData implements LayerData, IteratorAggregate
         return $this->callbacks;
     }
 
+    #[Override]
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->markers);

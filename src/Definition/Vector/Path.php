@@ -11,12 +11,14 @@ use Cowegis\Core\Constraint\NumberConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Event\EventsPlugin;
 use Cowegis\Core\Definition\Layer\Layer;
+use Override;
 
 abstract class Path extends Layer
 {
     use EventsPlugin;
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

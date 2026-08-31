@@ -7,10 +7,12 @@ namespace Cowegis\Core\Schema\Layer;
 use Cowegis\Core\Schema\LayerSchemaDescriber;
 use Cowegis\Core\Schema\SchemaBuilder;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+use Override;
 
 final class TileLayerSchemaDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
+    #[Override]
     protected function requiredProperties(SchemaBuilder $builder): array
     {
         return [

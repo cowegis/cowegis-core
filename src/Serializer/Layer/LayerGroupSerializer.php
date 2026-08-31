@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\LayerGroup;
+use Override;
 
 /** @extends MapLayerSerializer<LayerGroup> */
 class LayerGroupSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc}*/
+    #[Override]
     public function serialize(mixed $data): array
     {
         $serialized         = parent::serialize($data);

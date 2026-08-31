@@ -10,6 +10,7 @@ use Cowegis\Core\Definition\UI\Marker;
 use Cowegis\Core\Serializer\Serializer;
 use Cowegis\GeoJson\Feature\Feature;
 use Cowegis\GeoJson\Geometry\Point;
+use Override;
 
 /** @implements Serializer<Marker> */
 final class MarkerSerializer implements Serializer
@@ -18,6 +19,7 @@ final class MarkerSerializer implements Serializer
     {
     }
 
+    #[Override]
     public function serialize(mixed $data): Feature
     {
         $properties = [

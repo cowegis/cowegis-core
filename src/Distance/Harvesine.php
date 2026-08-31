@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Distance;
 
 use Cowegis\Core\Definition\LatLng;
+use Override;
 
 use function atan2;
 use function cos;
@@ -25,6 +26,7 @@ final class Harvesine implements DistanceAlgorithm
     {
     }
 
+    #[Override]
     public function distance(LatLng $from, LatLng $to): float
     {
         $fromLat  = deg2rad($from->latitude());
@@ -32,10 +34,10 @@ final class Harvesine implements DistanceAlgorithm
         $deltaLat = $toLat - $fromLat;
         $deltaLng = deg2rad($to->longitude()) - deg2rad($from->longitude());
 
-        $a = sin($deltaLat / 2);
-        $b = sin($deltaLng / 2);
+        $a = sin($deltaLat / 2.0);
+        $b = sin($deltaLng / 2.0);
         $c = $a * $a + $b * $b * cos($fromLat) * cos($toLat);
-        $d = 2 * atan2(sqrt($c), sqrt(1 - $c));
+        $d = 2.0 * atan2(sqrt($c), sqrt(1.0 - $c));
 
         return $d * $this->earthRadius;
     }

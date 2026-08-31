@@ -7,10 +7,12 @@ namespace Cowegis\Core\Definition\Control;
 use Cowegis\Core\Constraint\BooleanConstraint;
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
+use Override;
 
 final class ScaleControl extends Control
 {
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
@@ -23,7 +25,8 @@ final class ScaleControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): string|null
+    #[Override]
+    protected function defaultPosition(): string
     {
         return Control::POSITION_BOTTOM_LEFT;
     }

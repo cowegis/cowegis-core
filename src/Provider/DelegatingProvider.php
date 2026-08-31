@@ -11,6 +11,7 @@ use Cowegis\Core\Exception\DataNotFound;
 use Cowegis\Core\Exception\MapNotFound;
 use Cowegis\Core\IdFormat\DelegatingIdFormat;
 use Cowegis\Core\IdFormat\IdFormat;
+use Override;
 
 final class DelegatingProvider implements Provider
 {
@@ -25,6 +26,7 @@ final class DelegatingProvider implements Provider
         }
     }
 
+    #[Override]
     public function idFormat(): IdFormat
     {
         /** @var IdFormat|null $idFormat */
@@ -42,6 +44,7 @@ final class DelegatingProvider implements Provider
         return $idFormat;
     }
 
+    #[Override]
     public function findMap(MapId $mapId, Context $context): Map
     {
         foreach ($this->providers as $provider) {
@@ -55,6 +58,7 @@ final class DelegatingProvider implements Provider
         throw MapNotFound::withMapId($mapId);
     }
 
+    #[Override]
     public function findLayerData(MapId $mapId, LayerId $layerId, Context $context): LayerData
     {
         foreach ($this->providers as $provider) {

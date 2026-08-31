@@ -9,6 +9,7 @@ use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\Point;
+use Override;
 
 abstract class BaseIcon implements Icon
 {
@@ -18,12 +19,14 @@ abstract class BaseIcon implements Icon
     {
     }
 
+    #[Override]
     public function iconId(): IconId
     {
         return $this->iconId;
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         return [

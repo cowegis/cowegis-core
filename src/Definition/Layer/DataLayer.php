@@ -12,6 +12,7 @@ use Cowegis\Core\Definition\Expression\Reference;
 use Cowegis\Core\Definition\GeoData\ExternalData;
 use Cowegis\Core\Definition\GeoData\GeoData;
 use Cowegis\Core\Definition\Map\PaneId;
+use Override;
 
 final class DataLayer extends Layer
 {
@@ -35,6 +36,7 @@ final class DataLayer extends Layer
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

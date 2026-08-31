@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use ArrayObject;
+use Override;
 
 use function is_array;
 use function is_object;
@@ -13,6 +14,7 @@ use function is_object;
 final class ArraySerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize(mixed $data): mixed
     {
         foreach ($data as $key => $value) {

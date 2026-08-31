@@ -9,14 +9,17 @@ use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Filter\Query;
 use Cowegis\Core\Filter\Rule;
 use Cowegis\Core\Filter\RuleFactory;
+use Override;
 
 final class DistanceRuleFactory implements RuleFactory
 {
+    #[Override]
     public function name(): string
     {
         return 'distance';
     }
 
+    #[Override]
     public function supports(Query $query): bool
     {
         if (! $query->has($this->name())) {
@@ -32,6 +35,7 @@ final class DistanceRuleFactory implements RuleFactory
         return isset($data['coordinates'], $data['radius']);
     }
 
+    #[Override]
     public function create(Query $query): Rule
     {
         /** @psalm-var array{coordinates: string, radius: string} */

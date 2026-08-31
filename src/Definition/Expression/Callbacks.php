@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Expression;
 
 use Countable;
+use Override;
 
 use function count;
 use function implode;
@@ -54,6 +55,7 @@ JAVASCRIPT;
         return new Reference($identifier, [$this->identifier]);
     }
 
+    #[Override]
     public function count(): int
     {
         return count($this->callbacks);

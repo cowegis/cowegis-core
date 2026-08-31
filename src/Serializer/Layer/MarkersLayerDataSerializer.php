@@ -9,6 +9,7 @@ use Cowegis\Core\Provider\LayerData\MarkersLayerData;
 use Cowegis\Core\Serializer\Serializer;
 use Cowegis\GeoJson\Feature\Feature;
 use Cowegis\GeoJson\Feature\FeatureCollection;
+use Override;
 
 use function assert;
 
@@ -19,6 +20,7 @@ final class MarkersLayerDataSerializer implements Serializer
     {
     }
 
+    #[Override]
     public function serialize(mixed $data): FeatureCollection
     {
         $features = [];

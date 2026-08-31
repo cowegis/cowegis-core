@@ -7,11 +7,13 @@ namespace Cowegis\Core\Serializer\Vector;
 use Cowegis\Core\Definition\Vector\CircleObject;
 use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
+use Override;
 
 /** @extends MapLayerSerializer<CircleObject> */
 abstract class CircleObjectSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize(mixed $data): array
     {
         if (! $data instanceof CircleObject) {

@@ -7,6 +7,7 @@ namespace Cowegis\Core\Serializer\Vector;
 use Cowegis\Core\Definition\Vector\Path;
 use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
+use Override;
 
 /**
  * @template T of Path
@@ -15,6 +16,7 @@ use Cowegis\Core\Serializer\Layer\MapLayerSerializer;
 abstract class CoordinatesBasedVectorSerializer extends MapLayerSerializer
 {
     /** {@inheritDoc}*/
+    #[Override]
     public function serialize(mixed $data): array
     {
         if (! $data instanceof Path) {
@@ -31,7 +33,7 @@ abstract class CoordinatesBasedVectorSerializer extends MapLayerSerializer
     abstract protected function serializedType(): string;
 
     /**
-     * @psalm-param T $layer
+     * @param T $layer
      *
      * @return array<mixed>
      */

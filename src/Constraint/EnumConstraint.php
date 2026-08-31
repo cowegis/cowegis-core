@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Constraint;
 
+use Override;
+
 use function in_array;
 
 final class EnumConstraint extends BaseConstraint
@@ -26,11 +28,13 @@ final class EnumConstraint extends BaseConstraint
         return new self($values, true);
     }
 
+    #[Override]
     public function match(mixed $value): bool
     {
         return in_array($value, $this->values, true);
     }
 
+    #[Override]
     public function filter(mixed $value): mixed
     {
         /** @psalm-var mixed $allowed */

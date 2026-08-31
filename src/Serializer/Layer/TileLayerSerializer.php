@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Layer;
 
 use Cowegis\Core\Definition\Layer\TileLayer;
 use Cowegis\Core\Exception\RuntimeException;
+use Override;
 
 /** @extends MapLayerSerializer<TileLayer> */
 final class TileLayerSerializer extends MapLayerSerializer
 {
     /** @return array<string,mixed> */
+    #[Override]
     public function serialize(mixed $data): array
     {
         if (! $data instanceof TileLayer) {

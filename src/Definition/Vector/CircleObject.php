@@ -7,6 +7,7 @@ namespace Cowegis\Core\Definition\Vector;
 use Cowegis\Core\Constraint\NumberConstraint;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\Layer\LayerId;
+use Override;
 
 abstract class CircleObject extends Path
 {
@@ -20,6 +21,7 @@ abstract class CircleObject extends Path
     }
 
     /** {@inheritDoc} */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

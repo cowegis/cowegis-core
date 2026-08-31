@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Expression;
 
 use JsonSerializable;
+use Override;
 
 use function implode;
 
@@ -16,6 +17,7 @@ final class Reference implements Expression, JsonSerializable
     {
     }
 
+    #[Override]
     public function toString(): string
     {
         if ($this->namespace === null) {
@@ -26,6 +28,7 @@ final class Reference implements Expression, JsonSerializable
     }
 
     /** @return TSerializedReference */
+    #[Override]
     public function jsonSerialize(): array
     {
         return [

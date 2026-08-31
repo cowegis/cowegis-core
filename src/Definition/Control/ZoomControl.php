@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Control;
 
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\StringConstraint;
+use Override;
 
 final class ZoomControl extends Control
 {
@@ -22,6 +23,7 @@ final class ZoomControl extends Control
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints                 = parent::optionConstraints();
@@ -33,7 +35,8 @@ final class ZoomControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): string|null
+    #[Override]
+    protected function defaultPosition(): string
     {
         return Control::POSITION_TOP_LEFT;
     }

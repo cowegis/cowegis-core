@@ -7,8 +7,7 @@ namespace Cowegis\Core\Serializer\Vector;
 use Cowegis\Core\Definition\LatLngList;
 use Cowegis\Core\Definition\Vector\MultiPolyline;
 use Cowegis\Core\Definition\Vector\Path;
-
-use function assert;
+use Override;
 
 /**
  * @extends CoordinatesBasedVectorSerializer<MultiPolyline>
@@ -16,16 +15,20 @@ use function assert;
  */
 final class MultiPolylineSerializer extends CoordinatesBasedVectorSerializer
 {
+    #[Override]
     protected function serializedType(): string
     {
         return 'multiPolyline';
     }
 
-    /** @return list<TSerializedLatLngList> */
+    /**
+     * @param MultiPolyline $layer
+     *
+     * @return list<TSerializedLatLngList>
+     */
+    #[Override]
     protected function serializeCoordinates(Path $layer): array
     {
-        assert($layer instanceof MultiPolyline);
-
         $rings = [];
 
         foreach ($layer->getLatLngs() as $ring) {

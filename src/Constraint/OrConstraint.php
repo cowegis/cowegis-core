@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Constraint;
 
+use Override;
+
 final class OrConstraint extends BaseConstraint
 {
     /** @var Constraint[] */
@@ -34,6 +36,7 @@ final class OrConstraint extends BaseConstraint
         return self::withDefaultValue($defaultValue, new EnumConstraint([$value]), ...$constraints);
     }
 
+    #[Override]
     public function match(mixed $value): bool
     {
         foreach ($this->constraints as $constraint) {
@@ -45,6 +48,7 @@ final class OrConstraint extends BaseConstraint
         return false;
     }
 
+    #[Override]
     public function filter(mixed $value): mixed
     {
         foreach ($this->constraints as $constraint) {

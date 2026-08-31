@@ -10,12 +10,14 @@ use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\SimpleStyle\SimpleStyleMarker;
+use Override;
 
 use function assert;
 use function is_string;
 
 abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
 {
+    #[Override]
     public function markerSize(): string|null
     {
         $value = $this->options()->get('size');
@@ -24,6 +26,7 @@ abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
         return $value;
     }
 
+    #[Override]
     public function markerColor(): string|null
     {
         $value = $this->options()->get('bgColor');
@@ -32,6 +35,7 @@ abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
         return $value;
     }
 
+    #[Override]
     public function symbolColor(): string|null
     {
         $value = $this->options()->get('color');
@@ -40,12 +44,14 @@ abstract class BaseSvgIcon extends BaseIcon implements SimpleStyleMarker
         return $value;
     }
 
+    #[Override]
     public function markerSymbol(): string|null
     {
         return null;
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

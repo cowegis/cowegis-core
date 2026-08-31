@@ -12,6 +12,7 @@ use Cowegis\Core\Definition\HasOptions;
 use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\UI\TooltipOptionsPlugin;
+use Override;
 
 final class TooltipPreset implements Definition, HasOptions
 {
@@ -28,6 +29,7 @@ final class TooltipPreset implements Definition, HasOptions
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = [

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Event\SerializeEvent;
+use Override;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /** @extends DataSerializer<mixed> */
@@ -16,6 +17,7 @@ final class EventDispatchingSerializer extends DataSerializer
     }
 
     /** {@inheritDoc} */
+    #[Override]
     public function serialize(mixed $data): mixed
     {
         /** @psalm-var mixed */

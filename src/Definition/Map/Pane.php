@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Map;
 
 use Cowegis\Core\Definition\Definition;
 use JsonSerializable;
+use Override;
 
 /**
  * @psalm-type TSerializedPane = array{
@@ -49,6 +50,7 @@ final class Pane implements Definition, JsonSerializable
      * @return array<string,mixed>
      * @psalm-return TSerializedPane
      */
+    #[Override]
     public function jsonSerialize(): array
     {
         return [

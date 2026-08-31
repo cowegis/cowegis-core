@@ -6,6 +6,7 @@ namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Exception\InvalidArgument;
+use Override;
 
 use function is_array;
 use function is_string;
@@ -13,6 +14,7 @@ use function is_string;
 /** @psalm-import-type TRawLatLng from LatLng */
 final class LatLngConstraint extends ConstraintWithDefault
 {
+    #[Override]
     public function match(mixed $value): bool
     {
         try {
@@ -25,6 +27,7 @@ final class LatLngConstraint extends ConstraintWithDefault
         return true;
     }
 
+    #[Override]
     public function filter(mixed $value): LatLng
     {
         if ($value instanceof LatLng) {

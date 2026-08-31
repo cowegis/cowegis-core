@@ -12,6 +12,7 @@ use Cowegis\Core\Definition\LayerObject;
 use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\NamePlugin;
 use Cowegis\Core\Definition\TitlePlugin;
+use Override;
 
 abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
 {
@@ -27,6 +28,7 @@ abstract class Layer extends LayerObject implements HasTitle, HasName, HasEvents
         $this->name = $name;
     }
 
+    #[Override]
     public function addTo(Map $map): void
     {
         $map->layers()->add($this);

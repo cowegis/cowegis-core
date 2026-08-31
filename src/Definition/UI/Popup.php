@@ -8,6 +8,7 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Definition\HasPopup;
 use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\Preset\PopupPresetId;
+use Override;
 
 final class Popup extends DivOverlay
 {
@@ -22,6 +23,7 @@ final class Popup extends DivOverlay
         $target->openPopup($this);
     }
 
+    #[Override]
     public function addTo(Map $map): void
     {
         $map->openPopup($this);
@@ -38,6 +40,7 @@ final class Popup extends DivOverlay
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

@@ -12,12 +12,14 @@ use Cowegis\Core\Definition\HasEvents;
 use Cowegis\Core\Definition\LayerObject;
 use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\Point;
+use Override;
 
 abstract class DivOverlay extends LayerObject implements HasEvents
 {
     use EventsPlugin;
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints              = parent::optionConstraints();

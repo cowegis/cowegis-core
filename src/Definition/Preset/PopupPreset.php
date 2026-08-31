@@ -13,6 +13,7 @@ use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\UI\PopupOptionsPlugin;
+use Override;
 
 final class PopupPreset implements Definition, HasOptions
 {
@@ -29,6 +30,7 @@ final class PopupPreset implements Definition, HasOptions
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = [

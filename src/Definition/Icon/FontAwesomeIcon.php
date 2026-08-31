@@ -7,12 +7,14 @@ namespace Cowegis\Core\Definition\Icon;
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
+use Override;
 
 use function assert;
 use function is_string;
 
 final class FontAwesomeIcon extends BaseSvgIcon
 {
+    #[Override]
     public function markerSymbol(): string|null
     {
         $value = $this->options()->get('icon');
@@ -22,6 +24,7 @@ final class FontAwesomeIcon extends BaseSvgIcon
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

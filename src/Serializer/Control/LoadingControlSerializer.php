@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\LoadingControl;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /** @extends DataSerializer<LoadingControl> */
 final class LoadingControlSerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize($data): array
     {
         return [

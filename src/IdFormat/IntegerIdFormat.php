@@ -6,6 +6,7 @@ namespace Cowegis\Core\IdFormat;
 
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Definition\DefinitionId\IntegerDefinitionId;
+use Override;
 
 use function is_int;
 use function is_numeric;
@@ -25,6 +26,7 @@ final class IntegerIdFormat implements IdFormat
      * @psalm-suppress MixedMethodCall
      * @psalm-suppress MixedReturnStatement
      */
+    #[Override]
     public function createDefinitionId(string $definitionClass, mixed $value): DefinitionId
     {
         if ($this->supports($value)) {
@@ -34,6 +36,7 @@ final class IntegerIdFormat implements IdFormat
         return $definitionClass::fromValue(IntegerDefinitionId::fromValue($value));
     }
 
+    #[Override]
     public function supports(mixed $value): bool
     {
         if (is_int($value)) {

@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\FullscreenControl;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /** @extends DataSerializer<FullscreenControl> */
 final class FullscreenControlSerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize($data): array
     {
         return [

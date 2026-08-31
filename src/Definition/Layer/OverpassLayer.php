@@ -9,10 +9,12 @@ use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\Expression\Reference;
+use Override;
 
 final class OverpassLayer extends Layer
 {
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Map;
 
 use Cowegis\Core\Exception\RuntimeException;
 use IteratorAggregate;
+use Override;
 
 use function array_values;
 use function sprintf;
@@ -44,6 +45,7 @@ final class Panes implements IteratorAggregate
         unset($this->panes[$pane->paneId()->value()]);
     }
 
+    #[Override]
     public function getIterator(): PaneIterator
     {
         return new PaneIterator(array_values($this->panes));

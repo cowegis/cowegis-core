@@ -7,6 +7,7 @@ namespace Cowegis\Core\Filter\Rule;
 use Cowegis\Core\Definition\LatLngBounds;
 use Cowegis\Core\Filter\Query;
 use Cowegis\Core\Filter\Rule;
+use Override;
 
 final class BboxRule implements Rule
 {
@@ -16,6 +17,7 @@ final class BboxRule implements Rule
     {
     }
 
+    #[Override]
     public function name(): string
     {
         return self::QUERY_PARAM;
@@ -26,6 +28,7 @@ final class BboxRule implements Rule
         return $this->boundingBox;
     }
 
+    #[Override]
     public function toQuery(Query $query): Query
     {
         return $query->with(

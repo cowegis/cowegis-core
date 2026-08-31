@@ -9,10 +9,12 @@ use Cowegis\Core\Schema\LayerSchemaDescriber;
 use Cowegis\Core\Schema\SchemaBuilder;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+use Override;
 
 final class DataLayerSchemaDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
+    #[Override]
     protected function requiredProperties(SchemaBuilder $builder): array
     {
         $reference = $builder->components()->withSchema(

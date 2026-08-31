@@ -10,6 +10,7 @@ use Cowegis\Core\Definition\Control as ControlContract;
 use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\TitlePlugin;
+use Override;
 
 abstract class Control implements ControlContract
 {
@@ -25,6 +26,7 @@ abstract class Control implements ControlContract
     {
     }
 
+    #[Override]
     public function controlId(): ControlId
     {
         return $this->controlId;
@@ -35,12 +37,14 @@ abstract class Control implements ControlContract
         return $this->name;
     }
 
+    #[Override]
     public function addTo(Map $map): void
     {
         $map->controls()->add($this);
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         return [

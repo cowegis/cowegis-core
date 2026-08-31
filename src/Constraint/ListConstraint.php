@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Exception\RuntimeException;
+use Override;
 
 use function get_class;
 use function gettype;
@@ -23,6 +24,7 @@ final class ListConstraint extends BaseConstraint
         return [];
     }
 
+    #[Override]
     public function match(mixed $value): bool
     {
         if (! is_array($value)) {
@@ -48,6 +50,7 @@ final class ListConstraint extends BaseConstraint
     }
 
     /** @return array<array-key, mixed> */
+    #[Override]
     public function filter(mixed $value): array
     {
         if (! is_array($value)) {

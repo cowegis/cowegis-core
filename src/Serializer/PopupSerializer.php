@@ -7,8 +7,7 @@ namespace Cowegis\Core\Serializer;
 use Cowegis\Core\Definition\Event\Events;
 use Cowegis\Core\Definition\Preset\PopupPresetId;
 use Cowegis\Core\Definition\UI\Popup;
-
-use function assert;
+use Override;
 
 /**
  * @extends DataSerializer<Popup>
@@ -23,13 +22,14 @@ use function assert;
 final class PopupSerializer extends DataSerializer
 {
     /**
+     * @param Popup $data
+     *
      * @return array<string, mixed>
      * @psalm-return TSerializedPopup
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
-        assert($data instanceof Popup);
-
         $presetId = $data->presetId();
         /** @psalm-var array<string,mixed> $options */
         $options = $this->serializer->serialize($data->options());

@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\LayersControl;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /** @extends DataSerializer<LayersControl> */
 final class LayersControlSerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize($data): array
     {
         return [

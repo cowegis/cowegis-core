@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\GeocoderControl;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /** @extends DataSerializer<GeocoderControl> */
 final class GeocoderControlSerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize($data): array
     {
         return [

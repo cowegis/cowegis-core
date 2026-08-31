@@ -8,9 +8,11 @@ use Cowegis\Core\Schema\GeoData\ExternalDataSchema;
 use Cowegis\Core\Schema\GeoData\GeoDataSchema;
 use Cowegis\Core\Schema\GeoData\InlineGeoJsonDataSchema;
 use Cowegis\Core\Schema\GeoData\UriDataSchema;
+use Override;
 
 final class GeoDataSchemaDescriber implements SchemaDescriber
 {
+    #[Override]
     public function describe(SchemaBuilder $builder): void
     {
         $components = $builder->components();

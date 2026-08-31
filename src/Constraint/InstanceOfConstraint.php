@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Constraint;
 
 use Cowegis\Core\Exception\RuntimeException;
+use Override;
 
 use function gettype;
 use function is_object;
@@ -24,11 +25,13 @@ final class InstanceOfConstraint extends BaseConstraint
         return new DefaultValueConstraint(new self($expectedClass), $defaultValue);
     }
 
+    #[Override]
     public function match(mixed $value): bool
     {
         return $value instanceof $this->expectedClass;
     }
 
+    #[Override]
     public function filter(mixed $value): mixed
     {
         if ($this->match($value)) {

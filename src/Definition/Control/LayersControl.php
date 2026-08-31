@@ -9,6 +9,7 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Definition\Expression\Reference;
 use Cowegis\Core\Definition\Layer\LayerIds;
+use Override;
 
 final class LayersControl extends Control
 {
@@ -38,12 +39,14 @@ final class LayersControl extends Control
         return $this->overlays;
     }
 
+    #[Override]
     protected function defaultPosition(): string
     {
         return Control::POSITION_TOP_RIGHT;
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

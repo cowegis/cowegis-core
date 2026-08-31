@@ -63,11 +63,11 @@ final class VincentyIterator
         $this->deltaLng = deg2rad($to->longitude()) - deg2rad($from->longitude());
         $this->lambda   = $this->deltaLng;
 
-        $u1          = atan((1 - $f) * tan(deg2rad($from->latitude())));
+        $u1          = atan((1.0 - $f) * tan(deg2rad($from->latitude())));
         $this->sinU1 = sin($u1);
         $this->cosU1 = cos($u1);
 
-        $u2          = atan((1 - $f) * tan(deg2rad($to->latitude())));
+        $u2          = atan((1.0 - $f) * tan(deg2rad($to->latitude())));
         $this->sinU2 = sin($u2);
         $this->cosU2 = cos($u2);
     }
@@ -120,17 +120,18 @@ final class VincentyIterator
         $this->sigma    = atan2($this->sinSigma, $this->cosSigma);
 
         $sinAlpha         = $this->cosU1 * $this->cosU2 * $this->sinLambda / $this->sigma;
-        $this->cosSqAlpha = 1 - $sinAlpha * $sinAlpha;
+        $this->cosSqAlpha = 1.0 - $sinAlpha * $sinAlpha;
 
         if ($this->cosSqAlpha === 0.0) {
             $this->cos2SigmaM = 0;
             $lambda           = $this->deltaLng + $this->f * $sinAlpha * $this->sigma;
         } else {
-            $this->cos2SigmaM = $this->cosSigma - 2 * $this->sinU1 * $this->sinU2 / $this->cosSqAlpha;
-            $c                = $this->f / 16 * $this->cosSqAlpha * (4 + $this->f * (4 - 3 * $this->cosSqAlpha));
+            $this->cos2SigmaM = $this->cosSigma - 2.0 * $this->sinU1 * $this->sinU2 / $this->cosSqAlpha;
+            $c                = $this->f / 16.0 * $this->cosSqAlpha * (4.0 + $this->f
+                * (4.0 - 3.0 * $this->cosSqAlpha));
             $d                = $this->cos2SigmaM + $c * $this->cosSigma
-                * (-1 + 2 * $this->cos2SigmaM * $this->cos2SigmaM);
-            $lambda           = $this->deltaLng + (1 - $c) * $this->f * $sinAlpha
+                * (-1.0 + 2.0 * $this->cos2SigmaM * $this->cos2SigmaM);
+            $lambda           = $this->deltaLng + (1.0 - $c) * $this->f * $sinAlpha
                 * ($this->sigma + $c * $this->sinSigma * $d);
         }
 

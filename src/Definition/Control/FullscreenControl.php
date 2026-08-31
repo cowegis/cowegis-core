@@ -7,15 +7,18 @@ namespace Cowegis\Core\Definition\Control;
 use Cowegis\Core\Constraint\BooleanConstraint;
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\StringConstraint;
+use Override;
 
 final class FullscreenControl extends Control
 {
-    protected function defaultPosition(): string|null
+    #[Override]
+    protected function defaultPosition(): string
     {
         return Control::POSITION_TOP_LEFT;
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

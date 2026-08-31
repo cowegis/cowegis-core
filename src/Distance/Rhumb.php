@@ -6,6 +6,7 @@ namespace Cowegis\Core\Distance;
 
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\LatLngBounds;
+use Override;
 
 use function abs;
 use function cos;
@@ -31,6 +32,7 @@ final class Rhumb implements DistanceAlgorithm, BoundsOfCircleAlgorithm
     {
     }
 
+    #[Override]
     public function distance(LatLng $from, LatLng $to): float
     {
         $pi       = pi();
@@ -40,7 +42,7 @@ final class Rhumb implements DistanceAlgorithm, BoundsOfCircleAlgorithm
         $deltaLng = abs(deg2rad($to->longitude()) - deg2rad($from->longitude()));
 
         if ($deltaLng > $pi) {
-            $deltaLng = 2 * $pi - $deltaLng;
+            $deltaLng = 2.0 * $pi - $deltaLng;
         }
 
         $deltaPhi = $this->calculateDeltaPhi($fromLat, $toLat);
@@ -51,13 +53,14 @@ final class Rhumb implements DistanceAlgorithm, BoundsOfCircleAlgorithm
         return sqrt($deltaLat * $deltaLat + $q * $q * $deltaLng * $deltaLng) * $this->earthRadius;
     }
 
+    #[Override]
     public function boundsOfCircle(LatLng $center, float $radius): LatLngBounds
     {
         if ($radius <= 0) {
             return new LatLngBounds($center, $center);
         }
 
-        $radius = sqrt(2 * $radius * $radius);
+        $radius = sqrt(2.0 * $radius * $radius);
         $sw     = $this->destination($center, 225.0, $radius);
         $ne     = $this->destination($center, 45.0, $radius);
 
@@ -66,7 +69,7 @@ final class Rhumb implements DistanceAlgorithm, BoundsOfCircleAlgorithm
 
     private function calculateDeltaPhi(float $fromLat, float $toLat): float
     {
-        return log(tan($toLat / 2 + pi() / 4) / tan($fromLat / 2 + pi() / 4));
+        return log(tan($toLat / 2.0 + pi() / 4.0) / tan($fromLat / 2.0 + pi() / 4.0));
     }
 
     private function destination(LatLng $from, float $bearing, float $distance): LatLng
@@ -82,9 +85,9 @@ final class Rhumb implements DistanceAlgorithm, BoundsOfCircleAlgorithm
         $q        = $deltaPhi !== 0.0 ? $deltaLat / $deltaPhi : cos($fromLat);
         $deltaLng = $distance * sin($bearing) / $q;
 
-        abs($toLat) > $pi / 2 && $toLat = ($toLat > 0 ? -1 : 1) * ($pi - $toLat);
+        abs($toLat) > $pi / 2.0 && $toLat = ($toLat > 0 ? -1.0 : 1.0) * ($pi - $toLat);
 
-        $toLng = fmod(deg2rad($from->longitude()) + $deltaLng + 3 * $pi, 2 * $pi) - $pi;
+        $toLng = fmod(deg2rad($from->longitude()) + $deltaLng + 3.0 * $pi, 2.0 * $pi) - $pi;
 
         return new LatLng(rad2deg($toLat), rad2deg($toLng));
     }

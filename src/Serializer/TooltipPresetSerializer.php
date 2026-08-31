@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Preset\TooltipPreset;
-
-use function assert;
+use Override;
 
 /**
  * @extends DataSerializer<TooltipPreset>
@@ -18,13 +17,14 @@ use function assert;
 final class TooltipPresetSerializer extends DataSerializer
 {
     /**
+     * @param TooltipPreset $data
+     *
      * @return array<string, mixed>
      * @psalm-return TSerializedTooltipPreset
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
-        assert($data instanceof TooltipPreset);
-
         /** @psalm-var array<string,mixed> $options */
         $options = $this->serializer->serialize($data->options());
 

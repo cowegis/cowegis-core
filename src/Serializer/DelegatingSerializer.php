@@ -6,6 +6,7 @@ namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Exception\RuntimeException;
 use JsonSerializable;
+use Override;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -20,6 +21,7 @@ final class DelegatingSerializer implements Serializer
     }
 
     /** {@@inheritDoc} */
+    #[Override]
     public function serialize(mixed $data): mixed
     {
         try {

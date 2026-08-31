@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition;
 
 use JsonSerializable;
+use Override;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -32,6 +33,7 @@ final class Point implements Compareable, JsonSerializable
         return $this->y;
     }
 
+    #[Override]
     public function equals(Compareable $other): bool
     {
         if (! $other instanceof self) {
@@ -42,6 +44,7 @@ final class Point implements Compareable, JsonSerializable
     }
 
     /** @return array<int, int> */
+    #[Override]
     public function jsonSerialize(): array
     {
         return [$this->x, $this->y];

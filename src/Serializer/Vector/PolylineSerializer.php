@@ -7,8 +7,7 @@ namespace Cowegis\Core\Serializer\Vector;
 use Cowegis\Core\Definition\LatLngList;
 use Cowegis\Core\Definition\Vector\Path;
 use Cowegis\Core\Definition\Vector\Polyline;
-
-use function assert;
+use Override;
 
 /**
  * @extends CoordinatesBasedVectorSerializer<Polyline>
@@ -16,16 +15,20 @@ use function assert;
  */
 final class PolylineSerializer extends CoordinatesBasedVectorSerializer
 {
+    #[Override]
     protected function serializedType(): string
     {
         return 'polyline';
     }
 
-    /** @return TSerializedLatLngList */
+    /**
+     * @param Polyline $layer
+     *
+     * @return TSerializedLatLngList
+     */
+    #[Override]
     protected function serializeCoordinates(Path $layer): array
     {
-        assert($layer instanceof Polyline);
-
         return $layer->getLatLngs()->jsonSerialize();
     }
 }

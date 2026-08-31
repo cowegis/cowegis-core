@@ -7,8 +7,7 @@ namespace Cowegis\Core\Serializer\Vector;
 use Cowegis\Core\Definition\LatLngList;
 use Cowegis\Core\Definition\Vector\Path;
 use Cowegis\Core\Definition\Vector\Polygon;
-
-use function assert;
+use Override;
 
 /**
  * @extends CoordinatesBasedVectorSerializer<Polygon>
@@ -16,16 +15,20 @@ use function assert;
  */
 final class PolygonSerializer extends CoordinatesBasedVectorSerializer
 {
+    #[Override]
     protected function serializedType(): string
     {
         return 'polygon';
     }
 
-    /** @return list<TSerializedLatLngList> */
+    /**
+     * @param Polygon $layer
+     *
+     * @return list<TSerializedLatLngList>
+     */
+    #[Override]
     protected function serializeCoordinates(Path $layer): array
     {
-        assert($layer instanceof Polygon);
-
         $serialized = [];
 
         foreach ($layer->getLatLngs() as $latLngs) {

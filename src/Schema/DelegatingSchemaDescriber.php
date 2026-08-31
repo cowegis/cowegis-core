@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Schema;
 
+use Override;
+
 final class DelegatingSchemaDescriber implements SchemaDescriber
 {
     /** @var SchemaDescriber[] */
@@ -17,6 +19,7 @@ final class DelegatingSchemaDescriber implements SchemaDescriber
         }
     }
 
+    #[Override]
     public function describe(SchemaBuilder $builder): void
     {
         foreach ($this->describers as $describer) {

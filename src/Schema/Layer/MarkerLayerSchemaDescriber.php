@@ -13,9 +13,11 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\PathItem;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
+use Override;
 
 final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
 {
+    #[Override]
     protected function registerRequirements(SchemaBuilder $builder, Schema $schema): void
     {
         parent::registerRequirements($builder, $schema);

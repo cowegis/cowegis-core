@@ -6,6 +6,7 @@ namespace Cowegis\Core\Schema\GeoJson;
 
 use GoldSpecDigital\ObjectOrientedOAS\Objects\BaseObject;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+use Override;
 
 final class BboxSchema extends Schema
 {
@@ -26,6 +27,7 @@ final class BboxSchema extends Schema
         $this->example = [125.6, 10.1, 254.2, 12.2];
     }
 
+    #[Override]
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
         return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'bbox');

@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Layer;
 
 use Cowegis\Core\Exception\RuntimeException;
 use IteratorAggregate;
+use Override;
 
 use function array_values;
 use function sprintf;
@@ -44,6 +45,7 @@ final class Layers implements IteratorAggregate
         unset($this->layers[$layer->layerId()->value()]);
     }
 
+    #[Override]
     public function getIterator(): LayerIterator
     {
         return new LayerIterator(array_values($this->layers));

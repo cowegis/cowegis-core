@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Vector;
 
 use Cowegis\Core\Definition\LatLngBounds;
+use Override;
 
 final class Polygon extends MultiPolylineObject
 {
+    #[Override]
     public function getBounds(): LatLngBounds
     {
         if (! $this->bounds instanceof LatLngBounds) {

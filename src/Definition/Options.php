@@ -8,6 +8,7 @@ use ArrayIterator;
 use Countable;
 use Cowegis\Core\Constraint\Constraints;
 use IteratorAggregate;
+use Override;
 
 use function array_key_exists;
 use function count;
@@ -61,6 +62,7 @@ final class Options implements IteratorAggregate, Countable
         return array_key_exists($key, $this->options);
     }
 
+    #[Override]
     public function count(): int
     {
         return count($this->options);
@@ -72,6 +74,7 @@ final class Options implements IteratorAggregate, Countable
         return $this->options;
     }
 
+    #[Override]
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->options);

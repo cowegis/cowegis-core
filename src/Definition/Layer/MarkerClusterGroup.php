@@ -11,10 +11,12 @@ use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
 use Cowegis\Core\Definition\Expression\Reference;
+use Override;
 
 final class MarkerClusterGroup extends FeatureGroup
 {
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

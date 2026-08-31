@@ -9,6 +9,7 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\NumberConstraint;
 use Cowegis\Core\Constraint\OrConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
+use Override;
 
 final class TileLayer extends GridLayer
 {
@@ -27,6 +28,7 @@ final class TileLayer extends GridLayer
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

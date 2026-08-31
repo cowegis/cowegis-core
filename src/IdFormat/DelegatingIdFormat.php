@@ -6,6 +6,7 @@ namespace Cowegis\Core\IdFormat;
 
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Exception\InvalidArgument;
+use Override;
 
 /**
  * @template T of DefinitionId
@@ -30,6 +31,7 @@ final class DelegatingIdFormat implements IdFormat
      * @psalm-suppress InvalidReturnType
      * @psalm-suppress InvalidReturnStatement
      */
+    #[Override]
     public function createDefinitionId(string $definitionClass, mixed $value): DefinitionId
     {
         foreach ($this->idFormats as $idFormat) {
@@ -41,6 +43,7 @@ final class DelegatingIdFormat implements IdFormat
         throw new InvalidArgument((string) $value);
     }
 
+    #[Override]
     public function supports(mixed $value): bool
     {
         foreach ($this->idFormats as $idFormat) {

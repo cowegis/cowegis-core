@@ -7,6 +7,7 @@ namespace Cowegis\Core\Filter\Rule;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Filter\Query;
 use Cowegis\Core\Filter\Rule;
+use Override;
 
 final class DistanceRule implements Rule
 {
@@ -20,6 +21,7 @@ final class DistanceRule implements Rule
     {
     }
 
+    #[Override]
     public function name(): string
     {
         return self::QUERY_PARAM;
@@ -36,6 +38,7 @@ final class DistanceRule implements Rule
         return $this->radius;
     }
 
+    #[Override]
     public function toQuery(Query $query): Query
     {
         return $query->with(

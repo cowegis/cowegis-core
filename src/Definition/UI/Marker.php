@@ -27,6 +27,7 @@ use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\PopupPlugin;
 use Cowegis\Core\Definition\TitlePlugin;
 use Cowegis\Core\Definition\TooltipPlugin;
+use Override;
 
 final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPopup, HasTooltip
 {
@@ -73,6 +74,7 @@ final class Marker implements Definition, HasOptions, HasEvents, HasTitle, HasPo
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = [];

@@ -6,6 +6,7 @@ namespace Cowegis\Core\Filter\Rule;
 
 use Cowegis\Core\Filter\Query;
 use Cowegis\Core\Filter\Rule;
+use Override;
 
 final class KeywordRule implements Rule
 {
@@ -15,6 +16,7 @@ final class KeywordRule implements Rule
     {
     }
 
+    #[Override]
     public function name(): string
     {
         return self::QUERY_PARAM;
@@ -25,6 +27,7 @@ final class KeywordRule implements Rule
         return $this->keyword;
     }
 
+    #[Override]
     public function toQuery(Query $query): Query
     {
         return $query->with($this->name(), $this->keyword);

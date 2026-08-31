@@ -9,6 +9,7 @@ use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\EnumConstraint;
 use Cowegis\Core\Constraint\IntegerConstraint;
 use Cowegis\Core\Constraint\StringConstraint;
+use Override;
 
 /**
  * @psalm-type TCustomGeocoder = array{
@@ -22,6 +23,7 @@ final class GeocoderControl extends Control
     private array|null $geocoder = null;
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
@@ -42,7 +44,8 @@ final class GeocoderControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): string|null
+    #[Override]
+    protected function defaultPosition(): string
     {
         return Control::POSITION_TOP_RIGHT;
     }

@@ -9,6 +9,7 @@ use Assert\Assertion;
 use Countable;
 use IteratorAggregate;
 use JsonSerializable;
+use Override;
 use Traversable;
 
 use function array_merge;
@@ -33,6 +34,7 @@ final class LatLngList implements IteratorAggregate, Countable, JsonSerializable
         return new self(array_values(array_merge($this->latLngs, $latLngs)));
     }
 
+    #[Override]
     public function count(): int
     {
         return count($this->latLngs);
@@ -45,6 +47,7 @@ final class LatLngList implements IteratorAggregate, Countable, JsonSerializable
     }
 
     /** @return Traversable<int, LatLng> */
+    #[Override]
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->latLngs);
@@ -56,6 +59,7 @@ final class LatLngList implements IteratorAggregate, Countable, JsonSerializable
     }
 
     /** @return TSerializedLatLngList */
+    #[Override]
     public function jsonSerialize(): array
     {
         $serialized = [];

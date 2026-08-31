@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Control;
 
 use Cowegis\Core\Definition\Control;
 use Iterator;
+use Override;
 
 use function array_values;
 
@@ -30,26 +31,31 @@ final class ControlIterator implements Iterator
         return new self(array_values($controls));
     }
 
+    #[Override]
     public function current(): Control
     {
         return $this->controls[$this->index];
     }
 
+    #[Override]
     public function next(): void
     {
         $this->index++;
     }
 
+    #[Override]
     public function key(): int
     {
         return $this->index;
     }
 
+    #[Override]
     public function valid(): bool
     {
         return isset($this->controls[$this->index]);
     }
 
+    #[Override]
     public function rewind(): void
     {
         $this->index = 0;

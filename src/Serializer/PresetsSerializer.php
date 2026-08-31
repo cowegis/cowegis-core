@@ -6,8 +6,7 @@ namespace Cowegis\Core\Serializer;
 
 use ArrayObject;
 use Cowegis\Core\Definition\Map\Presets;
-
-use function assert;
+use Override;
 
 /**
  * @extends DataSerializer<Presets>
@@ -24,13 +23,14 @@ use function assert;
 final class PresetsSerializer extends DataSerializer
 {
     /**
+     * @param Presets $data
+     *
      * @return array<string, mixed>
      * @psalm-return TSerializedPresets
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
-        assert($data instanceof Presets);
-
         /** @psalm-var ArrayObject|array<string,TSerializedIcon> $icons */
         $icons = $this->serializer->serialize($data->icons()) ?: new ArrayObject();
         /** @psalm-var ArrayObject|array<string,TSerializedPopup> $popups */

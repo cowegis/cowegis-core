@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Event;
 
 use Cowegis\Core\Definition\Expression\Reference;
 use JsonSerializable;
+use Override;
 
 use function array_map;
 
@@ -13,7 +14,7 @@ use function array_map;
  * @psalm-import-type TSerializedReference from Reference
  * @psalm-type TSerializedEvent = array{eventName: string, reference: TSerializedReference }
  * @psalm-type TEvent = array{eventName: string, reference: Reference }
-*/
+ */
 final class Events implements JsonSerializable
 {
     /** @var list<TEvent> */
@@ -41,6 +42,7 @@ final class Events implements JsonSerializable
     }
 
     /** @return list<TSerializedEvent> */
+    #[Override]
     public function jsonSerialize(): array
     {
         return array_map(

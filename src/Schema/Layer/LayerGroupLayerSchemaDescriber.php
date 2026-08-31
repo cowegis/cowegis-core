@@ -7,10 +7,13 @@ namespace Cowegis\Core\Schema\Layer;
 use Cowegis\Core\Schema\LayerSchemaDescriber;
 use Cowegis\Core\Schema\SchemaBuilder;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+use Override;
 
+/** @psalm-suppress ClassMustBeFinal */
 class LayerGroupLayerSchemaDescriber extends LayerSchemaDescriber
 {
     /** @return Schema[] */
+    #[Override]
     protected function requiredProperties(SchemaBuilder $builder): array
     {
         return [

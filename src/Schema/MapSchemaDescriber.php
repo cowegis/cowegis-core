@@ -13,6 +13,7 @@ use GoldSpecDigital\ObjectOrientedOAS\Objects\PathItem;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Response;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Tag;
+use Override;
 
 final class MapSchemaDescriber implements SchemaDescriber
 {
@@ -37,6 +38,7 @@ final class MapSchemaDescriber implements SchemaDescriber
         }
     }
 
+    #[Override]
     public function describe(SchemaBuilder $builder): void
     {
         $tag = Tag::create()

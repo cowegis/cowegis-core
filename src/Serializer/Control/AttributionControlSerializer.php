@@ -6,11 +6,13 @@ namespace Cowegis\Core\Serializer\Control;
 
 use Cowegis\Core\Definition\Control\AttributionControl;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /** @extends DataSerializer<AttributionControl> */
 final class AttributionControlSerializer extends DataSerializer
 {
     /** {@inheritDoc} */
+    #[Override]
     public function serialize($data): array
     {
         return [

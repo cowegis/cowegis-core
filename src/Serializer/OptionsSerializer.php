@@ -6,6 +6,7 @@ namespace Cowegis\Core\Serializer;
 
 use ArrayObject;
 use Cowegis\Core\Definition\Options;
+use Override;
 
 use function is_array;
 use function is_object;
@@ -13,6 +14,7 @@ use function is_object;
 /** @extends DataSerializer<Options> */
 final class OptionsSerializer extends DataSerializer
 {
+    #[Override]
     public function serialize(mixed $data): ArrayObject
     {
         $serialized = new ArrayObject($data->toArray());

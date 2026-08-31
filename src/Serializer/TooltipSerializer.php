@@ -7,6 +7,7 @@ namespace Cowegis\Core\Serializer;
 use Cowegis\Core\Definition\Event\Events;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\UI\Tooltip;
+use Override;
 
 /**
  * @extends DataSerializer<Tooltip>
@@ -28,6 +29,7 @@ final class TooltipSerializer extends DataSerializer
      * @return array<string,mixed>
      * @psalm-return TSerializedTooltip
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
         /** @psalm-var array<string,mixed> $options */

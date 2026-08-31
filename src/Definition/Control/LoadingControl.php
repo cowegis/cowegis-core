@@ -9,10 +9,12 @@ use Cowegis\Core\Constraint\BooleanConstraint;
 use Cowegis\Core\Constraint\Constraint;
 use Cowegis\Core\Constraint\FloatConstraint;
 use Cowegis\Core\Constraint\InstanceOfConstraint;
+use Override;
 
 final class LoadingControl extends Control
 {
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();
@@ -26,7 +28,8 @@ final class LoadingControl extends Control
         return $constraints;
     }
 
-    protected function defaultPosition(): string|null
+    #[Override]
+    protected function defaultPosition(): string
     {
         return 'topleft';
     }

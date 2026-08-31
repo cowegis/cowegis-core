@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Asset;
 
 use JsonSerializable;
+use Override;
 
 final class Asset implements JsonSerializable
 {
@@ -57,6 +58,7 @@ final class Asset implements JsonSerializable
     }
 
     /** @return array<string, mixed> */
+    #[Override]
     public function jsonSerialize(): array
     {
         $data = [

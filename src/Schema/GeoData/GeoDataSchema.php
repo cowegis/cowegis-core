@@ -7,6 +7,7 @@ namespace Cowegis\Core\Schema\GeoData;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\BaseObject;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Schema;
+use Override;
 
 final class GeoDataSchema extends OneOf
 {
@@ -25,6 +26,7 @@ final class GeoDataSchema extends OneOf
         ];
     }
 
+    #[Override]
     public static function ref(string $ref = '', string|null $objectId = null): BaseObject
     {
         return parent::ref($ref === '' ? self::FULL_REF : $ref, $objectId ?? 'geodata');

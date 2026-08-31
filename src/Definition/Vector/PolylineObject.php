@@ -6,10 +6,12 @@ namespace Cowegis\Core\Definition\Vector;
 
 use Cowegis\Core\Constraint\BooleanConstraint;
 use Cowegis\Core\Constraint\FloatConstraint;
+use Override;
 
 abstract class PolylineObject extends Path
 {
     /** {@inheritDoc} */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

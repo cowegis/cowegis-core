@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Definition\GeoData;
 
+use Override;
+
 /**
  * This data object refers to external data where the external data contains only raw data in the defined format.
  */
@@ -24,6 +26,7 @@ final class ExternalData implements GeoData
     }
 
     /** @return array<string, string> */
+    #[Override]
     public function jsonSerialize(): array
     {
         return [

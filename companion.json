@@ -1,7 +1,7 @@
 {
   "receipts": [
     "projects/common",
-    "coding-standards/doctrine/12"
+    "coding-standards/doctrine/14"
   ],
   "config": {
     "phpConstraint": "^8.2",

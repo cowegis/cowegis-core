@@ -7,6 +7,7 @@ namespace Cowegis\Core\Serializer\Layer;
 use Cowegis\Core\Definition\Layer\Layer;
 use Cowegis\Core\Exception\RuntimeException;
 use Cowegis\Core\Serializer\DataSerializer;
+use Override;
 
 /**
  * @template T of Layer
@@ -19,6 +20,7 @@ abstract class MapLayerSerializer extends DataSerializer
      *
      * @return array<string,mixed>
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
         if (! $data instanceof Layer) {

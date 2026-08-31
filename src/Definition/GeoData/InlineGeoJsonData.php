@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\GeoData;
 
 use Cowegis\GeoJson\GeoJsonObject;
+use Override;
 
 /**
  * This object contains GeoJSON data which
@@ -16,6 +17,7 @@ final class InlineGeoJsonData implements GeoData
     }
 
     /** @return array<string, mixed> */
+    #[Override]
     public function jsonSerialize(): array
     {
         return [

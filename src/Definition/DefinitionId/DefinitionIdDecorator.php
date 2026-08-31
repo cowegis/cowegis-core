@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\DefinitionId;
 
 use Cowegis\Core\Definition\DefinitionId;
 use Cowegis\Core\Exception\RuntimeException;
+use Override;
 
 abstract class DefinitionIdDecorator implements DefinitionId
 {
@@ -13,6 +14,7 @@ abstract class DefinitionIdDecorator implements DefinitionId
     {
     }
 
+    #[Override]
     public static function fromValue(mixed $value): static
     {
         if (! $value instanceof DefinitionId) {
@@ -27,11 +29,13 @@ abstract class DefinitionIdDecorator implements DefinitionId
         return $this->definitionId;
     }
 
+    #[Override]
     public function value(): string
     {
         return $this->definitionId->value();
     }
 
+    #[Override]
     public function jsonSerialize(): mixed
     {
         return $this->definitionId->jsonSerialize();

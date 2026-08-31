@@ -15,10 +15,12 @@ use Cowegis\Core\Constraint\StringConstraint;
 use Cowegis\Core\Definition\LatLngBounds;
 use Cowegis\Core\Definition\Map\PaneId;
 use Cowegis\Core\Definition\Point;
+use Override;
 
 abstract class GridLayer extends Layer
 {
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         $constraints = parent::optionConstraints();

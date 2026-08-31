@@ -20,6 +20,7 @@ use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\Point;
 use Cowegis\Core\Definition\PopupPlugin;
 use Cowegis\Core\Definition\TitlePlugin;
+use Override;
 
 /** @SuppressWarnings(PHPMD.TooManyPublicMethods) */
 final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
@@ -115,6 +116,7 @@ final class Map implements Definition, HasEvents, HasTitle, HasOptions, HasPopup
     }
 
     /** @return array<string, Constraint\Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         return [

@@ -15,9 +15,11 @@ use Cowegis\Core\Schema\GeoJson\MultiPointSchema;
 use Cowegis\Core\Schema\GeoJson\MultiPolygonSchema;
 use Cowegis\Core\Schema\GeoJson\PointSchema;
 use Cowegis\Core\Schema\GeoJson\PolygonSchema;
+use Override;
 
 final class GeoJsonDescriber implements SchemaDescriber
 {
+    #[Override]
     public function describe(SchemaBuilder $builder): void
     {
         $components = $builder->components();

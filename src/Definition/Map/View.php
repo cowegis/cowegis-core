@@ -11,6 +11,7 @@ use Cowegis\Core\Definition\HasOptions;
 use Cowegis\Core\Definition\LatLng;
 use Cowegis\Core\Definition\OptionsPlugin;
 use Cowegis\Core\Definition\Point;
+use Override;
 
 final class View implements HasOptions
 {
@@ -37,6 +38,7 @@ final class View implements HasOptions
     }
 
     /** @return array<string, Constraint> */
+    #[Override]
     protected function optionConstraints(): array
     {
         return [

@@ -7,6 +7,7 @@ namespace Cowegis\Core\Definition\Control;
 use Cowegis\Core\Definition\Control;
 use Cowegis\Core\Definition\DefinitionId;
 use IteratorAggregate;
+use Override;
 
 /** @extends IteratorAggregate<int, Control> */
 interface Controls extends IteratorAggregate
@@ -19,5 +20,6 @@ interface Controls extends IteratorAggregate
 
     public function get(DefinitionId $controlId): Control;
 
+    #[Override]
     public function getIterator(): ControlIterator;
 }

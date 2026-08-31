@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Definition\Map;
 
 use Iterator;
+use Override;
 
 use function array_values;
 
@@ -29,26 +30,31 @@ final class PaneIterator implements Iterator
         return new self(array_values($panes));
     }
 
+    #[Override]
     public function current(): Pane
     {
         return $this->panes[$this->index];
     }
 
+    #[Override]
     public function next(): void
     {
         $this->index++;
     }
 
+    #[Override]
     public function key(): int
     {
         return $this->index;
     }
 
+    #[Override]
     public function valid(): bool
     {
         return isset($this->panes[$this->index]);
     }
 
+    #[Override]
     public function rewind(): void
     {
         $this->index = 0;

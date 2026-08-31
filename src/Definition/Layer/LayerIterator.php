@@ -6,6 +6,7 @@ namespace Cowegis\Core\Definition\Layer;
 
 use Cowegis\Core\Definition\Layer;
 use Iterator;
+use Override;
 
 use function array_values;
 
@@ -30,26 +31,31 @@ final class LayerIterator implements Iterator
         return new self(array_values($layers));
     }
 
+    #[Override]
     public function current(): Layer
     {
         return $this->layers[$this->index];
     }
 
+    #[Override]
     public function next(): void
     {
         $this->index++;
     }
 
+    #[Override]
     public function key(): int
     {
         return $this->index;
     }
 
+    #[Override]
     public function valid(): bool
     {
         return isset($this->layers[$this->index]);
     }
 
+    #[Override]
     public function rewind(): void
     {
         $this->index = 0;

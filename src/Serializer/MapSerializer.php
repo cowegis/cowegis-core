@@ -11,8 +11,8 @@ use Cowegis\Core\Definition\Map\Map;
 use Cowegis\Core\Definition\Map\Pane;
 use Cowegis\Core\Definition\Map\Panes;
 use Cowegis\Core\Definition\Map\View;
+use Override;
 
-use function assert;
 use function count;
 
 /**
@@ -45,13 +45,14 @@ use function count;
 final class MapSerializer extends DataSerializer
 {
     /**
+     * @param Map $data
+     *
      * @return array<string, mixed>
      * @psalm-return TSerializedMap
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
-        assert($data instanceof Map);
-
         /** @psalm-var array<string, mixed> */
         $options = $this->serializer->serialize($data->options());
         /** @psalm-var array<string, mixed> */

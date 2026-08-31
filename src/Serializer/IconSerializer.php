@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cowegis\Core\Serializer;
 
 use Cowegis\Core\Definition\Icon\Icon;
+use Override;
 
 /**
  * @extends DataSerializer<Icon>
@@ -16,7 +17,7 @@ use Cowegis\Core\Definition\Icon\Icon;
  */
 final class IconSerializer extends DataSerializer
 {
-    public function __construct(protected readonly string $type, Serializer $serializer)
+    public function __construct(private readonly string $type, Serializer $serializer)
     {
         parent::__construct($serializer);
     }
@@ -27,6 +28,7 @@ final class IconSerializer extends DataSerializer
      * @return array<string,mixed>
      * @psalm-return TSerializedIcon
      */
+    #[Override]
     public function serialize(mixed $data): array
     {
         /** @psalm-var array<string,mixed> $options */
