@@ -2,6 +2,7 @@
 /.env.companion
 
 # Composer
+/composer.lock
 /vendor
 
 # PHPCQ

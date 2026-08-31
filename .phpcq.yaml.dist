@@ -7,6 +7,12 @@ phpcq:
     - spec
   artifact: .phpcq/build
   plugins:
+    doctrine-coding-standard:
+      version: ^1.0
+      signed: false
+      requirements:
+        composer:
+          doctrine/coding-standard: ^14.0
     composer-normalize:
       version: ^1.0
       signed: false
@@ -31,12 +37,6 @@ phpcq:
     phpcs:
       version: ^1.0
       signed: false
-    doctrine-coding-standard:
-      version: ^1.0
-      signed: false
-      requirements:
-        composer:
-          doctrine/coding-standard: ^14.0
     phpspec:
       version: ^1.0
       signed: false
@@ -89,17 +89,17 @@ tasks:
     config:
       dry-run: false
     plugin: rector
-  phpcbf:
-    config:
-      fix: true
-      standard: ~
-    plugin: phpcs
-    uses:
-      doctrine-coding-standard:
-        phpcs_standard: ignore
   phpcs:
     config:
       standard: ~
+    uses:
+      doctrine-coding-standard:
+        phpcs_standard: ignore
+  phpcbf:
+    plugin: phpcs
+    config:
+      standard: ~
+      fix: true
     uses:
       doctrine-coding-standard:
         phpcs_standard: ignore

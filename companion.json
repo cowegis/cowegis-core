@@ -1,6 +1,6 @@
 {
   "receipts": [
-    "projects/common",
+    "projects/library",
     "coding-standards/doctrine/14"
   ],
   "config": {
