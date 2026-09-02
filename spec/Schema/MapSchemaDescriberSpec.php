@@ -42,4 +42,24 @@ final class MapSchemaDescriberSpec extends ObjectBehavior
         expect($controls['items'])->shouldHaveKey('oneOf');
         expect($controls['items']['oneOf'])->shouldHaveCount(1);
     }
+
+    public function it_describes_presets_and_drops_assets(Info $info, Schema $idSchema, Schema $objectId): void
+    {
+        $info->toArray()->willReturn(['title' => 'Test API', 'version' => '1.0.0']);
+        $idSchema->objectId(Argument::any())->willReturn($objectId->getWrappedObject());
+        $idSchema->toArray()->willReturn(['type' => 'string']);
+        $objectId->toArray()->willReturn(['type' => 'string']);
+
+        $builder = SchemaBuilder::create($info->getWrappedObject(), $idSchema->getWrappedObject());
+        $this->describe($builder);
+
+        $props = $builder->build()->toArray()['components']['schemas']['MapSchema']['properties'];
+
+        expect($props)->shouldHaveKey('presets');
+        expect($props['presets']['properties'])->shouldHaveKey('icons');
+        expect($props['presets']['properties'])->shouldHaveKey('popups');
+        expect($props['presets']['properties'])->shouldHaveKey('styles');
+        expect($props['presets']['properties'])->shouldHaveKey('tooltips');
+        expect($props)->shouldNotHaveKey('assets');
+    }
 }

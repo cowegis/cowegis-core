@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Schema;
 
-use Cowegis\Core\Definition\Asset\Asset;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Operation;
@@ -142,18 +141,15 @@ final class MapSchemaDescriber implements SchemaDescriber
                             Schema::string('reference'),
                         ),
                 ),
-                Schema::array('assets')->items(
-                    Schema::object()
-                        ->required('type', 'url')
-                        ->properties(
-                            Schema::string('type')
-                                ->enum(Asset::TYPE_JAVASCRIPT, Asset::TYPE_STYLESHEET)
-                                ->example(Asset::TYPE_JAVASCRIPT),
-                            Schema::string('url')
-                                ->format('url')
-                                ->example('/cowegis/js/callbacks/123.js'),
-                        ),
-                ),
+                Schema::object('presets')
+                    ->description('Reusable icon, popup, tooltip and style presets keyed by preset id')
+                    ->required('icons', 'popups', 'styles', 'tooltips')
+                    ->properties(
+                        Schema::object('icons')->additionalProperties($this->iconPresetSchema($builder)),
+                        Schema::object('popups')->additionalProperties($this->popupPresetSchema($builder)),
+                        Schema::object('styles')->additionalProperties(HashMap::create()),
+                        Schema::object('tooltips')->additionalProperties($this->tooltipPresetSchema($builder)),
+                    ),
                 Schema::object('view')
                     ->required('center', 'zoom', 'options')
                     ->properties(
@@ -213,5 +209,45 @@ final class MapSchemaDescriber implements SchemaDescriber
                     ->enum('auto', 'none'),
             )
             ->required('paneId', 'name', 'zIndex');
+    }
+
+    private function iconPresetSchema(SchemaBuilder $builder): Schema
+    {
+        return Schema::object('IconPreset')
+            ->required('iconId', 'type')
+            ->properties(
+                $builder->idSchemaRef('iconId'),
+                Schema::string('type')->example('svg')->description('Icon type name'),
+                HashMap::create('options')->description('Key value map of icon options'),
+            );
+    }
+
+    private function popupPresetSchema(SchemaBuilder $builder): Schema
+    {
+        return Schema::object('PopupPreset')
+            ->required('content')
+            ->properties(
+                Schema::string('content')->description('Rendered popup HTML'),
+                $builder->idSchemaRef('presetId')->nullable(),
+                HashMap::create('options')->description('Key value map of popup options'),
+                Schema::object('events')->description('Event reference map'),
+            );
+    }
+
+    private function tooltipPresetSchema(SchemaBuilder $builder): Schema
+    {
+        return Schema::object('TooltipPreset')
+            ->required('content')
+            ->properties(
+                Schema::string('content')->description('Rendered tooltip HTML'),
+                Schema::array('coordinates')
+                    ->nullable()
+                    ->minItems(2)
+                    ->maxItems(3)
+                    ->items(Schema::number()),
+                HashMap::create('options')->description('Key value map of tooltip options'),
+                $builder->idSchemaRef('presetId')->nullable(),
+                Schema::object('events')->description('Event reference map'),
+            );
     }
 }
