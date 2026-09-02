@@ -85,12 +85,25 @@ final class MapSchemaDescriber implements SchemaDescriber
     /** @return Schema[] */
     private function buildControlSchemas(SchemaBuilder $builder): array
     {
+        $builder->components()->withSchema(new ControlSchema(), ControlSchema::SHORT_REF);
+
         $schemas = [];
         foreach ($this->controlSchemas as $describer) {
             $schemas[] = $builder->components()->withSchema($describer->describe($builder));
         }
 
         return $schemas;
+    }
+
+    private function controlsItems(SchemaBuilder $builder): Schema|OneOf
+    {
+        $schemas = $this->buildControlSchemas($builder);
+
+        if ($schemas === []) {
+            return Schema::ref(ControlSchema::FULL_REF);
+        }
+
+        return OneOf::create()->schemas(...$schemas);
     }
 
     private function mapSchema(SchemaBuilder $builder): Schema
@@ -116,7 +129,7 @@ final class MapSchemaDescriber implements SchemaDescriber
                     ->items(OneOf::create()->schemas(...$this->buildLayerSchemas($builder))),
                 Schema::array('controls')
                     ->description('Map controls')
-                    ->items(OneOf::create()->schemas(...$this->buildControlSchemas($builder))),
+                    ->items($this->controlsItems($builder)),
                 Schema::array('panes')
                     ->description('Custom panes of the map')
                     ->items($builder->components()->withSchema($this->paneSchema($builder))),
