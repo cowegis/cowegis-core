@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Schema\Layer;
 
+use Cowegis\Core\Schema\AssetSchema;
+use Cowegis\Core\Schema\Error\ProblemResponses;
 use Cowegis\Core\Schema\GeoJson\FeatureCollectionSchema;
 use Cowegis\Core\Schema\SchemaBuilder;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
@@ -22,17 +24,25 @@ final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
     {
         parent::registerRequirements($builder, $schema);
 
-        $response = Response::ok('marker')
-            ->content(MediaType::json()->schema(Schema::ref(FeatureCollectionSchema::FULL_REF)));
+        $envelope = $builder->components()->withSchema(
+            Schema::object('MarkerDataResponse')
+                ->description('Marker feature collection plus required assets')
+                ->required('data', 'assets')
+                ->properties(
+                    Schema::ref(FeatureCollectionSchema::FULL_REF, 'data'),
+                    Schema::array('assets')->items(Schema::ref(AssetSchema::FULL_REF)),
+                ),
+        );
 
-        // TODO error responses
+        $response = Response::ok('Marker layer data')
+            ->content(MediaType::json()->schema($envelope));
 
         $layerDetails = Operation::get()
-            ->description('')
-            ->summary('Show full map details')
+            ->description('Deferred marker features for a single layer of a map')
+            ->summary('Show marker layer data')
             ->parameters(
                 Parameter::path()
-                    ->name('definitionId')
+                    ->name('mapId')
                     ->schema($builder->idSchemaRef())
                     ->required(),
                 Parameter::path()
@@ -41,11 +51,11 @@ final class MarkerLayerSchemaDescriber extends GeoJsonLayerDescriber
                     ->required(),
             )
             ->tags(Tag::create()->name('Layer data'))
-            ->responses($response);
+            ->responses($response, ProblemResponses::notFound());
 
         $builder->withPathItem(
             (new PathItem())
-                ->route('/map/{definitionId}/markers/{layerId}')
+                ->route('/map/{mapId}/markers/{layerId}')
                 ->operations($layerDetails),
         );
     }
