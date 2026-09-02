@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cowegis\Core\Schema;
 
+use Cowegis\Core\Schema\Error\ProblemResponses;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\MediaType;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\OneOf;
 use GoldSpecDigital\ObjectOrientedOAS\Objects\Operation;
@@ -44,25 +45,36 @@ final class MapSchemaDescriber implements SchemaDescriber
             ->name('Map')
             ->description('All map related endpoints');
 
-        $response = Response::ok('map')
-            ->content(MediaType::json()->schema($builder->components()->withSchema($this->mapSchema($builder))));
+        $mapRef   = $builder->components()->withSchema($this->mapSchema($builder));
+        $assetRef = $builder->components()->withSchema(new AssetSchema(), AssetSchema::SHORT_REF);
 
-        // TODO error responses
+        $envelope = $builder->components()->withSchema(
+            Schema::object('MapResponse')
+                ->description('Full map definition plus the assets required to render it')
+                ->required('map', 'assets')
+                ->properties(
+                    $mapRef->objectId('map'),
+                    Schema::array('assets')->items($assetRef),
+                ),
+        );
+
+        $response = Response::ok('Full map definition with assets')
+            ->content(MediaType::json()->schema($envelope));
 
         $mapDetails = Operation::get()
             ->description('This entrypoint provides all information to render a map with cowegis.')
             ->summary('Show full map details')
             ->parameters(
                 Parameter::path()
-                    ->name('definitionId')
+                    ->name('mapId')
                     ->schema($builder->idSchemaRef())
                     ->required(),
             )
             ->tags($tag)
-            ->responses($response);
+            ->responses($response, ProblemResponses::notFound());
 
         $path = (new PathItem())
-            ->route('/map/{definitionId}')
+            ->route('/map/{mapId}')
             ->operations($mapDetails);
 
         $builder->withPathItem($path);

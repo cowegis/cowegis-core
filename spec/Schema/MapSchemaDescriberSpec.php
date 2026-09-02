@@ -25,12 +25,7 @@ final class MapSchemaDescriberSpec extends ObjectBehavior
         Schema $idSchema,
         Schema $objectId,
     ): void {
-        $info->toArray()->willReturn(['title' => 'Test API', 'version' => '1.0.0']);
-        $idSchema->objectId(Argument::any())->willReturn($objectId->getWrappedObject());
-        $idSchema->toArray()->willReturn(['type' => 'string']);
-        $objectId->toArray()->willReturn(['type' => 'string']);
-
-        $builder = SchemaBuilder::create($info->getWrappedObject(), $idSchema->getWrappedObject());
+        $builder = self::builder($info, $idSchema, $objectId);
         $this->describe($builder);
 
         $doc = $builder->build()->toArray();
@@ -45,12 +40,7 @@ final class MapSchemaDescriberSpec extends ObjectBehavior
 
     public function it_describes_presets_and_drops_assets(Info $info, Schema $idSchema, Schema $objectId): void
     {
-        $info->toArray()->willReturn(['title' => 'Test API', 'version' => '1.0.0']);
-        $idSchema->objectId(Argument::any())->willReturn($objectId->getWrappedObject());
-        $idSchema->toArray()->willReturn(['type' => 'string']);
-        $objectId->toArray()->willReturn(['type' => 'string']);
-
-        $builder = SchemaBuilder::create($info->getWrappedObject(), $idSchema->getWrappedObject());
+        $builder = self::builder($info, $idSchema, $objectId);
         $this->describe($builder);
 
         $props = $builder->build()->toArray()['components']['schemas']['MapSchema']['properties'];
@@ -61,5 +51,35 @@ final class MapSchemaDescriberSpec extends ObjectBehavior
         expect($props['presets']['properties'])->shouldHaveKey('styles');
         expect($props['presets']['properties'])->shouldHaveKey('tooltips');
         expect($props)->shouldNotHaveKey('assets');
+    }
+
+    public function it_wraps_the_map_response_in_an_envelope_with_assets(
+        Info $info,
+        Schema $idSchema,
+        Schema $objectId,
+    ): void {
+        $builder = self::builder($info, $idSchema, $objectId);
+        $this->describe($builder);
+
+        $doc = $builder->build()->toArray();
+
+        expect($doc['components']['schemas'])->shouldHaveKey('MapResponse');
+        expect($doc['components']['schemas']['MapResponse']['properties'])->shouldHaveKey('map');
+        expect($doc['components']['schemas']['MapResponse']['properties'])->shouldHaveKey('assets');
+        expect($doc['components']['schemas'])->shouldHaveKey('Asset');
+
+        $responses = $doc['paths']['/map/{mapId}']['get']['responses'];
+        expect($responses)->shouldHaveKey(200);
+        expect($responses)->shouldHaveKey(404);
+    }
+
+    private static function builder(Info $info, Schema $idSchema, Schema $objectId): SchemaBuilder
+    {
+        $info->toArray()->willReturn(['title' => 'Test API', 'version' => '1.0.0']);
+        $idSchema->objectId(Argument::any())->willReturn($objectId->getWrappedObject());
+        $idSchema->toArray()->willReturn(['type' => 'string']);
+        $objectId->toArray()->willReturn(['type' => 'string']);
+
+        return SchemaBuilder::create($info->getWrappedObject(), $idSchema->getWrappedObject());
     }
 }
